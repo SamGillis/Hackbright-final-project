@@ -33,9 +33,45 @@ class Collection(db.Model):
     collection_type = db.Column(db.String)
 
     user = db.relationship('User')
+    books = db.relationship('Book', 
+                            secondary='books_by_collection')
 
     def __repr__(self):
         return f'<Collection id={self.id} user={self.user.email}>'
+
+
+class Book(db.Model):
+    """A book"""
+
+    __tablename__ = 'books'
+
+    google_id = db.Column(db.Integer, 
+                        primary_key=True)
+    cover_img = db.Column(db.String)
+    title = db.Column(db.String)
+
+    collections = db.relationship('Collection', 
+                                    secondary='books_by_collection')
+
+    def __repr__(self):
+        return f'<Book google_id={self.google_id} title={self.title}>'
+
+
+
+class Book_by_Collection(db.Model):
+    """Books by collection"""
+
+    __tablename__ = 'books_by_collection'
+
+    id = db.Column(db.Integer,
+                    autoincrement=True,
+                    primary_key=True)
+    book_id = db.Column(db.Integer, db.ForeignKey('books.google_id'))
+    collection_id = db.Column(db.Integer, db.ForeignKey('collections.id'))
+
+    book = db.relationship('Book')
+    collection = db.relationship('Collection')
+
 
 
 
