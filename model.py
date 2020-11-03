@@ -1,0 +1,32 @@
+from flask_sqlalchemy import flask_sqlalchemy
+
+db = SQLAlchemy()
+
+
+class Users(db.Model):
+    """A user."""
+
+    __tablename__ = 'users'
+
+    id = db.Column(db.Integer, 
+                    autoincrement=True,
+                    primary_key=True)
+    username = db.Column(db.String, unique=True)
+    password = db.Column(db.String)
+
+
+def connect_to_db(flask_app, db_uri='postgresql:///books', echo=True):
+    flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
+    flask_app.config['SQLALCHEMY_ECHO'] = echo
+    flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    db.app = flask_app
+    db.init_app(flask_app)
+
+    print('Connected to the db!')
+
+if __name__ = '__main__':
+    from server import app
+    
+    # Call connect_to_db(app, echo=False) if your program output gets
+    connect_to_db(app)
