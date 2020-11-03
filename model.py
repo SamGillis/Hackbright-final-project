@@ -39,6 +39,14 @@ class Collection(db.Model):
     def __repr__(self):
         return f'<Collection id={self.id} user={self.user.email}>'
 
+    def add_book(self, book):
+        """Adds a book instance to a Collection instance"""
+        from crud import create_book_to_collection
+
+        added_book = create_book_to_collection(book, self)
+        db.session.add(added_book)
+        db.session.commit()
+
 
 class Book(db.Model):
     """A book"""
