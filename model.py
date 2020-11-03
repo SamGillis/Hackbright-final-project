@@ -1,9 +1,9 @@
-from flask_sqlalchemy import flask_sqlalchemy
+from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
 
-class Users(db.Model):
+class User(db.Model):
     """A user."""
 
     __tablename__ = 'users'
@@ -11,8 +11,12 @@ class Users(db.Model):
     id = db.Column(db.Integer, 
                     autoincrement=True,
                     primary_key=True)
-    username = db.Column(db.String, unique=True)
+    email = db.Column(db.String, unique=True)
+    username = db.Column(db.String)
     password = db.Column(db.String)
+
+    def __repr__(self):
+        return f'<User id={self.id} email={self.email}>'
 
 
 def connect_to_db(flask_app, db_uri='postgresql:///books', echo=True):
@@ -25,8 +29,8 @@ def connect_to_db(flask_app, db_uri='postgresql:///books', echo=True):
 
     print('Connected to the db!')
 
-if __name__ = '__main__':
+if __name__ == '__main__':
     from server import app
-    
+
     # Call connect_to_db(app, echo=False) if your program output gets
     connect_to_db(app)
