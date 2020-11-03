@@ -15,8 +15,29 @@ class User(db.Model):
     username = db.Column(db.String)
     password = db.Column(db.String)
 
+    collections = db.relationship('Collection')
+
     def __repr__(self):
         return f'<User id={self.id} email={self.email}>'
+
+
+class Collection(db.Model):
+    """A collection of books"""
+
+    __tablename__ = 'collections'
+
+    id = db.Column(db.Integer,
+                    autoincrement=True,
+                    primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    collection_type = db.Column(db.String)
+
+    user = db.relationship('User')
+
+    def __repr__(self):
+        return f'<Collection id={self.id} user={self.user.email}>'
+
+
 
 
 def connect_to_db(flask_app, db_uri='postgresql:///books', echo=True):
