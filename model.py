@@ -53,7 +53,7 @@ class Book(db.Model):
 
     __tablename__ = 'books'
 
-    google_id = db.Column(db.Integer, 
+    google_id = db.Column(db.String, 
                         primary_key=True)
     cover_img = db.Column(db.String)
     title = db.Column(db.String)
@@ -74,7 +74,7 @@ class Book_by_Collection(db.Model):
     id = db.Column(db.Integer,
                     autoincrement=True,
                     primary_key=True)
-    book_id = db.Column(db.Integer, db.ForeignKey('books.google_id'))
+    book_id = db.Column(db.String, db.ForeignKey('books.google_id'))
     collection_id = db.Column(db.Integer, db.ForeignKey('collections.id'))
 
     book = db.relationship('Book')
