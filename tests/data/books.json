@@ -1,0 +1,818 @@
+{
+    "kind": "books#volumes",
+    "totalItems": 2041,
+    "items": [
+      {
+        "kind": "books#volume",
+        "id": "nggdBQAAQBAJ",
+        "etag": "KOLOJ/YnR0w",
+        "selfLink": "https://www.googleapis.com/books/v1/volumes/nggdBQAAQBAJ",
+        "volumeInfo": {
+          "title": "Jane Austen",
+          "authors": [
+            "Tony Tanner"
+          ],
+          "publisher": "Macmillan International Higher Education",
+          "publishedDate": "2007-09-11",
+          "description": "Tony Tanner's classic text on Jane Austen addresses the issues that have always occupied the author's most perceptive critics, and offers an illuminating and refreshing analysis of Austen's novels. Tanner shows how Austen changed from a basically accepting view of 'society' to a more questioning one and considers the problems of authority, power and the position of women, as well as the relationship between ethics, language and behaviour. This reissued edition features a new Preface by leading Romantic scholar Marilyn Gaull who examines Tanner's background and places the original work in context. Lively and informative, the Preface helps to reinforce and explain the continued importance of Tanner's work. Accompanied by an insightful Note on the Text by Austen scholar John Wiltshire, and an expanded Bibliography and Index, this is a timely republication of a study which is now regarded as one of the finest, and most accessible, introductions to a great novelist.",
+          "industryIdentifiers": [
+            {
+              "type": "ISBN_13",
+              "identifier": "9781137064578"
+            },
+            {
+              "type": "ISBN_10",
+              "identifier": "1137064579"
+            }
+          ],
+          "readingModes": {
+            "text": false,
+            "image": true
+          },
+          "pageCount": 336,
+          "printType": "BOOK",
+          "categories": [
+            "Literary Criticism"
+          ],
+          "maturityRating": "NOT_MATURE",
+          "allowAnonLogging": false,
+          "contentVersion": "0.2.1.0.preview.1",
+          "panelizationSummary": {
+            "containsEpubBubbles": false,
+            "containsImageBubbles": false
+          },
+          "imageLinks": {
+            "smallThumbnail": "http://books.google.com/books/content?id=nggdBQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+            "thumbnail": "http://books.google.com/books/content?id=nggdBQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+          },
+          "language": "en",
+          "previewLink": "http://books.google.com/books?id=nggdBQAAQBAJ&printsec=frontcover&dq=jane+austen&hl=&cd=1&source=gbs_api",
+          "infoLink": "https://play.google.com/store/books/details?id=nggdBQAAQBAJ&source=gbs_api",
+          "canonicalVolumeLink": "https://play.google.com/store/books/details?id=nggdBQAAQBAJ"
+        },
+        "saleInfo": {
+          "country": "US",
+          "saleability": "FOR_SALE",
+          "isEbook": true,
+          "listPrice": {
+            "amount": 39.99,
+            "currencyCode": "USD"
+          },
+          "retailPrice": {
+            "amount": 31.19,
+            "currencyCode": "USD"
+          },
+          "buyLink": "https://play.google.com/store/books/details?id=nggdBQAAQBAJ&rdid=book-nggdBQAAQBAJ&rdot=1&source=gbs_api",
+          "offers": [
+            {
+              "finskyOfferType": 1,
+              "listPrice": {
+                "amountInMicros": 39990000,
+                "currencyCode": "USD"
+              },
+              "retailPrice": {
+                "amountInMicros": 31190000,
+                "currencyCode": "USD"
+              },
+              "giftable": true
+            }
+          ]
+        },
+        "accessInfo": {
+          "country": "US",
+          "viewability": "PARTIAL",
+          "embeddable": true,
+          "publicDomain": false,
+          "textToSpeechPermission": "ALLOWED_FOR_ACCESSIBILITY",
+          "epub": {
+            "isAvailable": false
+          },
+          "pdf": {
+            "isAvailable": true,
+            "acsTokenLink": "http://books.google.com/books/download/Jane_Austen-sample-pdf.acsm?id=nggdBQAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+          },
+          "webReaderLink": "http://play.google.com/books/reader?id=nggdBQAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+          "accessViewStatus": "SAMPLE",
+          "quoteSharingAllowed": false
+        },
+        "searchInfo": {
+          "textSnippet": "Accompanied by an insightful Note on the Text by Austen scholar John Wiltshire, and an expanded Bibliography and Index, this is a timely republication of a study which is now regarded as one of the finest, and most accessible, introductions ..."
+        }
+      },
+      {
+        "kind": "books#volume",
+        "id": "a6LokmcqqSEC",
+        "etag": "NUhb+8eCj8U",
+        "selfLink": "https://www.googleapis.com/books/v1/volumes/a6LokmcqqSEC",
+        "volumeInfo": {
+          "title": "The Complete Novels",
+          "authors": [
+            "Jane Austen"
+          ],
+          "publisher": "Penguin",
+          "publishedDate": "2006",
+          "description": "A definitive compilation of the author's seven great novels offers a vivid portrait of English middle-class life, its mores, institutions, and society around the turn of the nineteenth century.",
+          "industryIdentifiers": [
+            {
+              "type": "ISBN_10",
+              "identifier": "0143039504"
+            },
+            {
+              "type": "ISBN_13",
+              "identifier": "9780143039501"
+            }
+          ],
+          "readingModes": {
+            "text": false,
+            "image": false
+          },
+          "pageCount": 1278,
+          "printType": "BOOK",
+          "categories": [
+            "Fiction"
+          ],
+          "averageRating": 5,
+          "ratingsCount": 9,
+          "maturityRating": "NOT_MATURE",
+          "allowAnonLogging": false,
+          "contentVersion": "2.0.3.0.preview.0",
+          "panelizationSummary": {
+            "containsEpubBubbles": false,
+            "containsImageBubbles": false
+          },
+          "imageLinks": {
+            "smallThumbnail": "http://books.google.com/books/content?id=a6LokmcqqSEC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+            "thumbnail": "http://books.google.com/books/content?id=a6LokmcqqSEC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+          },
+          "language": "en",
+          "previewLink": "http://books.google.com/books?id=a6LokmcqqSEC&printsec=frontcover&dq=jane+austen&hl=&cd=2&source=gbs_api",
+          "infoLink": "http://books.google.com/books?id=a6LokmcqqSEC&dq=jane+austen&hl=&source=gbs_api",
+          "canonicalVolumeLink": "https://books.google.com/books/about/The_Complete_Novels.html?hl=&id=a6LokmcqqSEC"
+        },
+        "saleInfo": {
+          "country": "US",
+          "saleability": "NOT_FOR_SALE",
+          "isEbook": false
+        },
+        "accessInfo": {
+          "country": "US",
+          "viewability": "PARTIAL",
+          "embeddable": true,
+          "publicDomain": false,
+          "textToSpeechPermission": "ALLOWED_FOR_ACCESSIBILITY",
+          "epub": {
+            "isAvailable": false
+          },
+          "pdf": {
+            "isAvailable": false
+          },
+          "webReaderLink": "http://play.google.com/books/reader?id=a6LokmcqqSEC&hl=&printsec=frontcover&source=gbs_api",
+          "accessViewStatus": "SAMPLE",
+          "quoteSharingAllowed": false
+        },
+        "searchInfo": {
+          "textSnippet": "A definitive compilation of the author&#39;s seven great novels offers a vivid portrait of English middle-class life, its mores, institutions, and society around the turn of the nineteenth century."
+        }
+      },
+      {
+        "kind": "books#volume",
+        "id": "nqf_Wj2Wwx4C",
+        "etag": "ebGzt9wdOuI",
+        "selfLink": "https://www.googleapis.com/books/v1/volumes/nqf_Wj2Wwx4C",
+        "volumeInfo": {
+          "title": "Jane Austen in Hollywood",
+          "authors": [
+            "Linda Troost",
+            "Sayre N. Greenfield"
+          ],
+          "publisher": "University Press of Kentucky",
+          "publishedDate": "2001",
+          "description": "In 1995 and 1996 six film or television adaptations of Jane Austen's novels were produced -- an unprecedented number. More amazing, all were critical and/or box office successes. What accounts for this explosion of interest? Much of the appeal of these films lies in our nostalgic desire at the end of the millennium for an age of greater politeness and sexual reticence. Austen's ridicule of deceit and pretentiousness also appeals to our fin de siècle sensibilities. The novels were changed, however, to enhance their appeal to a wide popular audience, and the revisions reveal much about our own culture and its values. These recent productions espouse explicitly twentieth-century feminist notions and reshape the Austenian hero to make him conform to modern expectations. Linda Troost and Sayre Greenfield present fourteen essays examining the phenomenon of Jane Austen as cultural icon, providing thoughtful and sympathetic insights on the films through a variety of critical approaches. The contributors debate whether these productions enhance or undercut the subtle feminism that Austen promoted in her novels. From Persuasion to Pride and Prejudice, from the three Emmas (including Clueless ) to Sense and Sensibility, these films succeed because they flatter our intelligence and education. And they have as much to tell us about ourselves as they do about the world of Jane Austen. This second edition includes a new chapter on the recent film version of Mansfield Park.",
+          "industryIdentifiers": [
+            {
+              "type": "ISBN_10",
+              "identifier": "0813190061"
+            },
+            {
+              "type": "ISBN_13",
+              "identifier": "9780813190068"
+            }
+          ],
+          "readingModes": {
+            "text": true,
+            "image": true
+          },
+          "pageCount": 221,
+          "printType": "BOOK",
+          "categories": [
+            "Performing Arts"
+          ],
+          "averageRating": 5,
+          "ratingsCount": 2,
+          "maturityRating": "NOT_MATURE",
+          "allowAnonLogging": false,
+          "contentVersion": "0.0.2.0.preview.3",
+          "panelizationSummary": {
+            "containsEpubBubbles": false,
+            "containsImageBubbles": false
+          },
+          "imageLinks": {
+            "smallThumbnail": "http://books.google.com/books/content?id=nqf_Wj2Wwx4C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+            "thumbnail": "http://books.google.com/books/content?id=nqf_Wj2Wwx4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+          },
+          "language": "en",
+          "previewLink": "http://books.google.com/books?id=nqf_Wj2Wwx4C&printsec=frontcover&dq=jane+austen&hl=&cd=3&source=gbs_api",
+          "infoLink": "http://books.google.com/books?id=nqf_Wj2Wwx4C&dq=jane+austen&hl=&source=gbs_api",
+          "canonicalVolumeLink": "https://books.google.com/books/about/Jane_Austen_in_Hollywood.html?hl=&id=nqf_Wj2Wwx4C"
+        },
+        "saleInfo": {
+          "country": "US",
+          "saleability": "NOT_FOR_SALE",
+          "isEbook": false
+        },
+        "accessInfo": {
+          "country": "US",
+          "viewability": "PARTIAL",
+          "embeddable": true,
+          "publicDomain": false,
+          "textToSpeechPermission": "ALLOWED",
+          "epub": {
+            "isAvailable": true
+          },
+          "pdf": {
+            "isAvailable": true
+          },
+          "webReaderLink": "http://play.google.com/books/reader?id=nqf_Wj2Wwx4C&hl=&printsec=frontcover&source=gbs_api",
+          "accessViewStatus": "SAMPLE",
+          "quoteSharingAllowed": false
+        },
+        "searchInfo": {
+          "textSnippet": "And they have as much to tell us about ourselves as they do about the world of Jane Austen. This second edition includes a new chapter on the recent film version of Mansfield Park."
+        }
+      },
+      {
+        "kind": "books#volume",
+        "id": "mvaMmTPlesEC",
+        "etag": "YocOD6L1rW8",
+        "selfLink": "https://www.googleapis.com/books/v1/volumes/mvaMmTPlesEC",
+        "volumeInfo": {
+          "title": "Jane Austen",
+          "authors": [
+            "Harold Bloom"
+          ],
+          "publisher": "Infobase Publishing",
+          "publishedDate": "2009",
+          "description": "Presents a collection of contemporary criticism and analysis of the works of the English author.",
+          "industryIdentifiers": [
+            {
+              "type": "ISBN_13",
+              "identifier": "9781604133974"
+            },
+            {
+              "type": "ISBN_10",
+              "identifier": "160413397X"
+            }
+          ],
+          "readingModes": {
+            "text": true,
+            "image": true
+          },
+          "pageCount": 315,
+          "printType": "BOOK",
+          "categories": [
+            "Juvenile Nonfiction"
+          ],
+          "maturityRating": "NOT_MATURE",
+          "allowAnonLogging": false,
+          "contentVersion": "0.0.2.0.preview.3",
+          "panelizationSummary": {
+            "containsEpubBubbles": false,
+            "containsImageBubbles": false
+          },
+          "imageLinks": {
+            "smallThumbnail": "http://books.google.com/books/content?id=mvaMmTPlesEC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+            "thumbnail": "http://books.google.com/books/content?id=mvaMmTPlesEC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+          },
+          "language": "en",
+          "previewLink": "http://books.google.com/books?id=mvaMmTPlesEC&printsec=frontcover&dq=jane+austen&hl=&cd=4&source=gbs_api",
+          "infoLink": "http://books.google.com/books?id=mvaMmTPlesEC&dq=jane+austen&hl=&source=gbs_api",
+          "canonicalVolumeLink": "https://books.google.com/books/about/Jane_Austen.html?hl=&id=mvaMmTPlesEC"
+        },
+        "saleInfo": {
+          "country": "US",
+          "saleability": "NOT_FOR_SALE",
+          "isEbook": false
+        },
+        "accessInfo": {
+          "country": "US",
+          "viewability": "PARTIAL",
+          "embeddable": true,
+          "publicDomain": false,
+          "textToSpeechPermission": "ALLOWED",
+          "epub": {
+            "isAvailable": true,
+            "acsTokenLink": "http://books.google.com/books/download/Jane_Austen-sample-epub.acsm?id=mvaMmTPlesEC&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+          },
+          "pdf": {
+            "isAvailable": true,
+            "acsTokenLink": "http://books.google.com/books/download/Jane_Austen-sample-pdf.acsm?id=mvaMmTPlesEC&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+          },
+          "webReaderLink": "http://play.google.com/books/reader?id=mvaMmTPlesEC&hl=&printsec=frontcover&source=gbs_api",
+          "accessViewStatus": "SAMPLE",
+          "quoteSharingAllowed": false
+        },
+        "searchInfo": {
+          "textSnippet": "Presents a collection of contemporary criticism and analysis of the works of the English author."
+        }
+      },
+      {
+        "kind": "books#volume",
+        "id": "ainXQ5ljQcEC",
+        "etag": "ZRZBvUsLho0",
+        "selfLink": "https://www.googleapis.com/books/v1/volumes/ainXQ5ljQcEC",
+        "volumeInfo": {
+          "title": "Searching for Jane Austen",
+          "authors": [
+            "Emily Auerbach"
+          ],
+          "publisher": "Univ of Wisconsin Press",
+          "publishedDate": "2004",
+          "description": "Searching for Jane Austen demolishes with wit and vivacity the often-held view of \"Jane,\" a decorous maiden aunt writing her small drawing-room stories of teas and balls. Emily Auerbach presents a different Jane Austen—a brilliant writer who, despite the obstacles facing women of her time, worked seriously on improving her craft and became one of the world’s greatest novelists, a master of wit, irony, and character development. In this beautifully illustrated and lively work, Auerbach surveys two centuries of editing, censoring, and distorting Austen’s life and writings. Auerbach samples Austen’s flamboyant, risqu� adolescent works featuring heroines who get drunk, lie, steal, raise armies, and throw rivals out of windows. She demonstrates that Austen constantly tested and improved her skills by setting herself a new challenge in each of her six novels. In addition, Auerbach considers Austen’s final irreverent writings, discusses her tragic death at the age of forty-one, and ferrets out ridiculous modern adaptations and illustrations, including ads, cartoons, book jackets, newspaper articles, plays, and films from our own time. An appendix reprints a ground-breaking article that introduced Mark Twain’s \"Jane Austen,\" an unfinished and unforgettable essay in which Twain and Austen enter into mortal combat.",
+          "industryIdentifiers": [
+            {
+              "type": "ISBN_10",
+              "identifier": "0299201848"
+            },
+            {
+              "type": "ISBN_13",
+              "identifier": "9780299201845"
+            }
+          ],
+          "readingModes": {
+            "text": true,
+            "image": true
+          },
+          "pageCount": 344,
+          "printType": "BOOK",
+          "categories": [
+            "Literary Criticism"
+          ],
+          "averageRating": 5,
+          "ratingsCount": 2,
+          "maturityRating": "NOT_MATURE",
+          "allowAnonLogging": false,
+          "contentVersion": "1.0.3.0.preview.3",
+          "panelizationSummary": {
+            "containsEpubBubbles": false,
+            "containsImageBubbles": false
+          },
+          "imageLinks": {
+            "smallThumbnail": "http://books.google.com/books/content?id=ainXQ5ljQcEC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+            "thumbnail": "http://books.google.com/books/content?id=ainXQ5ljQcEC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+          },
+          "language": "en",
+          "previewLink": "http://books.google.com/books?id=ainXQ5ljQcEC&printsec=frontcover&dq=jane+austen&hl=&cd=5&source=gbs_api",
+          "infoLink": "http://books.google.com/books?id=ainXQ5ljQcEC&dq=jane+austen&hl=&source=gbs_api",
+          "canonicalVolumeLink": "https://books.google.com/books/about/Searching_for_Jane_Austen.html?hl=&id=ainXQ5ljQcEC"
+        },
+        "saleInfo": {
+          "country": "US",
+          "saleability": "NOT_FOR_SALE",
+          "isEbook": false
+        },
+        "accessInfo": {
+          "country": "US",
+          "viewability": "PARTIAL",
+          "embeddable": true,
+          "publicDomain": false,
+          "textToSpeechPermission": "ALLOWED",
+          "epub": {
+            "isAvailable": true,
+            "acsTokenLink": "http://books.google.com/books/download/Searching_for_Jane_Austen-sample-epub.acsm?id=ainXQ5ljQcEC&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+          },
+          "pdf": {
+            "isAvailable": false
+          },
+          "webReaderLink": "http://play.google.com/books/reader?id=ainXQ5ljQcEC&hl=&printsec=frontcover&source=gbs_api",
+          "accessViewStatus": "SAMPLE",
+          "quoteSharingAllowed": false
+        },
+        "searchInfo": {
+          "textSnippet": "Searching for Jane Austen demolishes with wit and vivacity the often-held view of &quot;Jane,&quot; a decorous maiden aunt writing her small drawing-room stories of teas and balls."
+        }
+      },
+      {
+        "kind": "books#volume",
+        "id": "QrA0AAAAMAAJ",
+        "etag": "5D3sV4bG40M",
+        "selfLink": "https://www.googleapis.com/books/v1/volumes/QrA0AAAAMAAJ",
+        "volumeInfo": {
+          "title": "Chapters from Jane Austen",
+          "authors": [
+            "J. Austen"
+          ],
+          "publishedDate": "1888",
+          "industryIdentifiers": [
+            {
+              "type": "OTHER",
+              "identifier": "UOM:39015035069411"
+            }
+          ],
+          "readingModes": {
+            "text": false,
+            "image": true
+          },
+          "pageCount": 366,
+          "printType": "BOOK",
+          "maturityRating": "NOT_MATURE",
+          "allowAnonLogging": false,
+          "contentVersion": "0.2.4.0.full.1",
+          "panelizationSummary": {
+            "containsEpubBubbles": false,
+            "containsImageBubbles": false
+          },
+          "imageLinks": {
+            "smallThumbnail": "http://books.google.com/books/content?id=QrA0AAAAMAAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+            "thumbnail": "http://books.google.com/books/content?id=QrA0AAAAMAAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+          },
+          "language": "en",
+          "previewLink": "http://books.google.com/books?id=QrA0AAAAMAAJ&pg=PP1&dq=jane+austen&hl=&cd=6&source=gbs_api",
+          "infoLink": "https://play.google.com/store/books/details?id=QrA0AAAAMAAJ&source=gbs_api",
+          "canonicalVolumeLink": "https://play.google.com/store/books/details?id=QrA0AAAAMAAJ"
+        },
+        "saleInfo": {
+          "country": "US",
+          "saleability": "FREE",
+          "isEbook": true,
+          "buyLink": "https://play.google.com/store/books/details?id=QrA0AAAAMAAJ&rdid=book-QrA0AAAAMAAJ&rdot=1&source=gbs_api"
+        },
+        "accessInfo": {
+          "country": "US",
+          "viewability": "ALL_PAGES",
+          "embeddable": true,
+          "publicDomain": true,
+          "textToSpeechPermission": "ALLOWED",
+          "epub": {
+            "isAvailable": false,
+            "downloadLink": "http://books.google.com/books/download/Chapters_from_Jane_Austen.epub?id=QrA0AAAAMAAJ&hl=&output=epub&source=gbs_api"
+          },
+          "pdf": {
+            "isAvailable": true,
+            "downloadLink": "http://books.google.com/books/download/Chapters_from_Jane_Austen.pdf?id=QrA0AAAAMAAJ&hl=&output=pdf&sig=ACfU3U3JHxhVCkugRmc1PUuxoiDILqMyDQ&source=gbs_api"
+          },
+          "webReaderLink": "http://play.google.com/books/reader?id=QrA0AAAAMAAJ&hl=&printsec=frontcover&source=gbs_api",
+          "accessViewStatus": "FULL_PUBLIC_DOMAIN",
+          "quoteSharingAllowed": false
+        }
+      },
+      {
+        "kind": "books#volume",
+        "id": "iHy75F9qO_4C",
+        "etag": "hDnHKnBOdlU",
+        "selfLink": "https://www.googleapis.com/books/v1/volumes/iHy75F9qO_4C",
+        "volumeInfo": {
+          "title": "Emma",
+          "authors": [
+            "Jane Austen"
+          ],
+          "publisher": "Univ. Press of Mississippi",
+          "publishedDate": "1996",
+          "description": "A timeless coming-of-age story follows the adventures of the self-assured and accomplished Emma, a twenty-one-year-old girl of privilege who believes she is immune to romance and has several chaotic and often humorous experiences. Reissue.",
+          "industryIdentifiers": [
+            {
+              "type": "ISBN_10",
+              "identifier": "0451526279"
+            },
+            {
+              "type": "ISBN_13",
+              "identifier": "9780451526274"
+            }
+          ],
+          "readingModes": {
+            "text": false,
+            "image": false
+          },
+          "pageCount": 414,
+          "printType": "BOOK",
+          "categories": [
+            "Fiction"
+          ],
+          "averageRating": 4,
+          "ratingsCount": 5,
+          "maturityRating": "NOT_MATURE",
+          "allowAnonLogging": false,
+          "contentVersion": "0.0.1.0.preview.0",
+          "panelizationSummary": {
+            "containsEpubBubbles": false,
+            "containsImageBubbles": false
+          },
+          "imageLinks": {
+            "smallThumbnail": "http://books.google.com/books/content?id=iHy75F9qO_4C&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+            "thumbnail": "http://books.google.com/books/content?id=iHy75F9qO_4C&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+          },
+          "language": "en",
+          "previewLink": "http://books.google.com/books?id=iHy75F9qO_4C&dq=jane+austen&hl=&cd=7&source=gbs_api",
+          "infoLink": "http://books.google.com/books?id=iHy75F9qO_4C&dq=jane+austen&hl=&source=gbs_api",
+          "canonicalVolumeLink": "https://books.google.com/books/about/Emma.html?hl=&id=iHy75F9qO_4C"
+        },
+        "saleInfo": {
+          "country": "US",
+          "saleability": "NOT_FOR_SALE",
+          "isEbook": false
+        },
+        "accessInfo": {
+          "country": "US",
+          "viewability": "NO_PAGES",
+          "embeddable": false,
+          "publicDomain": false,
+          "textToSpeechPermission": "ALLOWED",
+          "epub": {
+            "isAvailable": false
+          },
+          "pdf": {
+            "isAvailable": false
+          },
+          "webReaderLink": "http://play.google.com/books/reader?id=iHy75F9qO_4C&hl=&printsec=frontcover&source=gbs_api",
+          "accessViewStatus": "NONE",
+          "quoteSharingAllowed": false
+        },
+        "searchInfo": {
+          "textSnippet": "A timeless coming-of-age story follows the adventures of the self-assured and accomplished Emma, a twenty-one-year-old girl of privilege who believes she is immune to romance and has several chaotic and often humorous experiences. Reissue."
+        }
+      },
+      {
+        "kind": "books#volume",
+        "id": "z68N_TXKpi8C",
+        "etag": "Yxn94uSZuS4",
+        "selfLink": "https://www.googleapis.com/books/v1/volumes/z68N_TXKpi8C",
+        "volumeInfo": {
+          "title": "A Companion to Jane Austen",
+          "authors": [
+            "Claudia L. Johnson",
+            "Clara Tuite"
+          ],
+          "publisher": "John Wiley & Sons",
+          "publishedDate": "2011-10-13",
+          "description": "Reflecting the dynamic and expansive nature of Austen studies, A Companion to Jane Austen provides 42 essays from a distinguished team of literary scholars that examine the full breadth of the English novelist's works and career. Provides the most comprehensive and up-to-date array of Austen scholarship Functions both as a scholarly reference and as a survey of the most innovative speculative developments in the field of Austen studies Engages at length with changing contexts and cultures of reception from the nineteenth to the twenty-first centuries",
+          "industryIdentifiers": [
+            {
+              "type": "ISBN_13",
+              "identifier": "9781444354904"
+            },
+            {
+              "type": "ISBN_10",
+              "identifier": "1444354906"
+            }
+          ],
+          "readingModes": {
+            "text": true,
+            "image": true
+          },
+          "pageCount": 560,
+          "printType": "BOOK",
+          "categories": [
+            "Literary Criticism"
+          ],
+          "maturityRating": "NOT_MATURE",
+          "allowAnonLogging": false,
+          "contentVersion": "2.5.5.0.preview.3",
+          "panelizationSummary": {
+            "containsEpubBubbles": false,
+            "containsImageBubbles": false
+          },
+          "imageLinks": {
+            "smallThumbnail": "http://books.google.com/books/content?id=z68N_TXKpi8C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+            "thumbnail": "http://books.google.com/books/content?id=z68N_TXKpi8C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+          },
+          "language": "en",
+          "previewLink": "http://books.google.com/books?id=z68N_TXKpi8C&printsec=frontcover&dq=jane+austen&hl=&cd=8&source=gbs_api",
+          "infoLink": "https://play.google.com/store/books/details?id=z68N_TXKpi8C&source=gbs_api",
+          "canonicalVolumeLink": "https://play.google.com/store/books/details?id=z68N_TXKpi8C"
+        },
+        "saleInfo": {
+          "country": "US",
+          "saleability": "FOR_SALE",
+          "isEbook": true,
+          "listPrice": {
+            "amount": 44,
+            "currencyCode": "USD"
+          },
+          "retailPrice": {
+            "amount": 35.2,
+            "currencyCode": "USD"
+          },
+          "buyLink": "https://play.google.com/store/books/details?id=z68N_TXKpi8C&rdid=book-z68N_TXKpi8C&rdot=1&source=gbs_api",
+          "offers": [
+            {
+              "finskyOfferType": 1,
+              "listPrice": {
+                "amountInMicros": 44000000,
+                "currencyCode": "USD"
+              },
+              "retailPrice": {
+                "amountInMicros": 35200000,
+                "currencyCode": "USD"
+              },
+              "giftable": true
+            }
+          ]
+        },
+        "accessInfo": {
+          "country": "US",
+          "viewability": "PARTIAL",
+          "embeddable": true,
+          "publicDomain": false,
+          "textToSpeechPermission": "ALLOWED",
+          "epub": {
+            "isAvailable": true,
+            "acsTokenLink": "http://books.google.com/books/download/A_Companion_to_Jane_Austen-sample-epub.acsm?id=z68N_TXKpi8C&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+          },
+          "pdf": {
+            "isAvailable": true,
+            "acsTokenLink": "http://books.google.com/books/download/A_Companion_to_Jane_Austen-sample-pdf.acsm?id=z68N_TXKpi8C&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+          },
+          "webReaderLink": "http://play.google.com/books/reader?id=z68N_TXKpi8C&hl=&printsec=frontcover&source=gbs_api",
+          "accessViewStatus": "SAMPLE",
+          "quoteSharingAllowed": false
+        },
+        "searchInfo": {
+          "textSnippet": "Provides the most comprehensive and up-to-date array of Austen scholarship Functions both as a scholarly reference and as a survey of the most innovative speculative developments in the field of Austen studies Engages at length with ..."
+        }
+      },
+      {
+        "kind": "books#volume",
+        "id": "3GOFouoFqoIC",
+        "etag": "hCBqixtxF/k",
+        "selfLink": "https://www.googleapis.com/books/v1/volumes/3GOFouoFqoIC",
+        "volumeInfo": {
+          "title": "The Complete Novels of Jane Austen",
+          "authors": [
+            "Jane Austen"
+          ],
+          "publisher": "Wordsworth Editions",
+          "publishedDate": "2007",
+          "description": "Jane Austen is without question, one of England's most enduring and skilled novelists. With her wit, social precision, and unerring ability to create some of literature's most charismatic and believable heroines, she mesmerises her readers as much today as when her novels were first published. Whether it is her sharp, ironic gaze at the Gothic genre invoked by the adventures of Catherine Morland in Northanger Abbey; the diffident and much put-upon Fanny Price struggling to cope with her emotions in Mansfield Park; her delightfully paced comedy of manners and the machinations of the sisters Elinor and Marianne in Sense and Sensibility; the quiet strength of Anne Elliot in Persuasion succeeding in a world designed to subjugate her very existence; and Emma - 'a heroine whom no one but myself will like' teased Austen - yet another irresistible character on fire with imagination and foresight. Indeed not unlike her renowned creator. Jane Austen is as sure-footed in her steps through society's whirlpools of convention and prosaic mores as she is in her sometimes restrained but ever precise and enduring prose.",
+          "industryIdentifiers": [
+            {
+              "type": "ISBN_10",
+              "identifier": "1840225564"
+            },
+            {
+              "type": "ISBN_13",
+              "identifier": "9781840225563"
+            }
+          ],
+          "readingModes": {
+            "text": false,
+            "image": true
+          },
+          "pageCount": 1440,
+          "printType": "BOOK",
+          "categories": [
+            "England"
+          ],
+          "averageRating": 3.5,
+          "ratingsCount": 3,
+          "maturityRating": "NOT_MATURE",
+          "allowAnonLogging": false,
+          "contentVersion": "0.0.1.0.preview.1",
+          "panelizationSummary": {
+            "containsEpubBubbles": false,
+            "containsImageBubbles": false
+          },
+          "imageLinks": {
+            "smallThumbnail": "http://books.google.com/books/content?id=3GOFouoFqoIC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+            "thumbnail": "http://books.google.com/books/content?id=3GOFouoFqoIC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+          },
+          "language": "en",
+          "previewLink": "http://books.google.com/books?id=3GOFouoFqoIC&printsec=frontcover&dq=jane+austen&hl=&cd=9&source=gbs_api",
+          "infoLink": "http://books.google.com/books?id=3GOFouoFqoIC&dq=jane+austen&hl=&source=gbs_api",
+          "canonicalVolumeLink": "https://books.google.com/books/about/The_Complete_Novels_of_Jane_Austen.html?hl=&id=3GOFouoFqoIC"
+        },
+        "saleInfo": {
+          "country": "US",
+          "saleability": "NOT_FOR_SALE",
+          "isEbook": false
+        },
+        "accessInfo": {
+          "country": "US",
+          "viewability": "PARTIAL",
+          "embeddable": true,
+          "publicDomain": false,
+          "textToSpeechPermission": "ALLOWED",
+          "epub": {
+            "isAvailable": false
+          },
+          "pdf": {
+            "isAvailable": false
+          },
+          "webReaderLink": "http://play.google.com/books/reader?id=3GOFouoFqoIC&hl=&printsec=frontcover&source=gbs_api",
+          "accessViewStatus": "SAMPLE",
+          "quoteSharingAllowed": false
+        },
+        "searchInfo": {
+          "textSnippet": "Jane Austen is without question, one of England&#39;s most enduring and skilled novelists."
+        }
+      },
+      {
+        "kind": "books#volume",
+        "id": "Su2pDwAAQBAJ",
+        "etag": "pY1mx9ryCNk",
+        "selfLink": "https://www.googleapis.com/books/v1/volumes/Su2pDwAAQBAJ",
+        "volumeInfo": {
+          "title": "The Jane Austen Society",
+          "subtitle": "A Novel",
+          "authors": [
+            "Natalie Jenner"
+          ],
+          "publisher": "St. Martin's Press",
+          "publishedDate": "2020-05-26",
+          "description": "\"Fans of The Chilbury Ladies’ Choir and The Guernsey Literary and Potato Peel Pie Society will adore The Jane Austen Society... A charming and memorable debut, which reminds us of the universal language of literature and the power of books to unite and heal.\" —Pam Jenoff, New York Times bestselling author of The Lost Girls of Paris Just after the Second World War, in the small English village of Chawton, an unusual but like-minded group of people band together to attempt something remarkable. One hundred and fifty years ago, Chawton was the final home of Jane Austen, one of England's finest novelists. Now it's home to a few distant relatives and their diminishing estate. With the last bit of Austen's legacy threatened, a group of disparate individuals come together to preserve both Jane Austen's home and her legacy. These people—a laborer, a young widow, the local doctor, and a movie star, among others—could not be more different and yet they are united in their love for the works and words of Austen. As each of them endures their own quiet struggle with loss and trauma, some from the recent war, others from more distant tragedies, they rally together to create the Jane Austen Society. A powerful and moving novel that explores the tragedies and triumphs of life, both large and small, and the universal humanity in us all, Natalie Jenner's The Jane Austen Society is destined to resonate with readers for years to come.",
+          "industryIdentifiers": [
+            {
+              "type": "ISBN_13",
+              "identifier": "9781250248725"
+            },
+            {
+              "type": "ISBN_10",
+              "identifier": "1250248728"
+            }
+          ],
+          "readingModes": {
+            "text": true,
+            "image": false
+          },
+          "pageCount": 320,
+          "printType": "BOOK",
+          "categories": [
+            "Fiction"
+          ],
+          "averageRating": 4,
+          "ratingsCount": 17,
+          "maturityRating": "NOT_MATURE",
+          "allowAnonLogging": true,
+          "contentVersion": "1.2.2.0.preview.2",
+          "panelizationSummary": {
+            "containsEpubBubbles": false,
+            "containsImageBubbles": false
+          },
+          "imageLinks": {
+            "smallThumbnail": "http://books.google.com/books/content?id=Su2pDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+            "thumbnail": "http://books.google.com/books/content?id=Su2pDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+          },
+          "language": "en",
+          "previewLink": "http://books.google.com/books?id=Su2pDwAAQBAJ&pg=PP1&dq=jane+austen&hl=&cd=10&source=gbs_api",
+          "infoLink": "https://play.google.com/store/books/details?id=Su2pDwAAQBAJ&source=gbs_api",
+          "canonicalVolumeLink": "https://play.google.com/store/books/details?id=Su2pDwAAQBAJ"
+        },
+        "saleInfo": {
+          "country": "US",
+          "saleability": "FOR_SALE",
+          "isEbook": true,
+          "listPrice": {
+            "amount": 13.99,
+            "currencyCode": "USD"
+          },
+          "retailPrice": {
+            "amount": 13.99,
+            "currencyCode": "USD"
+          },
+          "buyLink": "https://play.google.com/store/books/details?id=Su2pDwAAQBAJ&rdid=book-Su2pDwAAQBAJ&rdot=1&source=gbs_api",
+          "offers": [
+            {
+              "finskyOfferType": 1,
+              "listPrice": {
+                "amountInMicros": 13990000,
+                "currencyCode": "USD"
+              },
+              "retailPrice": {
+                "amountInMicros": 13990000,
+                "currencyCode": "USD"
+              },
+              "giftable": true
+            }
+          ]
+        },
+        "accessInfo": {
+          "country": "US",
+          "viewability": "PARTIAL",
+          "embeddable": true,
+          "publicDomain": false,
+          "textToSpeechPermission": "ALLOWED",
+          "epub": {
+            "isAvailable": true,
+            "acsTokenLink": "http://books.google.com/books/download/The_Jane_Austen_Society-sample-epub.acsm?id=Su2pDwAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+          },
+          "pdf": {
+            "isAvailable": false
+          },
+          "webReaderLink": "http://play.google.com/books/reader?id=Su2pDwAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+          "accessViewStatus": "SAMPLE",
+          "quoteSharingAllowed": false
+        },
+        "searchInfo": {
+          "textSnippet": "* INTERNATIONAL BESTSELLER * &quot;This novel delivers sweet, smart escapism.&quot; —People &quot;Fans of The Chilbury Ladies’ Choir and The Guernsey Literary and Potato Peel Pie Society will adore The Jane Austen Society."
+        }
+      }
+    ]
+  }
