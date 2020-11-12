@@ -4,15 +4,20 @@
 {% block body %}
   <h1>Search</h1>
   <form action='/search_results'>
+    <div>
+      <label for='search_terms'></label>
+      <input type='text' name='search_terms' id='terms'> 
+    </div>
     <label>
-      Search by:
-    
-      <select name='type'>
-        <option value='title'>Title</option>
-        <option value='author'>Author</option>
-        <option value='user'>User</option>
-        <option value='isbn'>Isbn</option>
-      </select>
+      <div id='type'>
+        Search by:
+        <select name='type'>
+          <option value='title'>Title</option>
+          <option value='author'>Author</option>
+          <option value='user'>User</option>
+          <option value='isbn'>Isbn</option>
+        </select>
+      </div>
     </label>
     <input type='submit' value="Search">
   </form>
