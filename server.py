@@ -44,7 +44,7 @@ def search_results():
     elif search_type == 'isbn':
         res = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=isbn:{search_terms}&key={api_key}')
     else:
-        pass ##TODO user search results
+        return redirect(f'/user_search?search_terms={search_terms}')
 
     results = res.json()
     book_results = []
@@ -83,12 +83,54 @@ def display_book():
     
     book_info['description'] = book_info.get('description', "")
 
-    return render_template('book.html', book=book_info)
+    return render_template('book.html', book=book_info, 
+                            google_id=results['items'][0]['id'],
+                            user=User.query.get(1))
 
-@app.route('/create_collection')
-def create_collection():
-
+@app.route('/add_book/<google_id>')
+def add_book_to_collection(google_id):
+    """add a book to a user's collection""" 
     
+    book = Book.query.get(google_id)
+    
+    ##TODO update to correct user
+    user = User.query.get(1)
+    collection_type = request.args.get('collection_type')
+
+    collection = Collection.query.filter(Collection.user == user,
+                                Collection.collection_type == collection_type)
+    collection = collection.first()
+
+    crud.create_book_to_collection(book, collection)
+
+    return redirect(f'/book?gi={book.google_id}')
+
+
+@app.route('/user_search')
+def search_user():
+
+    username = request.args.get('search_terms')
+
+    users = User.query.filter(User.username == username).all()
+
+    return render_template('user_results.html', results=users, search_terms=username)
+
+# @app.route('/create_collection')
+# def create_collection():
+
+#     ##TODO get user from session
+#     user = User.query.get(1)
+#     collection_type = requests.args.get('type') 
+    
+#     if collection_type == 'other'
+#         pass 
+#         ##TODO
+
+#     collection = crud.create_collection(user, collection_type)
+
+#     return redirect('/book')
+
+
 
 @app.route('/user')
 def display_user():

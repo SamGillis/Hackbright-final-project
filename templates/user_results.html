@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Search results{% endblock %}
+
+{% block body %}
+    Displaying results for "{{search_terms}}"
+    {% for user in results %}
+        <div>
+            <a href="/user?id={{user.id}}">{{user.username}}</a>     
+        </div>
+    {% endfor %}
+{% endblock %}

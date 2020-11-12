@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+
     <title>
       {% block title %}{% endblock %}
     </title>
@@ -13,5 +14,8 @@
     {% block body %}{% endblock %}
 
     {% block after_body %}{% endblock %}
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="/static/books.js"></script>
   </body>
 </html>

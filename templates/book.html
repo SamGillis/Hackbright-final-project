@@ -8,4 +8,20 @@
     <p>By: {{book['authors']}}</p>
     <p>{{book['description']}}</p>
 
+    <form action="/add_book/{{google_id}}">
+        <div id='add_to_collection'>
+            <a>
+                Add to a collection
+            </a>
+            <br>
+            <select name=collection_type>
+                {% for each in user.collections %}
+                        <option value={{each.collection_type}}>
+                            {{ each.collection_type }}</option>
+                    {% endfor %}
+            </select>
+            <input type='submit' value="Add">
+        </div>
+    </form>
+
 {% endblock %}
