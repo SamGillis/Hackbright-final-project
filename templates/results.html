@@ -5,8 +5,10 @@
     Displaying results for "{{search_terms}}"
     {% for book in results %}
         <div>
+            {% if book.cover_img != None %}
             <image src="{{ book.cover_img }}"></image>
-            <a href="/book">{{book.title}}</a>     
+            {% endif %}
+            <a href="/book?gi={{book.google_id}}">{{book.title}}</a>     
         </div>
     {% endfor %}
 {% endblock %}

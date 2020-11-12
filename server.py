@@ -44,10 +44,12 @@ def search_results():
     elif search_type == 'isbn':
         res = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=isbn:{search_terms}&key={api_key}')
     else:
-        pass ##user search results
+        pass ##TODO user search results
 
     results = res.json()
     book_results = []
+    
+    ##TODO if no results are found
 
     for i in range(len(results['items'])):
         book_info = results['items'][i]
@@ -55,10 +57,10 @@ def search_results():
                                     book_info['volumeInfo']['imageLinks']['thumbnail'],
                                     book_info['volumeInfo']['title'])
 
-        try:
-            book = Book.query.get(google_id)
-        except:
+        if Book.query.get(google_id) == None:
             book = crud.create_book(google_id, cover_img, title)
+        else:
+            book = Book.query.get(google_id)
         
         book_results.append(book)
     
@@ -68,7 +70,25 @@ def search_results():
 def display_book():
     """Displays details for a book"""
 
-    return render_template('book.html')
+    google_id = request.args.get('gi')
+    res = requests.get(f'https://www.googleapis.com/books/v1/volumes?q={google_id}&key={api_key}')
+
+    results = res.json()
+
+    book_info = results['items'][0]['volumeInfo']
+    try:
+        book_info['authors'] = " ".join(book_info['authors'])
+    except:
+        book_info['authors'] = 'unknown'
+    
+    book_info['description'] = book_info.get('description', "")
+
+    return render_template('book.html', book=book_info)
+
+@app.route('/create_collection')
+def create_collection():
+
+    
 
 @app.route('/user')
 def display_user():
