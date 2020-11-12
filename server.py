@@ -29,6 +29,24 @@ def search_page():
     return render_template('search.html')
 
 
+@app.route('/search_results')
+def search_results():
+    """Displays search results"""
+    
+    return render_template('results.html')
+
+@app.route('/book')
+def display_book():
+    """Displays details for a book"""
+
+    return render_template('book.html')
+
+@app.route('/user')
+def display_user():
+    """Displays details for user"""
+
+    return render_template('user.html')
+
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(host='0.0.0.0', debug=True)

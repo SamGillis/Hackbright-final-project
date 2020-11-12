@@ -3,10 +3,18 @@
 
 {% block body %}
   <h1>Search</h1>
+  <form action='/search_results'>
+    <label>
+      Search by:
+    
+      <select name='type'>
+        <option value='title'>Title</option>
+        <option value='author'>Author</option>
+        <option value='user'>User</option>
+        <option value='isbn'>Isbn</option>
+      </select>
+    </label>
+    <input type='submit' value="Search">
+  </form>
 
-  <h2>Navigation</h2>
-  <ul>
-    <li><a href="/login">Log in</a></li>
-    <li><a href="/create_account">Create an Account</a></li>
-  </ul>
 {% endblock %}
