@@ -41,6 +41,11 @@ def create_book_to_collection(book, collection):
     return added_book
 
 
+def get_user_by_email(email):
+    """Return a user by email."""
+    return User.query.filter(User.email == email).first()
+
+
 
 
 if __name__ == '__main__':

@@ -4,9 +4,39 @@
 {% block body %}
   <h1>Welcome!</h1>
 
-  <h2>Navigation</h2>
-  <ul>
-    <li><a href="/login">Log in</a></li>
-    <li><a href="/create_account">Create an Account</a></li>
+  <h2>Create an Account</h2>
+  <form action="/users" method="POST">
+    <p>
+      Email <input type="text" name="email">
+    </p>
+
+    <p>
+      Username <input type="username" name="username">
+    </p>
+
+    <p>
+      Password <input type="password" name="password">
+    </p>
+
+    <p>
+      <input type="submit">
+    </p>
+  </form>
+
+    <h2>Already have an account? Log in!</h2>
+
+    <form action="/login" method="POST">
+      <p>
+        Email <input type="text" name="email">
+      </p>
+  
+      <p>
+        Password <input type="password" name="password">
+      </p>
+  
+      <p>
+        <input type="submit">
+      </p>
+    
   </ul>
 {% endblock %}

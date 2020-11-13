@@ -23,6 +23,43 @@ def homepage():
     return render_template('homepage.html')
 
 
+@app.route('/users', methods=['POST'])
+def create_user():
+    """Creates a user account"""
+
+    email = request.form.get('email')
+    password = request.form.get('password')
+    username = request.form.get('username')
+
+    user = crud.get_user_by_email(email)
+    if user:
+        flash('Email already has an account. Please try again.')
+    else:
+        user = crud.create_user(email, username, password)
+        crud.create_collection(user, 'home')
+        crud.create_collection(user, 'to_read')
+        flash('Account created! Log in.')
+    
+    return redirect('/')
+
+@app.route('/login', methods=['POST'])
+def user_login():
+    """logs in a user"""
+
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    user = crud.get_user_by_email(email)
+
+    if user.password != password:
+        flash('Email and password do not match. Please try again.')
+        return redirect('/')
+    else:
+        session['user.id'] = session.get('user.id', user.id)
+        flash(f'Welcome back {user.username}')
+        return redirect(f'/user?id={user.id}')
+
+
 @app.route('/search')
 def search_page():
     """Takes you to a search bar"""
@@ -50,7 +87,6 @@ def search_results():
     
     book_results = []
     
-    ##TODO if no results are found
     if results.get('items', 0) == 0:
         return render_template('results.html', search_terms=search_terms, results=book_results)
 
@@ -91,7 +127,7 @@ def display_book():
 
     return render_template('book.html', book=book_info, 
                             google_id=results['items'][0]['id'],
-                            user=User.query.get(1))
+                            user=User.query.get(session['user.id']))
 
 @app.route('/add_book/<google_id>')
 def add_book_to_collection(google_id):
@@ -99,8 +135,8 @@ def add_book_to_collection(google_id):
     
     book = Book.query.get(google_id)
     
-    ##TODO update to correct user
-    user = User.query.get(1)
+    user_id = session['user.id']
+    user = User.query.get(user_id)
     collection_type = request.args.get('collection_type')
 
     collection = Collection.query.filter(Collection.user == user,
@@ -108,6 +144,8 @@ def add_book_to_collection(google_id):
     collection = collection.first()
 
     crud.create_book_to_collection(book, collection)
+
+    flash(f'{book.title} added to {collection_type.title()} Collection')
 
     return redirect(f'/book?gi={book.google_id}')
 
@@ -124,10 +162,11 @@ def search_user():
 @app.route('/create_collection')
 def create_collection():
 
-    ##TODO get user from session
-    user = User.query.get(1)
+    user_id = session['user.id']
+    user = User.query.get(user_id)
     collection_type = request.args.get('collection_name')
     collection_type = collection_type.lower()
+    collection_type = '_'.join(collection_type.split(' '))
 
     collection = crud.create_collection(user, collection_type)
 
@@ -139,10 +178,14 @@ def create_collection():
 def display_user():
     """Displays details for user"""
 
+    
     user_id = request.args.get('id')
+    session_user = User.query.get(session['user.id'])
+    if user_id == None:
+        user_id = session['user.id']
     user = User.query.get(user_id) 
 
-    return render_template('user.html', user=user)
+    return render_template('user.html', user=user, session_user=session_user)
 
 
 @app.route('/collection')

@@ -17,7 +17,7 @@
             <select name=collection_type>
                 {% for each in user.collections %}
                         <option value={{each.collection_type}}>
-                            {{ each.collection_type }}</option>
+                            {{ ' '.join(each.collection_type.split('_')).title() }}</option>
                     {% endfor %}
             </select>
             <input type='submit' value="Add">
