@@ -47,15 +47,19 @@ def search_results():
         return redirect(f'/user_search?search_terms={search_terms}')
 
     results = res.json()
+    
     book_results = []
     
     ##TODO if no results are found
 
     for i in range(len(results['items'])):
         book_info = results['items'][i]
-        google_id, cover_img, title = (book_info['id'],
-                                    book_info['volumeInfo']['imageLinks']['thumbnail'],
-                                    book_info['volumeInfo']['title'])
+        try:
+            google_id, cover_img, title = (book_info['id'],
+                                        book_info['volumeInfo']['imageLinks']['thumbnail'],
+                                        book_info['volumeInfo']['title'])
+        except:
+            continue
 
         if Book.query.get(google_id) == None:
             book = crud.create_book(google_id, cover_img, title)
@@ -115,20 +119,17 @@ def search_user():
 
     return render_template('user_results.html', results=users, search_terms=username)
 
-# @app.route('/create_collection')
-# def create_collection():
+@app.route('/create_collection')
+def create_collection():
 
-#     ##TODO get user from session
-#     user = User.query.get(1)
-#     collection_type = request.args.get('type') 
-    
-#     if collection_type == 'other'
-#         pass 
-#         ##TODO
+    ##TODO get user from session
+    user = User.query.get(1)
+    collection_type = request.args.get('collection_name')
+    collection_type = collection_type.lower()
 
-#     collection = crud.create_collection(user, collection_type)
+    collection = crud.create_collection(user, collection_type)
 
-#     return redirect('/book')
+    return redirect(f'/user?id={user.id}')
 
 
 
@@ -140,6 +141,16 @@ def display_user():
     user = User.query.get(user_id) 
 
     return render_template('user.html', user=user)
+
+
+@app.route('/collection')
+def display_collection():
+    """Displays books in a collection"""
+
+    collection_id = request.args.get('collection')
+    collection = Collection.query.get(collection_id)
+
+    return render_template('collection.html', collection=collection)
 
 
 if __name__ == '__main__':

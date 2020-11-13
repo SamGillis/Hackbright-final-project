@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}{{collection.user.username}}'s Collection{% endblock %}
+
+{% block body %}
+    
+    <h1>{{collection.user.username}}'s {{collection.collection_type[0].upper() + collection.collection_type[1:]}} 
+        Collection</h1>
+    {% for book in collection.books %}
+        <div>
+            {% if book.cover_img != None %}
+            <image src="{{ book.cover_img }}"></image>
+            {% endif %}
+            <a href="/book?gi={{book.google_id}}">{{book.title}}</a>     
+        </div>
+    {% endfor %}
+{% endblock %}
