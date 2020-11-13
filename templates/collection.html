@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-{% block title %}{{collection.user.username}}'s Collection{% endblock %}
+{% block title %}{{collection.user.username.title()}}'s Collection{% endblock %}
 
 {% block body %}
     
-    <h1>{{collection.user.username}}'s {{collection.collection_type[0].upper() + collection.collection_type[1:]}} 
+    <h1>{{collection.user.username.title()}}'s {{" ".join(collection.collection_type.split("_")).title()}} 
         Collection</h1>
     {% for book in collection.books %}
         <div>

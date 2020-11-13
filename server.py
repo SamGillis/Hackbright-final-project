@@ -57,7 +57,7 @@ def user_login():
     else:
         session['user.id'] = session.get('user.id', user.id)
         flash(f'Welcome back {user.username}')
-        return redirect(f'/user?id={user.id}')
+        return redirect('/user')
 
 
 @app.route('/search')
@@ -145,7 +145,7 @@ def add_book_to_collection(google_id):
 
     crud.create_book_to_collection(book, collection)
 
-    flash(f'{book.title} added to {collection_type.title()} Collection')
+    flash(f'{book.title} added to {" ".join(collection_type.split("_")).title()} Collection')
 
     return redirect(f'/book?gi={book.google_id}')
 
