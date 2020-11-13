@@ -120,7 +120,7 @@ def search_user():
 
 #     ##TODO get user from session
 #     user = User.query.get(1)
-#     collection_type = requests.args.get('type') 
+#     collection_type = request.args.get('type') 
     
 #     if collection_type == 'other'
 #         pass 
@@ -136,7 +136,10 @@ def search_user():
 def display_user():
     """Displays details for user"""
 
-    return render_template('user.html')
+    user_id = request.args.get('id')
+    user = User.query.get(user_id) 
+
+    return render_template('user.html', user=user)
 
 
 if __name__ == '__main__':

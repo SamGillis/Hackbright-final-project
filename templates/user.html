@@ -4,4 +4,21 @@
 {% block body %}
     <h1>{{user.username}}</h1>
 
+    <h2>Collections:</h2>
+    <div>
+        {% for each in user.collections %}
+            <h3>{{each.collection_type[0].upper() + each.collection_type[1:]}}</h3>
+            {% for i in range(10) %}
+                <div>
+                    {% if each.books[i].cover_img != None %}
+                    <image src="{{ each.books[i].cover_img }}"></image>
+                    {% endif %}
+                    <a href="/book?gi={{each.books[i].google_id}}">{{each.books[i].title}}</a>     
+                </div>
+            {% endfor %}
+
+            <a href="/collection?collection={{each.id}}">See all books in this collection</a>
+        {% endfor %}
+    </div>
+
 {% endblock %}
