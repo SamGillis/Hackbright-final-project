@@ -51,6 +51,8 @@ def search_results():
     book_results = []
     
     ##TODO if no results are found
+    if results.get('items', 0) == 0:
+        return render_template('results.html', search_terms=search_terms, results=book_results)
 
     for i in range(len(results['items'])):
         book_info = results['items'][i]

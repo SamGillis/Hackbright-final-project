@@ -8,4 +8,8 @@
             <a href="/user?id={{user.id}}">{{user.username}}</a>     
         </div>
     {% endfor %}
+    {% if results == [] %}
+        <p>No results found</p>
+        <a href="/search">Search again</a>   
+    {% endif %}
 {% endblock %}
