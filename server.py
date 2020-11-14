@@ -38,6 +38,7 @@ def create_user():
         user = crud.create_user(email, username, password)
         crud.create_collection(user, 'home')
         crud.create_collection(user, 'to_read')
+        crud.create_collection(user, 'read')
         flash('Account created! Log in.')
     
     return redirect('/')
