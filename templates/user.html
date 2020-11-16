@@ -2,10 +2,10 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-    <h1>{{user.username}}</h1>
+    <h1>{{searched_user.username}}</h1>
 
     <h2>Collections:</h2>
-    {% if user.id == session_user.id %}
+    {% if searched_user.id == user.id %}
         <form action='/create_collection'>
             <div>
                 <label for='collection_name'>Create a new collection</label>
@@ -16,7 +16,7 @@
     {% endif %}
 
     <div>
-        {% for each in user.collections %}
+        {% for each in searched_user.collections %}
             <h3>{{' '.join(each.collection_type.split('_')).title()}}</h3>
             {% for i in range(10) %}
                 {% if i < each.books|length %}

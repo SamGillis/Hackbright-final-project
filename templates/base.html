@@ -31,6 +31,19 @@
           <li class="nav-item">
             <a class="nav-link" href="/search">Search</a>
           </li>
+          {% if user %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                My Collections
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {% for each in user.collections %}
+                  <a class="dropdown-item" href="/collection?collection={{each.id}}">
+                    {{ ' '.join(each.collection_type.split('_')).title() }}</a>
+                {% endfor %}
+              </div>
+            </li>
+          {% endif %}
       </div>
     </nav>
     

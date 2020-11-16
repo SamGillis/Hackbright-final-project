@@ -20,7 +20,7 @@ api_key = os.environ.get('api_key')
 def homepage():
     """View homepage."""
 
-    return render_template('homepage.html')
+    return render_template('homepage.html', user=None)
 
 
 @app.route('/users', methods=['POST'])
@@ -64,8 +64,9 @@ def user_login():
 @app.route('/search')
 def search_page():
     """Takes you to a search bar"""
+    user = User.query.get(session['user.id'])
 
-    return render_template('search.html')
+    return render_template('search.html', user=user)
 
 
 @app.route('/search_results')
@@ -106,8 +107,10 @@ def search_results():
             book = Book.query.get(google_id)
         
         book_results.append(book)
+
+    user = User.query.get(session['user.id'])
     
-    return render_template('results.html', search_terms=search_terms, results=book_results)
+    return render_template('results.html', search_terms=search_terms, results=book_results, user=user)
 
 @app.route('/book')
 def display_book():
@@ -158,7 +161,9 @@ def search_user():
 
     users = User.query.filter(User.username == username).all()
 
-    return render_template('user_results.html', results=users, search_terms=username)
+    user = User.query.get(session['user.id'])
+
+    return render_template('user_results.html', results=users, search_terms=username, user=user)
 
 @app.route('/create_collection')
 def create_collection():
@@ -186,7 +191,7 @@ def display_user():
         user_id = session['user.id']
     user = User.query.get(user_id) 
 
-    return render_template('user.html', user=user, session_user=session_user)
+    return render_template('user.html', user=session_user, searched_user=user)
 
 
 @app.route('/collection')
@@ -196,7 +201,9 @@ def display_collection():
     collection_id = request.args.get('collection')
     collection = Collection.query.get(collection_id)
 
-    return render_template('collection.html', collection=collection)
+    user = User.query.get(session['user.id'])
+
+    return render_template('collection.html', collection=collection, user=user)
 
 
 if __name__ == '__main__':
