@@ -20,6 +20,9 @@ api_key = os.environ.get('api_key')
 def homepage():
     """View homepage."""
 
+    if session.get('user.id', 0) != 0:
+        return redirect('/user')
+
     return render_template('homepage.html', user=None)
 
 
