@@ -5,12 +5,35 @@
     
     <h1>{{collection.user.username.title()}}'s {{" ".join(collection.collection_type.split("_")).title()}} 
         Collection</h1>
-    {% for book in collection.books %}
-        <div>
-            {% if book.cover_img != None %}
-            <image src="{{ book.cover_img }}"></image>
-            {% endif %}
-            <a href="/book?gi={{book.google_id}}">{{book.title}}</a>     
-        </div>
+    {% for i in range(((page-1)*25), page*25): %}
+        {% if collection.books|length > i%}
+            <div>
+                {% if collection.books[i].cover_img != None %}
+                <image src="{{ collection.books[i].cover_img }}"></image>
+                {% endif %}
+                <a href="/book?gi={{collection.books[i].google_id}}">{{collection.books[i].title}}</a>     
+            </div>
+        {% endif %}
     {% endfor %}
+
+    <br>
+    {% if pages < 5 %}
+        {% for num in range(1, pages+1)%}
+            {% if num == page %}
+                <a>{{num}}</a>
+            {% else %}
+                <a href="/collection?collection={{collection.id}}&page={{num}}">{{num}}</a>
+            {% endif%}
+        {% endfor %}
+    {% else %}
+        {% for num in range(page-2, page+3)%}
+            {% if num > 0 and num <= pages %}
+                {% if num == page %}
+                    <a>{{num}}</a>
+                {% else %}
+                    <a href="/collection?collection={{collection.id}}&page={{num}}">{{num}}</a>
+                {% endif%}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 {% endblock %}

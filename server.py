@@ -3,6 +3,7 @@
 from flask import (Flask, render_template, request, flash,
                 session, redirect)
 from model import connect_to_db, Book, Collection, User
+from math import ceil
 import requests
 import crud
 import os
@@ -91,9 +92,11 @@ def search_results():
     results = res.json()
     
     book_results = []
+
+    user = User.query.get(session['user.id'])
     
     if results.get('items', 0) == 0:
-        return render_template('results.html', search_terms=search_terms, results=book_results)
+        return render_template('results.html', search_terms=search_terms, results=book_results, user=user)
 
     for i in range(len(results['items'])):
         book_info = results['items'][i]
@@ -111,7 +114,7 @@ def search_results():
         
         book_results.append(book)
 
-    user = User.query.get(session['user.id'])
+    
     
     return render_template('results.html', search_terms=search_terms, results=book_results, user=user)
 
@@ -126,7 +129,7 @@ def display_book():
 
     book_info = results['items'][0]['volumeInfo']
     try:
-        book_info['authors'] = " ".join(book_info['authors'])
+        book_info['authors'] = ", ".join(book_info['authors'])
     except:
         book_info['authors'] = 'unknown'
     
@@ -150,7 +153,7 @@ def add_book_to_collection(google_id):
                                 Collection.collection_type == collection_type)
     collection = collection.first()
 
-    crud.create_book_to_collection(book, collection)
+    collection.add_book(book)
 
     flash(f'{book.title} added to {" ".join(collection_type.split("_")).title()} Collection')
 
@@ -206,7 +209,11 @@ def display_collection():
 
     user = User.query.get(session['user.id'])
 
-    return render_template('collection.html', collection=collection, user=user)
+    page = int(request.args.get('page', 1))
+    pages = ceil((len(collection.books)/25))
+
+    return render_template('collection.html', collection=collection, user=user,
+                                page=page, pages=pages)
 
 
 if __name__ == '__main__':
