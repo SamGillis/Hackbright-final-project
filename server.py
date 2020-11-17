@@ -203,8 +203,12 @@ def display_user():
 @app.route('/collection')
 def display_collection():
     """Displays books in a collection"""
-
-    collection_id = request.args.get('collection')
+    try:
+        collection_id = request.args.get('collection')
+        session['collection.id'] = int(collection_id)
+    except: 
+        collection_id = session['collection.id']
+        
     collection = Collection.query.get(collection_id)
 
     user = User.query.get(session['user.id'])

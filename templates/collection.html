@@ -17,23 +17,49 @@
     {% endfor %}
 
     <br>
-    {% if pages < 5 %}
-        {% for num in range(1, pages+1)%}
-            {% if num == page %}
-                <a>{{num}}</a>
-            {% else %}
-                <a href="/collection?collection={{collection.id}}&page={{num}}">{{num}}</a>
-            {% endif%}
-        {% endfor %}
-    {% else %}
-        {% for num in range(page-2, page+3)%}
-            {% if num > 0 and num <= pages %}
+    {% if pages < 1 %}
+        <div>
+            {% for num in range(1, pages+1)%}
                 {% if num == page %}
-                    <a>{{num}}</a>
+                    <a class='pagination'>{{num}}</a>
                 {% else %}
-                    <a href="/collection?collection={{collection.id}}&page={{num}}">{{num}}</a>
-                {% endif%}
+                    <a class='pagination' href="/collection?collection={{collection.id}}&page={{num}}">{{num}}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <div>
+            {% if page != 1 %}
+                <a class='pagination' href="/collection?collection={{collection.id}}&page=1">1</a>
+            {% else %}
+                <a class='pagination'>1</a>
             {% endif %}
-        {% endfor %}
+            {% if page > 3 %}
+            <a class='pagination'>...</a>
+            {% endif %}
+            {% for num in range(page-2, page+3)%}
+                {% if num > 1 and num < pages %}
+                    {% if num == page %}
+                        <a class='pagination'>{{num}}</a>
+                    {% else %}
+                        <a class='pagination' href="/collection?collection={{collection.id}}&page={{num}}">{{num}}</a>
+                    {% endif%}
+                {% endif %}
+            {% endfor %}
+            {% if page < page-2 %}
+                <a class='pagination'>...</a>
+            {% endif %}
+            {% if page != pages %}
+                <a class='pagination' href="/collection?collection={{collection.id}}&page={{pages}}"">{{pages}}</a>
+            {% else %}
+                <a class='pagination'>{{pages}}</a>
+            {% endif %}
+            <br>
+            <form class='pagination' id='jumpcollection' action='/collection?collection={{collection.id}}'>
+                <input type="text" name='page'>
+                <input type='submit' value='Jump to page'>
+                
+            </form>
+        </div>
     {% endif %}
 {% endblock %}
