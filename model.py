@@ -44,8 +44,13 @@ class Collection(db.Model):
         from crud import create_book_to_collection
 
         added_book = create_book_to_collection(book, self)
-        db.session.add(added_book)
-        db.session.commit()
+
+
+    def delete_book(self, book):
+        """Adds a book instance to a Collection instance"""
+        from crud import delete_book_to_collection
+
+        deleted_book = delete_book_to_collection(book, self)
 
 
 class Book(db.Model):

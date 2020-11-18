@@ -20,7 +20,9 @@
                     {% if collection_count.append('1') %}{% endif %}
                 {% endif %}
             {% endfor %}
-            {% if collection_count == user.collections|length %}
+            {% if collection_count|length == user.collections|length %}
+                <p>Book has been added to all collections</p>
+            {% else %}
                 <select name=collection_type>
                     {% for each in user.collections %}
                         {% if book_obj not in each.books %}
@@ -31,8 +33,6 @@
 
                 </select>
                 <input type='submit' value="Add">
-            {% else %}
-                <p>Book has been added to all collections</p>
             {% endif %}
         </div>
     </form>
