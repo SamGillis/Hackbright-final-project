@@ -17,4 +17,52 @@
         <a href="/search">Search again</a>   
     {% endif %}
 
+    <br>
+    {% if pages < 5 %}
+        <div>
+            {% for num in range(1, pages+1)%}
+                {% if num == page %}
+                    <a class='pagination'>{{num}}</a>
+                {% else %}
+                    <a class='pagination' href="/search_results?search_terms{{search_terms}}&type={{search_type}}&page={{num}}">{{num}}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <div>
+            {% if page != 1 %}
+                <a class='pagination' href="/search_results?search_terms={{search_terms}}&type={{search_type}}&page=1">1</a>
+            {% else %}
+                <a class='pagination'>1</a>
+            {% endif %}
+            {% if page > 3 %}
+            <a class='pagination'>...</a>
+            {% endif %}
+            {% for num in range(page-2, page+3)%}
+                {% if num > 1 and num < pages %}
+                    {% if num == page %}
+                        <a class='pagination'>{{num}}</a>
+                    {% else %}
+                        <a class='pagination' href="/search_results?search_terms={{search_terms}}&type={{search_type}}&page={{num}}">{{num}}</a>
+                    {% endif%}
+                {% endif %}
+            {% endfor %}
+            {% if page < pages-2 %}
+                <a class='pagination'>...</a>
+            {% endif %}
+            {% if page != pages %}
+                <a class='pagination' href="/search_results?search_terms={{search_terms}}&type={{search_type}}&page={{pages}}">{{pages}}</a>
+            {% else %}
+                <a class='pagination'>{{pages}}</a>
+            {% endif %}
+            <br>
+            <div>
+                <input id=jumppageresults type="text" name='page'>
+                <button id=jumpresults>Jump to page</button>
+                
+            </div>
+        </div>
+
+    {% endif %}
+
 {% endblock %}

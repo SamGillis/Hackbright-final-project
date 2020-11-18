@@ -77,15 +77,26 @@ def search_page():
 def search_results():
     """Displays search results"""
 
-    search_type = request.args.get('type')
-    search_terms = request.args.get('search_terms')
+    try:
+        search_type = request.args.get('type')
+        search_terms = request.args.get('search_terms')
+        session['search_type'] = search_type
+        session['search_terms'] = search_terms
+    except: 
+        search_type = session['search_type']
+        search_terms = session['search_terms']
+
+    
+
+    page = int(request.args.get('page', 1))
+    start_index = (page - 1) * 25
 
     if search_type == 'author':
-        res = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=inauthor:{search_terms}&key={api_key}')
+        res = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=inauthor:{search_terms}&startIndex={start_index}&maxResults=25&key={api_key}')
     elif search_type == 'title':
-        res = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=intitle:{search_terms}&key={api_key}')
+        res = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=intitle:{search_terms}&startIndex={start_index}&maxResults=25&key={api_key}')
     elif search_type == 'isbn':
-        res = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=isbn:{search_terms}&key={api_key}')
+        res = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=isbn:{search_terms}&startIndex={start_index}&maxResults=25&key={api_key}')
     else:
         return redirect(f'/user_search?search_terms={search_terms}')
 
@@ -93,10 +104,15 @@ def search_results():
     
     book_results = []
 
+    pages = int(results.get('totalItems', 0))
+    pages = int(ceil(pages/25))
+
     user = User.query.get(session['user.id'])
     
     if results.get('items', 0) == 0:
-        return render_template('results.html', search_terms=search_terms, results=book_results, user=user)
+        return render_template('results.html', search_terms=search_terms, 
+                                results=book_results, user=user, page=page, 
+                                pages=pages, search_type=search_type)
 
     for i in range(len(results['items'])):
         book_info = results['items'][i]
@@ -116,7 +132,9 @@ def search_results():
 
     
     
-    return render_template('results.html', search_terms=search_terms, results=book_results, user=user)
+    return render_template('results.html', search_terms=search_terms,
+                            results=book_results, user=user, page=page, 
+                            pages=pages, search_type=search_type)
 
 @app.route('/book')
 def display_book():
@@ -208,13 +226,13 @@ def display_collection():
         session['collection.id'] = int(collection_id)
     except: 
         collection_id = session['collection.id']
-        
+
     collection = Collection.query.get(collection_id)
 
     user = User.query.get(session['user.id'])
 
     page = int(request.args.get('page', 1))
-    pages = ceil((len(collection.books)/25))
+    pages = int(ceil((len(collection.books)/25)))
 
     return render_template('collection.html', collection=collection, user=user,
                                 page=page, pages=pages)

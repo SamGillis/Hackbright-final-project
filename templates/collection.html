@@ -17,7 +17,7 @@
     {% endfor %}
 
     <br>
-    {% if pages < 1 %}
+    {% if pages < 5 %}
         <div>
             {% for num in range(1, pages+1)%}
                 {% if num == page %}
@@ -46,16 +46,16 @@
                     {% endif%}
                 {% endif %}
             {% endfor %}
-            {% if page < page-2 %}
+            {% if page < pages-2 %}
                 <a class='pagination'>...</a>
             {% endif %}
             {% if page != pages %}
-                <a class='pagination' href="/collection?collection={{collection.id}}&page={{pages}}"">{{pages}}</a>
+                <a class='pagination' href="/collection?collection={{collection.id}}&page={{pages}}">{{pages}}</a>
             {% else %}
                 <a class='pagination'>{{pages}}</a>
             {% endif %}
             <br>
-            <form class='pagination' id='jumpcollection' action='/collection?collection={{collection.id}}'>
+            <form class='pagination' id='jumpcollection' action='/collection'>
                 <input type="text" name='page'>
                 <input type='submit' value='Jump to page'>
                 
