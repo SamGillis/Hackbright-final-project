@@ -77,15 +77,8 @@ def search_page():
 def search_results():
     """Displays search results"""
 
-    try:
-        search_type = request.args.get('type')
-        search_terms = request.args.get('search_terms')
-        session['search_type'] = search_type
-        session['search_terms'] = search_terms
-    except: 
-        search_type = session['search_type']
-        search_terms = session['search_terms']
-
+    search_type = request.args.get('type')
+    search_terms = request.args.get('search_terms')
     
 
     page = int(request.args.get('page', 1))
@@ -221,11 +214,7 @@ def display_user():
 @app.route('/collection')
 def display_collection():
     """Displays books in a collection"""
-    try:
-        collection_id = request.args.get('collection')
-        session['collection.id'] = int(collection_id)
-    except: 
-        collection_id = session['collection.id']
+    collection_id = request.args.get('collection')
 
     collection = Collection.query.get(collection_id)
 

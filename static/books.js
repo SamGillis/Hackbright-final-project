@@ -8,9 +8,14 @@ function jumptopageresults(evt) {
     let urlComponents = url.split('/');
     url = urlComponents[urlComponents.length - 1];
     urlComponents = url.split("&");
-    urlComponents.pop();
+    let temp = urlComponents.pop()
+    if (!temp.includes('page')) {
+        urlComponents.push(temp)
+    }
     url = urlComponents.join('&')
     window.location.href = `/${url}&page=${pageInput.value}`;
 }
 
 $('#jumpresults').on('click', jumptopageresults);
+
+$('#jumpcollection').on('click', jumptopageresults);
