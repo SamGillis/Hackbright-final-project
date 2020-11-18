@@ -2,6 +2,7 @@
 {% block title %}{{collection.user.username.title()}}'s Collection{% endblock %}
 
 {% block body %}
+   
     
     <h1>{{collection.user.username.title()}}'s {{" ".join(collection.collection_type.split("_")).title()}} 
         Collection</h1>
@@ -46,7 +47,7 @@
                     {% endif%}
                 {% endif %}
             {% endfor %}
-            {% if page < pages-2 %}
+            {% if page < pages-3 %}
                 <a class='pagination'>...</a>
             {% endif %}
             {% if page != pages %}
