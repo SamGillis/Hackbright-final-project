@@ -11,16 +11,29 @@
     <form action="/add_book/{{google_id}}">
         <div id='add_to_collection'>
             <a>
-                Add to a collection
+                Add to a collection:
             </a>
             <br>
-            <select name=collection_type>
-                {% for each in user.collections %}
-                        <option value={{each.collection_type}}>
-                            {{ ' '.join(each.collection_type.split('_')).title() }}</option>
+            {% set collection_count = [] %}
+            {% for every in user.collections %}
+                {% if book_obj in every.books%}
+                    {% if collection_count.append('1') %}{% endif %}
+                {% endif %}
+            {% endfor %}
+            {% if collection_count == user.collections|length %}
+                <select name=collection_type>
+                    {% for each in user.collections %}
+                        {% if book_obj not in each.books %}
+                            <option value={{each.collection_type}}>
+                                {{ ' '.join(each.collection_type.split('_')).title() }}</option>
+                        {% endif %}
                     {% endfor %}
-            </select>
-            <input type='submit' value="Add">
+
+                </select>
+                <input type='submit' value="Add">
+            {% else %}
+                <p>Book has been added to all collections</p>
+            {% endif %}
         </div>
     </form>
 

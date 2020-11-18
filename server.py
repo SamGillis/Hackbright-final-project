@@ -123,6 +123,10 @@ def search_results():
         
         book_results.append(book)
 
+    if book_results == []:
+        ##TODO if results on a page is empty
+        pass
+
     
     
     return render_template('results.html', search_terms=search_terms,
@@ -146,9 +150,12 @@ def display_book():
     
     book_info['description'] = book_info.get('description', "")
 
+    book_obj = Book.query.get(results['items'][0]['id']) 
+
     return render_template('book.html', book=book_info, 
                             google_id=results['items'][0]['id'],
-                            user=User.query.get(session['user.id']))
+                            user=User.query.get(session['user.id']),
+                            book_obj=book_obj)
 
 @app.route('/add_book/<google_id>')
 def add_book_to_collection(google_id):
