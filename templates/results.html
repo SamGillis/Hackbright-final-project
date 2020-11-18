@@ -2,6 +2,9 @@
 {% block title %}Search results{% endblock %}
 
 {% block body %}
+
+    <meta id='pages-java' data-count='{{pages}}'>
+    
     Displaying results for "{{search_terms}}"
     {% for book in results %}
         <div>

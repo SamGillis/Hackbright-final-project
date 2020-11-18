@@ -3,7 +3,7 @@
 
 {% block body %}
    
-    
+    <meta id='pages-java' data-count='{{pages}}'>
     <h1>{{collection.user.username.title()}}'s {{" ".join(collection.collection_type.split("_")).title()}} 
         Collection</h1>
     {% for i in range(((page-1)*25), page*25): %}
