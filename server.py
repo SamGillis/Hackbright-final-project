@@ -177,6 +177,20 @@ def add_book_to_collection(google_id):
 
     return redirect(f'/book?gi={book.google_id}')
 
+@app.route('/delete_book/<google_id>/<collection_id>')
+def delete_book_to_collection(google_id, collection_id):
+    """Delete a book from a user's collection"""
+
+    book = Book.query.get(google_id)
+
+    collection = Collection.query.get(collection_id)
+
+    collection.delete_book(book)
+
+    flash(f'{book.title} deleted from {" ".join(collection.collection_type.split("_")).title()} Collection')
+
+    return redirect(f'/collection?collection={collection_id}')
+
 
 @app.route('/user_search')
 def search_user():

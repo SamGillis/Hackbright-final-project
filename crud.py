@@ -49,7 +49,7 @@ def get_user_by_email(email):
 def delete_book_to_collection(book, collection):
     """Deletes a book from a collection"""
 
-    connection = Book_by_Collection.query.filter(book_id == book.id, collection_id == collection.id).first()
+    connection = Book_by_Collection.query.filter(Book_by_Collection.book_id == book.google_id, Book_by_Collection.collection_id == collection.id).first()
     db.session.delete(connection)
     db.session.commit()
 

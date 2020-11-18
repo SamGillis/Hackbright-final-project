@@ -12,6 +12,11 @@
                 <image src="{{ collection.books[i].cover_img }}"></image>
                 {% endif %}
                 <a href="/book?gi={{collection.books[i].google_id}}">{{collection.books[i].title}}</a>     
+                <form action="/delete_book/{{collection.books[i].google_id}}/{{collection.id}}">
+                        <input type='submit' value="Delete from Collection">
+                    </div>
+                </form>
+            
             </div>
         {% endif %}
     {% endfor %}
