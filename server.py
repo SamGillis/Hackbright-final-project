@@ -200,7 +200,7 @@ def search_user():
 
     username = request.args.get('search_terms')
 
-    users = User.query.filter(User.username == username).all()
+    users = User.query.filter(User.username.ilike(f'%{username.lower()}%')).all()
 
     user = User.query.get(session['user.id'])
 
