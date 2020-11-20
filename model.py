@@ -12,13 +12,23 @@ class User(db.Model):
                     autoincrement=True,
                     primary_key=True)
     email = db.Column(db.String, unique=True)
-    username = db.Column(db.String)
+    username = db.Column(db.String, unique=True)
     password = db.Column(db.String)
 
     collections = db.relationship('Collection')
 
+    friends = db.relationship('User', 
+                                    secondary='friends')
+
     def __repr__(self):
         return f'<User id={self.id} email={self.email}>'
+
+
+    def add_friend(self, friend):
+        """Adds a book instance to a Collection instance"""
+        from crud import create_friend
+
+        create_friend(self, friend)
 
 
 class Collection(db.Model):
@@ -86,6 +96,16 @@ class Book_by_Collection(db.Model):
     collection = db.relationship('Collection')
 
 
+class Friend(db.Model):
+    """a user's friend"""
+
+    __tablename__ = 'friends'
+
+    id = db.Column(db.Integer, 
+                    autoincrement=True,
+                    primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    friend_user_id = (db.Integer, db.ForeignKey('users.id'))
 
 
 

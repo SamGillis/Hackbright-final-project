@@ -33,6 +33,7 @@ def create_book(google_id, cover_img, title):
 
 
 def create_book_to_collection(book, collection):
+    """ Adds a book to a user's collection"""
     added_book = Book_by_Collection(book=book, collection=collection)
 
     db.session.add(added_book)
@@ -53,6 +54,14 @@ def delete_book_to_collection(book, collection):
     db.session.delete(connection)
     db.session.commit()
 
+def create_friend(user, friend):
+    """ Adds a friend"""
+    added_friend = Friend(user_id=user.id, friend_user_id=friend.id)
+
+    db.session.add(added_friend)
+    db.session.commit()
+
+    return added_friend
 
 
 if __name__ == '__main__':

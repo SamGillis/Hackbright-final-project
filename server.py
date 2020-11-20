@@ -2,6 +2,7 @@
 
 from flask import (Flask, render_template, request, flash,
                 session, redirect)
+from passlib.hash import sha256_crypt
 from model import connect_to_db, Book, Collection, User
 from math import ceil
 import requests
@@ -35,11 +36,13 @@ def create_user():
     password = request.form.get('password')
     username = request.form.get('username')
 
+    pw_hash = sha256_crypt.encrypt(password)
+
     user = crud.get_user_by_email(email)
     if user:
         flash('Email already has an account. Please try again.')
     else:
-        user = crud.create_user(email, username, password)
+        user = crud.create_user(email, username, pw_hash)
         crud.create_collection(user, 'home')
         crud.create_collection(user, 'to_read')
         crud.create_collection(user, 'read')
@@ -56,9 +59,9 @@ def user_login():
 
     user = crud.get_user_by_email(email)
 
-    if user.password != password:
+    if not sha256_crypt.verify(password, user.password):
         flash('Email and password do not match. Please try again.')
-        return redirect('/')
+        return 'redirect('/')'
     else:
         session['user.id'] = session.get('user.id', user.id)
         flash(f'Welcome back {user.username}')

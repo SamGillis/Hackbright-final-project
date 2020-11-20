@@ -15,7 +15,7 @@ model.db.create_all()
 
 for i in range(10):
     user_email = f'test{i}@test.com'
-    user = crud.create_user(user_email, 'TEST', 'Test!')
+    user = crud.create_user(user_email, f'TEST{i}', 'Test!')
     collection = crud.create_collection(user, 'home')
 
     with open('tests/data/books.json') as f:
