@@ -2,7 +2,7 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-    <h1>{{searched_user.username}}</h1>
+    <h1>{{searched_user.username.title()}}</h1>
 
     <h2>Collections:</h2>
     {% if searched_user.id == user.id %}

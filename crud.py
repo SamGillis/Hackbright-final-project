@@ -64,6 +64,11 @@ def create_friend(user, friend):
     return added_friend
 
 
+def get_user_by_username(username):
+    """Return a user by username."""
+    return User.query.filter(User.username.ilike(username)).first()
+
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)

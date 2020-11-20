@@ -34,13 +34,17 @@ def create_user():
 
     email = request.form.get('email')
     password = request.form.get('password')
-    username = request.form.get('username')
+    username = (request.form.get('username')).lower()
 
     pw_hash = sha256_crypt.encrypt(password)
 
     user = crud.get_user_by_email(email)
+    user_name = crud.get_user_by_username(username)
+
     if user:
         flash('Email already has an account. Please try again.')
+    elif user_name:
+        flash('Username is already in use, please select a new one.')
     else:
         user = crud.create_user(email, username, pw_hash)
         crud.create_collection(user, 'home')
@@ -58,6 +62,10 @@ def user_login():
     password = request.form.get('password')
 
     user = crud.get_user_by_email(email)
+
+    if not user:
+        flash(f'There is not an account for {str(email)}')
+        return redirect('/')
 
     if not sha256_crypt.verify(password, user.password):
         flash('Email and password do not match. Please try again.')
