@@ -4,7 +4,6 @@
 {% block body %}
     <h1>{{searched_user.username.title()}}</h1>
 
-    <h2>Collections:</h2>
     {% if searched_user.id == user.id %}
         <form action='/create_collection'>
             <div>
@@ -13,7 +12,27 @@
             </div>
             <input type='submit' value="Create">
         </form>
+    {% elif searched_user in user.friends and user in searched_user.friends %}
+        <p> Friend </p>
+        
+    {% elif searched_user in user.friends %}
+        <p> A friend request has been sent to this user </p>
+
+    {% elif user in searched_user.friends %}
+        <form action="/add_friend/{{searched_user.id}}">
+            <input type='submit' value="Accept Friend Request">
+        </form>
+    
+    {% else %}
+        <form action="/add_friend/{{searched_user.id}}">
+            <input type='submit' value="Send a Friend Request">
+        </form>
+
     {% endif %}
+    <br>
+    <br>
+
+    <h2>Collections:</h2>
 
     <div>
         {% for each in searched_user.collections %}

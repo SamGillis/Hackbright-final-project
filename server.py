@@ -267,7 +267,23 @@ def display_collection():
                                 page=page, pages=pages)
 
 
+@app.route('/add_friend/<friend_id>')
+def add_friend(friend_id):
+    """add a book to a user's collection""" 
+    
+    friend = User.query.get(friend_id)
+    
+    user_id = session['user.id']
+    user = User.query.get(user_id)
 
+    user.add_friend(friend)
+
+    if user in friend.friends:
+        flash(f'{friend.username} is now your friend!')
+    else: 
+        flash(f'A friend request has been sent to {friend.username}')
+
+    return redirect(f'/user?id={friend.id}')
 
 
 if __name__ == '__main__':
