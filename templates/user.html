@@ -27,7 +27,7 @@
         <br>
 
         <p>Friends</p>
-        {% if friends == [] %}
+        {% if user.friends == [] %}
             <p>No current friends</p>
         {% endif %}
         {% for i in range(5) %}
@@ -50,8 +50,10 @@
         {% endif %}
         {% for i in range(5) %}
             {% if i < searched_user.friends|list|length %}
-                <a href='/user?id={{searched_user.friends[i].id}}'>
-                    {{searched_user.friends[i].username}}</a>
+                {% if searched_user.friends[i].id != user.id%}
+                    <a href='/user?id={{searched_user.friends[i].id}}'>
+                        {{searched_user.friends[i].username}}</a>
+                {% endif %}
             {% endif %}
         {% endfor %}
         <br>

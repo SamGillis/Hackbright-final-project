@@ -41,7 +41,8 @@ class User(db.Model):
         """Adds a book instance to a Collection instance"""
         from crud import create_friend
 
-        create_friend(self, friend)
+        if self.id != friend.id:
+            create_friend(self, friend)
 
 
 class Collection(db.Model):
