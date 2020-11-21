@@ -35,6 +35,8 @@
                 <a href='/user?id={{friends[i].id}}'>{{friends[i].username}}</a>
             {% endif %}
         {% endfor %}
+        <br>
+        <a href='/friends/{{searched_user.id}}'>See all friends</a>
 
     {% elif searched_user in user.friends and user in searched_user.friends %}
         <p> You're friends! </p>
@@ -52,6 +54,8 @@
                     {{searched_user.friends[i].username}}</a>
             {% endif %}
         {% endfor %}
+        <br>
+        <a href='/friends/{{searched_user.id}}'>See all friends</a>
 
         
     {% elif searched_user in user.friends %}

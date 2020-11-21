@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %}{{displayed_user.username}}'s Friends{% endblock %}
+
+{% block body %}
+    <h2>{{displayed_user.username}}'s Friends</h2>
+    {% for friend in displayed_user.friends %}
+        {% if friend != user %}
+            <div>
+                <a href="/user?id={{friend.id}}">{{friend.username}}</a>     
+            </div>
+
+            {% if friend in user.friends and user in friend.friends %}
+                <p>Friends</p>
+
+            
+            {% elif friend in user.friends %}
+                <p> Friend request sent </p>
+
+            {% elif user in friend.friends %}
+                <form action="/add_friend/{{friend.id}}">
+                    <input type='submit' value="Accept Friend Request">
+                </form>
+            
+            {% else %}
+                <form action="/add_friend/{{friend.id}}">
+                    <input type='submit' value="Send a Friend Request">
+                </form>
+
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+
+    <br>
+    {% if pages < 5 %}
+        <div>
+            {% for num in range(1, pages+1)%}
+                {% if num == page %}
+                    <a class='pagination'>{{num}}</a>
+                {% else %}
+                    <a class='pagination' href="/collection?collection={{collection.id}}&page={{num}}">{{num}}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <div>
+            {% if page != 1 %}
+                <a class='pagination' href="/collection?collection={{collection.id}}&page=1">1</a>
+            {% else %}
+                <a class='pagination'>1</a>
+            {% endif %}
+            {% if page > 3 %}
+            <a class='pagination'>...</a>
+            {% endif %}
+            {% for num in range(page-2, page+3)%}
+                {% if num > 1 and num < pages %}
+                    {% if num == page %}
+                        <a class='pagination'>{{num}}</a>
+                    {% else %}
+                        <a class='pagination' href="/collection?collection={{collection.id}}&page={{num}}">{{num}}</a>
+                    {% endif%}
+                {% endif %}
+            {% endfor %}
+            {% if page < pages-3 %}
+                <a class='pagination'>...</a>
+            {% endif %}
+            {% if page != pages %}
+                <a class='pagination' href="/collection?collection={{collection.id}}&page={{pages}}">{{pages}}</a>
+            {% else %}
+                <a class='pagination'>{{pages}}</a>
+            {% endif %}
+            <br>
+            <div>
+                <input id=jumppagecollection type="text" name='page'>
+                <button id=jumpcollection>Jump to page</button>
+        </div>
+    {% endif %}
+{% endblock %}

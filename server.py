@@ -253,9 +253,18 @@ def display_user():
     for each in session_user.requests:
         if each not in friends:
             requests.append(each)
+    
+    friends = list(friends)
+
+    cursor = 0
+    for each in friends:
+        if user not in each.friends:
+            friends.pop(cursor)
+        else:
+            cursor += 1
 
     return render_template('user.html', user=session_user, searched_user=user,
-                            friends=list(friends), requests=requests)
+                            friends=friends, requests=requests)
 
 
 @app.route('/collection')
@@ -272,6 +281,27 @@ def display_collection():
 
     return render_template('collection.html', collection=collection, user=user,
                                 page=page, pages=pages)
+
+
+@app.route('/friends/<user_id>')
+def display_friends(user_id):
+    """Displays all friends for a user"""
+    
+    displayed_user = User.query.get(user_id)
+    friends = []
+
+    for each in displayed_user.friends:
+        if displayed_user in each.friends:
+            friends.append(each)
+
+    page = int(request.args.get('page', 1))
+    pages = int(ceil((len(friends)/25)))
+
+    user = User.query.get(session['user.id'])
+
+    return render_template('allfriends.html', user=user,
+                                page=page, pages=pages, friends=friends,
+                                displayed_user=displayed_user)
 
 
 @app.route('/add_friend/<friend_id>')
