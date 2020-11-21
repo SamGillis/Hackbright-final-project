@@ -25,6 +25,11 @@ class User(db.Model):
                                     secondary='friends',
                                     primaryjoin=('User.id==Friend.user_id'),
                                     secondaryjoin=('User.id==Friend.friend_user_id'))
+    
+    requests = db.relationship('User', 
+                                    secondary='friends',
+                                    primaryjoin=('User.id==Friend.friend_user_id'),
+                                    secondaryjoin=('User.id==Friend.user_id'))
 
                                     
 

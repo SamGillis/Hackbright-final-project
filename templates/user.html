@@ -12,8 +12,47 @@
             </div>
             <input type='submit' value="Create">
         </form>
+        <p>Friend Requests</p>
+        {% if requests == [] %}
+            <p>No new Requests</p>
+        {% endif %}
+        {% for each in requests %}
+            <a href='/user?id={{each.id}}'>{{each.username}}</a>
+            <form action="/add_friend/{{each.id}}">
+                <input type='submit' value="Accept Friend Request">
+            </form>
+        {% endfor %}
+
+        <br>
+        <br>
+
+        <p>Friends</p>
+        {% if friends == [] %}
+            <p>No current friends</p>
+        {% endif %}
+        {% for i in range(5) %}
+            {% if i < friends|length %}
+                <a href='/user?id={{friends[i].id}}'>{{friends[i].username}}</a>
+            {% endif %}
+        {% endfor %}
+
     {% elif searched_user in user.friends and user in searched_user.friends %}
-        <p> Friend </p>
+        <p> You're friends! </p>
+
+        <br>
+        <br>
+
+        <p>Friends</p>
+        {% if searched_user.friends == [] %}
+            <p>No current friends</p>
+        {% endif %}
+        {% for i in range(5) %}
+            {% if i < searched_user.friends|list|length %}
+                <a href='/user?id={{searched_user.friends[i].id}}'>
+                    {{searched_user.friends[i].username}}</a>
+            {% endif %}
+        {% endfor %}
+
         
     {% elif searched_user in user.friends %}
         <p> A friend request has been sent to this user </p>

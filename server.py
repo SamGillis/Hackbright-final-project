@@ -248,7 +248,14 @@ def display_user():
         user_id = session['user.id']
     user = User.query.get(user_id) 
 
-    return render_template('user.html', user=session_user, searched_user=user)
+    friends = set(session_user.friends)
+    requests = []
+    for each in session_user.requests:
+        if each not in friends:
+            requests.append(each)
+
+    return render_template('user.html', user=session_user, searched_user=user,
+                            friends=list(friends), requests=requests)
 
 
 @app.route('/collection')
