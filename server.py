@@ -3,7 +3,7 @@
 from flask import (Flask, render_template, request, flash,
                 session, redirect)
 from passlib.hash import sha256_crypt
-from model import connect_to_db, Book, Collection, User
+from model import connect_to_db, Book, Collection, User, Friend
 from math import ceil
 import requests
 import crud

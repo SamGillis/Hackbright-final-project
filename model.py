@@ -1,5 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
 
+from sqlalchemy import Integer, ForeignKey, String, Column, Table
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
+
 db = SQLAlchemy()
 
 
@@ -18,7 +22,11 @@ class User(db.Model):
     collections = db.relationship('Collection')
 
     friends = db.relationship('User', 
-                                    secondary='friends')
+                                    secondary='friends',
+                                    primaryjoin=('User.id==Friend.user_id'),
+                                    secondaryjoin=('User.id==Friend.friend_user_id'))
+
+                                    
 
     def __repr__(self):
         return f'<User id={self.id} email={self.email}>'
@@ -105,7 +113,7 @@ class Friend(db.Model):
                     autoincrement=True,
                     primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    friend_user_id = (db.Integer, db.ForeignKey('users.id'))
+    friend_user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
 
 
