@@ -49,16 +49,19 @@ def check_same(a, b):
 for i in range(10):
     user = crud.User.query.get(i + 1)
 
-    friend_id = randint(0, 9)
+    friend_id = randint(1, 10)
 
     for y in range(3):
-        while check_same(i, friend_id):
+        while check_same(user.id, friend_id):
             friend_id = randint(1, 10)
         
         friend = crud.User.query.get(friend_id)
 
         while friend in user.friends:
             friend_id = randint(1, 10)
+            while check_same(user.id, friend_id):
+                friend_id = randint(1, 10)
+            
             friend = crud.User.query.get(friend_id)
 
         user.add_friend(friend)
