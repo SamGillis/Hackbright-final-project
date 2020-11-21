@@ -75,6 +75,14 @@ def user_login():
         flash(f'Welcome back {user.username}')
         return redirect('/user')
 
+@app.route('/log_out')
+def log_out():
+    """Logs out a user."""
+
+    session.clear()    
+
+    return redirect('/')
+
 
 @app.route('/search')
 def search_page():
@@ -257,6 +265,9 @@ def display_collection():
 
     return render_template('collection.html', collection=collection, user=user,
                                 page=page, pages=pages)
+
+
+
 
 
 if __name__ == '__main__':
