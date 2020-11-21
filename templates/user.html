@@ -21,6 +21,9 @@
             <form action="/add_friend/{{each.id}}">
                 <input type='submit' value="Accept Friend Request">
             </form>
+            <form action="/decline_friend/{{each.id}}">
+                <input type='submit' value="Decline Friend Request">
+            </form>
         {% endfor %}
 
         <br>
@@ -33,6 +36,15 @@
         {% for i in range(5) %}
             {% if i < friends|length %}
                 <a href='/user?id={{friends[i].id}}'>{{friends[i].username}}</a>
+                {% if user in friends[i].friends %}
+                    <form action="/delete_friend/{{friends[i].id}}">
+                        <input type='submit' value="Delete Friend">
+                    </form>
+                {% else %}
+                    <form action="/retract_friend_request/{{friends[i].id}}">
+                        <input type='submit' value="Retract friend request">
+                    </form>
+                {% endif %}
             {% endif %}
         {% endfor %}
         <br>
@@ -40,6 +52,9 @@
 
     {% elif searched_user in user.friends and user in searched_user.friends %}
         <p> You're friends! </p>
+        <form action="/delete_friend/{{searched_user.id}}">
+            <input type='submit' value="Delete Friend">
+        </form>
 
         <br>
         <br>
@@ -66,6 +81,9 @@
     {% elif user in searched_user.friends %}
         <form action="/add_friend/{{searched_user.id}}">
             <input type='submit' value="Accept Friend Request">
+        </form>
+        <form action="/decline_friend/{{searched_user.id}}">
+            <input type='submit' value="Decline Friend Request">
         </form>
     
     {% else %}

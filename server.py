@@ -297,7 +297,7 @@ def display_friends(user_id):
 
 @app.route('/add_friend/<friend_id>')
 def add_friend(friend_id):
-    """add a book to a user's collection""" 
+    """add a friend to a user""" 
     
     friend = User.query.get(friend_id)
     
@@ -313,6 +313,48 @@ def add_friend(friend_id):
 
     return redirect(f'/user?id={friend.id}')
 
+
+@app.route('/decline_friend/<friend_id>')
+def decline_friend(friend_id):
+    """Decline a friend""" 
+    
+    friend = User.query.get(friend_id)
+    
+    user_id = session['user.id']
+    user = User.query.get(user_id)
+
+    friend.delete_friend(user)
+
+    return redirect('/')
+
+
+@app.route('/delete_friend/<friend_id>')
+def delete_friend(friend_id):
+    """Delete a friend""" 
+    
+    friend = User.query.get(friend_id)
+    
+    user_id = session['user.id']
+    user = User.query.get(user_id)
+
+    friend.delete_friend(user)
+    user.delete_friend(friend)
+
+    return redirect('/')
+
+
+@app.route('/retract_friend_request/<friend_id>')
+def retract_friend_request(friend_id):
+    """Take back a friend request""" 
+    
+    friend = User.query.get(friend_id)
+    
+    user_id = session['user.id']
+    user = User.query.get(user_id)
+
+    user.delete_friend(friend)
+
+    return redirect('/')
 
 if __name__ == '__main__':
     connect_to_db(app)

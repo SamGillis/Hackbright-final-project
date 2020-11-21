@@ -54,6 +54,15 @@ def delete_book_to_collection(book, collection):
     db.session.delete(connection)
     db.session.commit()
 
+def delete_friend(user, friend):
+    """ Deletes a friend"""
+
+    connection = Friend.query.filter(Friend.user_id == user.id, Friend.friend_user_id == friend.id).first()
+
+    db.session.delete(connection)
+    db.session.commit()
+
+
 def create_friend(user, friend):
     """ Adds a friend"""
     added_friend = Friend(user_id=user.id, friend_user_id=friend.id)

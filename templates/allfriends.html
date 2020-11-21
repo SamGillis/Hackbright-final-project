@@ -11,14 +11,23 @@
 
             {% if friend in user.friends and user in friend.friends %}
                 <p>Friends</p>
+                <form action="/delete_friend/{{friend.id}}">
+                    <input type='submit' value="Delete Friend">
+                </form>
 
             
             {% elif friend in user.friends %}
                 <p> Friend request sent </p>
+                <form action="/retract_friend_request/{{friend.id}}">
+                    <input type='submit' value="Retract friend request">
+                </form>
 
             {% elif user in friend.friends %}
                 <form action="/add_friend/{{friend.id}}">
                     <input type='submit' value="Accept Friend Request">
+                </form>
+                <form action="/decline_friend/{{friend.id}}">
+                    <input type='submit' value="Decline Friend Request">
                 </form>
             
             {% else %}

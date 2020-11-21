@@ -38,11 +38,17 @@ class User(db.Model):
 
 
     def add_friend(self, friend):
-        """Adds a book instance to a Collection instance"""
+        """Adds a friend to a user"""
         from crud import create_friend
 
         if self.id != friend.id:
             create_friend(self, friend)
+
+    def delete_friend(self, friend):
+        """Deletes a user as a friend"""
+        from crud import delete_friend
+
+        delete_friend(self, friend)
 
 
 class Collection(db.Model):
