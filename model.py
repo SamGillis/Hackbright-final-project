@@ -30,11 +30,9 @@ class User(db.Model):
                                     secondary='friends',
                                     primaryjoin=('User.id==Friend.friend_user_id'),
                                     secondaryjoin=('User.id==Friend.user_id'))
-    ## user.book_requests will show all requests that have been made by the user
-    ## user.lent_books will show all requests where user is the lender
     
-
-                                    
+    ## user.book_requests will show all requests that have been made by the user
+    ## user.lent_books will show all requests where user is the lender                                 
 
     def __repr__(self):
         return f'<User id={self.id} email={self.email}>'
@@ -52,6 +50,22 @@ class User(db.Model):
         from crud import delete_friend
 
         delete_friend(self, friend)
+
+    def update_books_requested(self, book, act='add'):
+        """updates instance of books_requested"""
+
+        if act == 'add':
+            self.books_requested.append(book)
+        else:
+            self.books_requested.remove(book)
+
+    def update_books_lent(self, book, act='add'):
+        """updates instance of books_requested"""
+        
+        if act == 'add':
+            self.books_lent.append(book)
+        else:
+            self.books_lent.remove(book)
 
 
 class Collection(db.Model):

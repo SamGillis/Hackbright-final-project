@@ -79,6 +79,27 @@ def get_user_by_username(username):
     return User.query.filter(User.username.ilike(username)).first()
 
 
+def create_request(connection, borrower, lender, lent=False):
+    """Creates a book request"""
+    
+    req = Request(connection_id=connection.id,
+                borrower=borrower,
+                lender=lender, lent=lent)
+
+    db.session.add(req)
+    db.session.commit()
+
+
+
+def delete_request(req_id):
+
+    req = Request.query.get(req_id)
+
+    req.lender.update_books_lent(req.book[0], 'rem')
+    req.borrower.update_books_requested(req.book[0], 'rem')
+
+
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)

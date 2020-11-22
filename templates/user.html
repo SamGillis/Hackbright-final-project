@@ -4,6 +4,7 @@
 {% block body %}
     <h1>{{searched_user.username.title()}}</h1>
 
+
     {% if searched_user.id == user.id %}
         <form action='/create_collection'>
             <div>

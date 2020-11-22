@@ -3,7 +3,7 @@
 from flask import (Flask, render_template, request, flash,
                 session, redirect)
 from passlib.hash import sha256_crypt
-from model import connect_to_db, Book, Collection, User, Friend
+from model import connect_to_db, Book, Collection, User, Book_by_Collection, Friend, Request
 from math import ceil
 import requests
 import crud
@@ -367,6 +367,24 @@ def retract_friend_request(friend_id):
     user.delete_friend(friend)
 
     return redirect('/')
+
+
+@app.route('/request_book/<google_id>/<collection_id>')
+def request_book(google_id, collection_id):
+    """Creates a request for a friend's book"""
+    borrower_id = session['user.id']
+    borrower = User.query.get(borrower_id)
+
+    collection = Collection.query.get(collection_id)
+
+    lender = collection.user
+
+    connection = Book_by_Collection.query.filter(Book_by_Collection.book_id==google_id, 
+                                                Book_by_Collection.collection_id==collection_id).first()
+
+    crud.create_request(connection, borrower, lender, lent=False)
+    
+    return redirect (f'/book?gi={google_id}')
 
 if __name__ == '__main__':
     connect_to_db(app)

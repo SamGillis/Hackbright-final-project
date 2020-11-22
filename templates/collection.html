@@ -30,7 +30,6 @@
                                 {% for each in friend.collections %}
                                     {% if each.lendable %}
                                         {% if collection.books[i] in each.books %}
-
                                             <a href='/user?id={{friend.id}}'>{{friend.username}}</a>
                                             <form action="/request_book/{{collection.books[i].google_id}}/{{collection.id}}">
                                                 <input type='submit' value="Request to borrow">
