@@ -61,6 +61,8 @@ class Collection(db.Model):
                     primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     collection_type = db.Column(db.String)
+    lendable = db.Column(db.Boolean)
+    private = db.Column(db.Boolean)
 
     user = db.relationship('User')
     books = db.relationship('Book', 

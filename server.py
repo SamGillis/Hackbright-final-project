@@ -224,14 +224,26 @@ def search_user():
 
 @app.route('/create_collection')
 def create_collection():
-
     user_id = session['user.id']
     user = User.query.get(user_id)
     collection_type = request.args.get('collection_name')
     collection_type = collection_type.lower()
     collection_type = '_'.join(collection_type.split(' '))
 
-    collection = crud.create_collection(user, collection_type)
+    lendable = bool(request.args.get('lendable'))
+    private = bool(request.args.get('private'))
+
+    if lendable and private:
+        collection = crud.create_collection(user, collection_type,
+                                            lendable, private)
+    elif lendable:
+        collection = crud.create_collection(user, collection_type,
+                                            lendable)
+    elif private:
+        collection = crud.create_collection(user, collection_type,
+                                            private=private)
+    else:
+        collection = crud.create_collection(user, collection_type)
 
     return redirect(f'/user?id={user.id}')
 

@@ -14,8 +14,9 @@ def create_user(email, username, password):
     return user
 
 
-def create_collection(user, collection_type):
-    collection = Collection(user=user, collection_type=collection_type)
+def create_collection(user, collection_type, lendable=False, private=False):
+    collection = Collection(user=user, collection_type=collection_type, 
+                            lendable=lendable, private=private)
 
     db.session.add(collection)
     db.session.commit()

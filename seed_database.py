@@ -17,7 +17,7 @@ for i in range(10):
     user_email = f'test{i}@test.com'
     pw_hash = server.sha256_crypt.encrypt('test')
     user = crud.create_user(user_email, f'TEST{i}', pw_hash)
-    collection = crud.create_collection(user, 'home')
+    collection = crud.create_collection(user, 'home', lendable=True)
     crud.create_collection(user, 'to_read')
     crud.create_collection(user, 'read')
 

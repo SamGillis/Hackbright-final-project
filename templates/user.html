@@ -10,6 +10,13 @@
                 <label for='collection_name'>Create a new collection</label>
                 <input type='text' name='collection_name' id='collection_name_other'> 
             </div>
+            <div>
+                <input type="checkbox" name="lendable" value="True">
+                <label>Lend books from this collection</label>
+
+                <input type="checkbox" name="private" value="True">
+                <label>Make this collection private</label>
+            </div>
             <input type='submit' value="Create">
         </form>
         <p>Friend Requests</p>
@@ -99,20 +106,44 @@
 
     <div>
         {% for each in searched_user.collections %}
-            <h3>{{' '.join(each.collection_type.split('_')).title()}}</h3>
-            {% for i in range(10) %}
-                {% if i < each.books|length %}
-                    <div>
-                        {% if each.books[i].cover_img != None %}
-                        <image src="{{ each.books[i].cover_img }}"></image>
-                        {% endif %}
-                        <a href="/book?gi={{each.books[i].google_id}}">{{each.books[i].title}}</a>     
-                    </div>
-                {% endif %}
-            {% endfor %}
+            {% if not each.private %}
+                <h3>{{' '.join(each.collection_type.split('_')).title()}}</h3>
+                {% for i in range(10) %}
+                    {% if i < each.books|length %}
+                        <div>
+                            {% if each.books[i].cover_img != None %}
+                            <image src="{{ each.books[i].cover_img }}"></image>
+                            {% endif %}
+                            <a href="/book?gi={{each.books[i].google_id}}">{{each.books[i].title}}</a>     
+                        </div>
+                    {% endif %}
+                {% endfor %}
 
-            <a href="/collection?collection={{each.id}}">See all books in this collection</a>
+                <a href="/collection?collection={{each.id}}">See all books in this collection</a>
+            {% endif %}
         {% endfor %}
     </div>
+    {% if searched_user == user %}
+        <h2>Private Collections:</h2>
+        <div>
+            {% for each in searched_user.collections %}
+                {% if each.private %}
+                    <h3>{{' '.join(each.collection_type.split('_')).title()}}</h3>
+                    {% for i in range(10) %}
+                        {% if i < each.books|length %}
+                            <div>
+                                {% if each.books[i].cover_img != None %}
+                                <image src="{{ each.books[i].cover_img }}"></image>
+                                {% endif %}
+                                <a href="/book?gi={{each.books[i].google_id}}">{{each.books[i].title}}</a>     
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    <a href="/collection?collection={{each.id}}">See all books in this collection</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
 
 {% endblock %}

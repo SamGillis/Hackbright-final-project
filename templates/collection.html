@@ -5,6 +5,13 @@
     <meta id='pages-java' data-count='{{pages}}'>
     <h1>{{collection.user.username.title()}}'s {{" ".join(collection.collection_type.split("_")).title()}} 
         Collection</h1>
+    {% if collection.lendable and collection.private %}
+        <p>Collection is both lendable and private </p>
+    {% elif collection.lendable %}
+        <p>Collection is lendable to your friends </p>
+    {% elif collection.private %}
+        <p>Collection is private and can not be seen by other users</p>
+    {% endif %}
     {% for i in range(((page-1)*25), page*25): %}
         {% if collection.books|length > i%}
             <div>
