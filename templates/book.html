@@ -37,4 +37,23 @@
         </div>
     </form>
 
+    <br>
+    <br>
+    
+    <p>Lendable from</p>
+    {% for friend in user.friends %}
+        {% if user in friend.friends %}
+            {% for each in friend.collections %}
+                {% if each.lendable %}
+                    {% if book_obj in each.books %}
+                        <a href='/user?id={{friend.id}}'>{{friend.username}}</a>
+                        <form action="/request_book/{{book_obj.google_id}}/{{each.id}}">
+                            <input type='submit' value="Request to borrow">
+                        </form>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+
 {% endblock %}

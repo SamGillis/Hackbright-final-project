@@ -30,6 +30,9 @@ class User(db.Model):
                                     secondary='friends',
                                     primaryjoin=('User.id==Friend.friend_user_id'),
                                     secondaryjoin=('User.id==Friend.user_id'))
+    ## user.book_requests will show all requests that have been made by the user
+    ## user.lent_books will show all requests where user is the lender
+    
 
                                     
 
@@ -128,6 +131,28 @@ class Friend(db.Model):
                     primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     friend_user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+
+class Request(db.Model):
+    """A user's request to borrow another user's book"""
+
+    __tablename__ = 'requests'
+
+    id = db.Column(db.Integer, 
+                    autoincrement=True,
+                    primary_key=True)
+    connection_id = db.Column(db.Integer, 
+                                db.ForeignKey('books_by_collection.id'))
+    borrower_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    lender_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    lent = db.Column(db.Boolean)
+
+    borrower = db.relationship('User', foreign_keys=[borrower_id], 
+                                backref='book_requests')
+    lender = db.relationship('User', foreign_keys=[lender_id],
+                            backref='lent_books')
+    book = db.relationship('Book', secondary='books_by_collection')
+    collection = db.relationship('Collection', secondary='books_by_collection')
 
 
 

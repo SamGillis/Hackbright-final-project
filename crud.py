@@ -1,4 +1,4 @@
-from model import (connect_to_db, db, User, Book, Collection, Book_by_Collection, Friend) 
+from model import (connect_to_db, db, User, Book, Collection, Book_by_Collection, Friend, Request) 
 
 
 """Create, Read, Update, Delete Classes"""

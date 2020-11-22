@@ -47,7 +47,7 @@ def create_user():
         flash('Username is already in use, please select a new one.')
     else:
         user = crud.create_user(email, username, pw_hash)
-        crud.create_collection(user, 'home')
+        crud.create_collection(user, 'home', True)
         crud.create_collection(user, 'to_read')
         crud.create_collection(user, 'read')
         flash('Account created! Log in.')
