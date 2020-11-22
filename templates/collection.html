@@ -8,7 +8,7 @@
     {% if collection.lendable and collection.private %}
         <p>Collection is both lendable and private </p>
     {% elif collection.lendable %}
-        <p>Collection is lendable to your friends </p>
+        <p>Collection is lendable to friends </p>
     {% elif collection.private %}
         <p>Collection is private and can not be seen by other users</p>
     {% endif %}
@@ -24,26 +24,34 @@
                             <input type='submit' value="Delete from Collection">
                     </form>
                     {% if collection.collection_type == 'to_read' %}
-                        <p>Lendable from</p>
-                        {% for friend in user.friends %}
-                            {% if user in friend.friends %}
-                                {% for each in friend.collections %}
-                                    {% if each.lendable %}
-                                        {% if collection.books[i] in each.books %}
-                                            <a href='/user?id={{friend.id}}'>{{friend.username}}</a>
-                                            <form action="/request_book/{{collection.books[i].google_id}}/{{collection.id}}">
-                                                <input type='submit' value="Request to borrow">
-                                            </form>
+                        {% if user.get_lender(collection.books[i]) != [] %}
+                            <p>Book is already requested from {{user.get_lender(collection.books[i])[0].username.title()}}</p>
+                        {% else %}
+                            <p>Lendable from</p>
+                            {% for friend in user.friends %}
+                                {% if user in friend.friends %}
+                                    {% for each in friend.collections %}
+                                        {% if each.lendable %}
+                                            {% if collection.books[i] in each.books %}
+                                                <a href='/user?id={{friend.id}}'>{{friend.username}}</a>
+                                                <form action="/request_book/{{collection.books[i].google_id}}/{{collection.id}}">
+                                                    <input type='submit' value="Request to borrow">
+                                                </form>
+                                            {% endif %}
                                         {% endif %}
-                                    {% endif %}
-                                {% endfor %}
-                            {% endif %}
-                        {% endfor %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
                     {% endif %}
-                {% elif collection.lendable %}
-                    <form action="/request_book/{{collection.books[i].google_id}}/{{collection.id}}">
-                        <input type='submit' value="Request to borrow">
-                    </form>
+                {% elif collection.lendable and user in collection.user.friends %}
+                    {% if user.get_lender(collection.books[i]) != [] %}
+                        <p>Book is already requested from {{user.get_lender(collection.books[i])[0].username.title()}}</p>
+                    {% else %}
+                        <form action="/request_book/{{collection.books[i].google_id}}/{{collection.id}}">
+                            <input type='submit' value="Request to borrow">
+                        </form>
+                    {% endif %}
                 {% endif %}
             </div>
         {% endif %}

@@ -20,6 +20,73 @@
             </div>
             <input type='submit' value="Create">
         </form>
+        <br>
+        <div>
+            <p>Requested books</p>
+            {% for request in user.book_requests %}
+                {% if not request.lent %}
+                    <div>
+                        {% if request.book[0].cover_img != None %}
+                        <image src="{{ request.book[0].cover_img }}"></image>
+                        {% endif %}
+                        <a href="/book?gi={{request.book[0].google_id}}">{{request.book[0].title}}</a>
+                        <p>This book has been requested from {{request.lender.username.title()}}</p>     
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <br>
+        <br>
+        <div>
+            <p>Borrowed Books</p>
+            {% for request in user.book_requests %}
+                {% if request.lent %}
+                    <div>
+                        {% if request.book[0].cover_img != None %}
+                        <image src="{{ request.book[0].cover_img }}"></image>
+                        {% endif %}
+                        <a href="/book?gi={{request.book[0].google_id}}">{{request.book[0].title}}</a>
+                        <p>This book has been lent by {{request.lender.username.title()}}</p>     
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <br>
+        <br>
+        <div>
+            <p>Borrow Requests from friends</p>
+            {% for request in user.lent_books %}
+                {% if not request.lent %}
+                    <div>
+                        {% if request.book[0].cover_img != None %}
+                        <image src="{{ request.book[0].cover_img }}"></image>
+                        {% endif %}
+                        <a href="/book?gi={{request.book[0].google_id}}">{{request.book[0].title}}</a>
+                        <p>This book has been requested by {{request.borrower.username.title()}}</p>
+                        <form action="/accept_request/{{request.id}}">
+                            <input type='submit' value="Accept">
+                        </form>     
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <br>
+        <br>
+        <div>
+            <p>Books Lent</p>
+            {% for request in user.lent_books %}
+                {% if request.lent %}
+                    <div>
+                        {% if request.book[0].cover_img != None %}
+                        <image src="{{ request.book[0].cover_img }}"></image>
+                        {% endif %}
+                        <a href="/book?gi={{request.book[0].google_id}}">{{request.book[0].title}}</a>
+                        <p>This book has been borrowed by {{request.borrower.username.title()}}</p>     
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <br>
         <p>Friend Requests</p>
         {% if requests == [] %}
             <p>No new Requests</p>

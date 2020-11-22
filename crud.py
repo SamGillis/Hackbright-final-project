@@ -95,8 +95,15 @@ def delete_request(req_id):
 
     req = Request.query.get(req_id)
 
-    req.lender.update_books_lent(req.book[0], 'rem')
-    req.borrower.update_books_requested(req.book[0], 'rem')
+    db.session.delete(req)
+    db.session.commit()
+
+def accept_request(req_id):
+
+    req = Request.query.get(req_id)
+
+    req.lent = True
+    db.session.commit()
 
 
 

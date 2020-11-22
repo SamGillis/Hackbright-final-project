@@ -7,7 +7,7 @@ function jumptopageresults(evt) {
     let pagesData = $('#pages-java').data('count');
 
     if (pagesData < pageInput.value) {
-        alert('This page does not exhist')
+        alert('This page does not exist')
         return
     }
 

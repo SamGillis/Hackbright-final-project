@@ -51,21 +51,16 @@ class User(db.Model):
 
         delete_friend(self, friend)
 
-    def update_books_requested(self, book, act='add'):
-        """updates instance of books_requested"""
-
-        if act == 'add':
-            self.books_requested.append(book)
-        else:
-            self.books_requested.remove(book)
-
-    def update_books_lent(self, book, act='add'):
-        """updates instance of books_requested"""
+    def get_lender(self, book):
+        """Gets lender for a book requested, otherwise returns empty list"""
         
-        if act == 'add':
-            self.books_lent.append(book)
-        else:
-            self.books_lent.remove(book)
+        requested_lender = []
+
+        for request in self.book_requests:
+            if book == request.book[0]:
+                requested_lender.append(request.lender)
+        
+        return requested_lender
 
 
 class Collection(db.Model):

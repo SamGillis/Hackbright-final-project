@@ -39,21 +39,23 @@
 
     <br>
     <br>
-    
-    <p>Lendable from</p>
-    {% for friend in user.friends %}
-        {% if user in friend.friends %}
-            {% for each in friend.collections %}
-                {% if each.lendable %}
-                    {% if book_obj in each.books %}
-                        <a href='/user?id={{friend.id}}'>{{friend.username}}</a>
-                        <form action="/request_book/{{book_obj.google_id}}/{{each.id}}">
-                            <input type='submit' value="Request to borrow">
-                        </form>
+    {% if user.get_lender(book_obj) != [] %}
+        <p>Book is already requested from {{user.get_lender(book_obj)[0].username.title()}}</p>
+    {% else %}
+        <p>Lendable from</p>
+        {% for friend in user.friends %}
+            {% if user in friend.friends %}
+                {% for each in friend.collections %}
+                    {% if each.lendable %}
+                        {% if book_obj in each.books%}
+                            <a href='/user?id={{friend.id}}'>{{friend.username}}</a>
+                            <form action="/request_book/{{book_obj.google_id}}/{{each.id}}">
+                                <input type='submit' value="Request to borrow">
+                            </form>
+                        {% endif %}
                     {% endif %}
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-    {% endfor %}
-
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 {% endblock %}
