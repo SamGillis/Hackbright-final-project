@@ -46,6 +46,9 @@
                     {% for each in user.lent_books %}
                         {% if book_obj == each.book[0] %}
                             <p>Book is currently lent from this collection to {{each.borrower.username.title()}}</p>
+                            <form action="/delete_request/{{each.id}}">
+                                <input type='submit' value="Mark as returned">
+                            </form>  
                         {% endif %}
                     {% endfor %}
                 {% endif %}
