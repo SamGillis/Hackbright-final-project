@@ -46,6 +46,7 @@
                     {% for each in user.lent_books %}
                         {% if book_obj == each.book[0] and each.lent %}
                             <p>Book is currently lent from this collection to {{each.borrower.username.title()}}</p>
+                            <p>Contact them at {{each.borrower.email}}</p>
                             <form action="/delete_request/{{each.id}}">
                                 <input type='submit' value="Mark as returned">
                             </form>  
@@ -59,6 +60,7 @@
     <br>
     {% if user.get_lender(book_obj) != [] %}
         <p>Book is already requested from {{user.get_lender(book_obj)[0].username.title()}}</p>
+        <p>Contact them at {{user.get_lender(book_obj)[0].email}}</p>
         <form action="/delete_request/{{user.get_lender(book_obj)[1]}}">
             <input type='submit' value="Delete Request">
         </form>  

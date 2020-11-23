@@ -31,6 +31,7 @@
                         {% endif %}
                         <a href="/book?gi={{request.book[0].google_id}}">{{request.book[0].title}}</a>
                         <p>This book has been requested from {{request.lender.username.title()}}</p>
+                        <p>Contact them at {{request.lender.email}}</p>
                         <form action="/delete_request/{{request.id}}">
                             <input type='submit' value="Delete Request">
                         </form>       
@@ -49,7 +50,8 @@
                         <image src="{{ request.book[0].cover_img }}"></image>
                         {% endif %}
                         <a href="/book?gi={{request.book[0].google_id}}">{{request.book[0].title}}</a>
-                        <p>This book has been lent by {{request.lender.username.title()}}</p>     
+                        <p>This book has been lent by {{request.lender.username.title()}}</p>
+                        <p>Contact them at {{request.lender.email}}</p>     
                     </div>
                 {% endif %}
             {% endfor %}
@@ -66,6 +68,7 @@
                         {% endif %}
                         <a href="/book?gi={{request.book[0].google_id}}">{{request.book[0].title}}</a>
                         <p>This book has been requested by {{request.borrower.username.title()}}</p>
+                        <p>Contact them at {{request.borrower.email}}</p>
                         <form action="/accept_request/{{request.id}}">
                             <input type='submit' value="Accept">
                         </form> 
@@ -87,7 +90,8 @@
                         <image src="{{ request.book[0].cover_img }}"></image>
                         {% endif %}
                         <a href="/book?gi={{request.book[0].google_id}}">{{request.book[0].title}}</a>
-                        <p>This book has been borrowed by {{request.borrower.username.title()}}</p>  
+                        <p>This book has been borrowed by {{request.borrower.username.title()}}</p> 
+                        <p>Contact them at {{request.borrower.email}}</p> 
                         <form action="/delete_request/{{request.id}}">
                             <input type='submit' value="Mark as returned">
                         </form>    
