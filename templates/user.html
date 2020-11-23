@@ -201,10 +201,10 @@
         {% endfor %}
     </div>
     {% if searched_user == user %}
-        <h2>Private Collections:</h2>
         <div>
             {% for each in searched_user.collections %}
                 {% if each.private %}
+                    <h2 class='privatecollections'>Private Collections:</h2>
                     <h3>{{' '.join(each.collection_type.split('_')).title()}}</h3>
                     {% for i in range(10) %}
                         {% if i < each.books|length %}

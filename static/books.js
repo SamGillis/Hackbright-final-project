@@ -26,3 +26,31 @@ function jumptopageresults(evt) {
 $('#jumpresults').on('click', jumptopageresults);
 
 $('#jumpcollection').on('click', jumptopageresults);
+
+
+var seen = {};
+$('.lendablefrom').each(function() {
+    var txt = $(this).text();
+    if (seen[txt])
+        $(this).remove();
+    else
+        seen[txt] = true;
+});
+
+var seen = {};
+$('.bookincollections').each(function() {
+    var txt = $(this).text();
+    if (seen[txt])
+        $(this).remove();
+    else
+        seen[txt] = true;
+});
+
+var seen = {};
+$('.privatecollections').each(function() {
+    var txt = $(this).text();
+    if (seen[txt])
+        $(this).remove();
+    else
+        seen[txt] = true;
+});

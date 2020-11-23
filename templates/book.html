@@ -38,13 +38,13 @@
     </form>
 
     <div>
-        <p> Book in these collections:</p>
             {% for each in user.collections %}
                 {% if book_obj in each.books %}
+                    <p class=bookincollections> Book in these collections:</p>
                     <a href='/collection?collection={{each.id}}'>
                         {{' '.join(each.collection_type.split('_')).title() }}</a> 
                     {% for each in user.lent_books %}
-                        {% if book_obj == each.book[0] %}
+                        {% if book_obj == each.book[0] and each.lent %}
                             <p>Book is currently lent from this collection to {{each.borrower.username.title()}}</p>
                             <form action="/delete_request/{{each.id}}">
                                 <input type='submit' value="Mark as returned">
@@ -63,12 +63,13 @@
             <input type='submit' value="Delete Request">
         </form>  
     {% else %}
-        <p>Lendable from</p>
+        
         {% for friend in user.friends %}
             {% if user in friend.friends %}
                 {% for each in friend.collections %}
                     {% if each.lendable %}
                         {% if book_obj in each.books%}
+                            <p class='lendablefrom'>Lendable from</p>
                             <a href='/user?id={{friend.id}}'>{{friend.username}}</a>
                             <form action="/request_book/{{book_obj.google_id}}/{{each.id}}">
                                 <input type='submit' value="Request to borrow">
