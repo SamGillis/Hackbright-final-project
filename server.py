@@ -4,7 +4,7 @@ from flask import (Flask, render_template, request, flash,
                 session, redirect)
 from passlib.hash import sha256_crypt
 from model import connect_to_db, Book, Collection, User, Book_by_Collection, Friend, Request
-from math import ceil
+from math import ceil, floor
 import requests
 import crud
 import os
@@ -104,11 +104,11 @@ def search_results():
     start_index = (page - 1) * 25
 
     if search_type == 'author':
-        res = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=inauthor:{search_terms}&startIndex={start_index}&maxResults=25&key={api_key}')
+        res = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=inauthor:{search_terms}&startIndex={start_index}&maxResults=40&key={api_key}')
     elif search_type == 'title':
-        res = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=intitle:{search_terms}&startIndex={start_index}&maxResults=25&key={api_key}')
+        res = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=intitle:{search_terms}&startIndex={start_index}&maxResults=40&key={api_key}')
     elif search_type == 'isbn':
-        res = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=isbn:{search_terms}&startIndex={start_index}&maxResults=25&key={api_key}')
+        res = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=isbn:{search_terms}&startIndex={start_index}&maxResults=40&key={api_key}')
     else:
         return redirect(f'/user_search?search_terms={search_terms}')
 
@@ -116,8 +116,13 @@ def search_results():
     
     book_results = []
 
-    pages = int(results.get('totalItems', 0))
-    pages = int(ceil(pages/25))
+    if page == 1:
+        pages = int(results.get('totalItems', 0))
+        pages = int(floor(pages/25))
+        session['pages'] = pages
+    else:
+        pages = session['pages']
+    
 
     user = User.query.get(session['user.id'])
     
@@ -126,26 +131,34 @@ def search_results():
                                 results=book_results, user=user, page=page, 
                                 pages=pages, search_type=search_type)
 
-    for i in range(len(results['items'])):
+    i = 0
+
+    while len(book_results) < 25 and i < len(results['items']):
+        
         book_info = results['items'][i]
         try:
             google_id, cover_img, title = (book_info['id'],
                                         book_info['volumeInfo']['imageLinks']['thumbnail'],
                                         book_info['volumeInfo']['title'])
         except:
+            pass
+        try:
+            google_id, title = (book_info['id'],
+                                book_info['volumeInfo']['title'])
+        except:
+            i += 1
             continue
 
         if Book.query.get(google_id) == None:
-            book = crud.create_book(google_id, cover_img, title)
+            try: 
+                book = crud.create_book(google_id, title, cover_img)
+            except:
+                book = crud.create_book(google_id, title)
         else:
             book = Book.query.get(google_id)
         
         book_results.append(book)
-
-    if book_results == []:
-        ##TODO if results on a page is empty
-        pass
-
+        i += 1
     
     
     return render_template('results.html', search_terms=search_terms,

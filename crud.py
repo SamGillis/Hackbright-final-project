@@ -24,7 +24,7 @@ def create_collection(user, collection_type, lendable=False, private=False):
     return collection
 
 
-def create_book(google_id, cover_img, title):
+def create_book(google_id, title, cover_img='/static/no_cover.jpg'):
     book = Book(google_id=google_id, cover_img=cover_img, title=title)
 
     db.session.add(book)
