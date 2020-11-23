@@ -30,7 +30,10 @@
                         <image src="{{ request.book[0].cover_img }}"></image>
                         {% endif %}
                         <a href="/book?gi={{request.book[0].google_id}}">{{request.book[0].title}}</a>
-                        <p>This book has been requested from {{request.lender.username.title()}}</p>     
+                        <p>This book has been requested from {{request.lender.username.title()}}</p>
+                        <form action="/delete_request/{{request.id}}">
+                            <input type='submit' value="Delete Request">
+                        </form>       
                     </div>
                 {% endif %}
             {% endfor %}

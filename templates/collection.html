@@ -26,6 +26,9 @@
                     {% if collection.collection_type == 'to_read' %}
                         {% if user.get_lender(collection.books[i]) != [] %}
                             <p>Book is already requested from {{user.get_lender(collection.books[i])[0].username.title()}}</p>
+                            <form action="/delete_request/{{user.get_lender(collection.books[i])[1]}}">
+                                <input type='submit' value="Delete Request">
+                            </form> 
                         {% else %}
                             <p>Lendable from</p>
                             {% for friend in user.friends %}
@@ -56,6 +59,9 @@
                 {% elif collection.lendable and user in collection.user.friends %}
                     {% if user.get_lender(collection.books[i]) != [] %}
                         <p>Book is already requested from {{user.get_lender(collection.books[i])[0].username.title()}}</p>
+                        <form action="/delete_request/{{user.get_lender(collection.books[i])[1]}}">
+                            <input type='submit' value="Delete Request">
+                        </form> 
                     {% else %}
                         <form action="/request_book/{{collection.books[i].google_id}}/{{collection.id}}">
                             <input type='submit' value="Request to borrow">

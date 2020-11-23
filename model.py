@@ -52,13 +52,14 @@ class User(db.Model):
         delete_friend(self, friend)
 
     def get_lender(self, book):
-        """Gets lender for a book requested, otherwise returns empty list"""
+        """Gets lender and request id for a book requested, otherwise returns empty list"""
         
         requested_lender = []
 
         for request in self.book_requests:
             if book == request.book[0]:
                 requested_lender.append(request.lender)
+                requested_lender.append(request.id)
         
         return requested_lender
 

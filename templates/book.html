@@ -59,6 +59,9 @@
     <br>
     {% if user.get_lender(book_obj) != [] %}
         <p>Book is already requested from {{user.get_lender(book_obj)[0].username.title()}}</p>
+        <form action="/delete_request/{{user.get_lender(book_obj)[1]}}">
+            <input type='submit' value="Delete Request">
+        </form>  
     {% else %}
         <p>Lendable from</p>
         {% for friend in user.friends %}
