@@ -395,7 +395,13 @@ def accept_request(request_id):
 
     return redirect(f'/user')
 
+@app.route('/delete_request/<request_id>')
+def delete_request(request_id):
+    """Delete a request to borrow a book from a friend""" 
 
+    crud.delete_request(request_id)
+
+    return redirect(f'/user')
 
 
 if __name__ == '__main__':

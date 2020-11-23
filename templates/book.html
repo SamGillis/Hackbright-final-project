@@ -37,6 +37,21 @@
         </div>
     </form>
 
+    <div>
+        <p> Book in these collections:</p>
+            {% for each in user.collections %}
+                {% if book_obj in each.books %}
+                    <a href='/collection?collection={{each.id}}'>
+                        {{' '.join(each.collection_type.split('_')).title() }}</a> 
+                    {% for each in user.lent_books %}
+                        {% if book_obj == each.book[0] %}
+                            <p>Book is currently lent from this collection to {{each.borrower.username.title()}}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+    </div>
+
     <br>
     <br>
     {% if user.get_lender(book_obj) != [] %}

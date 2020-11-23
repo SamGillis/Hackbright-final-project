@@ -98,6 +98,7 @@ def delete_request(req_id):
     db.session.delete(req)
     db.session.commit()
 
+
 def accept_request(req_id):
 
     req = Request.query.get(req_id)

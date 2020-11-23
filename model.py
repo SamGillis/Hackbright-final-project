@@ -150,8 +150,8 @@ class Request(db.Model):
     id = db.Column(db.Integer, 
                     autoincrement=True,
                     primary_key=True)
-    connection_id = db.Column(db.Integer, 
-                                db.ForeignKey('books_by_collection.id'))
+    connection_id = db.Column(db.Integer,
+                            db.ForeignKey('books_by_collection.id'))
     borrower_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     lender_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     lent = db.Column(db.Boolean)
@@ -160,8 +160,9 @@ class Request(db.Model):
                                 backref='book_requests')
     lender = db.relationship('User', foreign_keys=[lender_id],
                             backref='lent_books')
-    book = db.relationship('Book', secondary='books_by_collection')
-    collection = db.relationship('Collection', secondary='books_by_collection')
+    
+    book = db.relationship('Book', secondary='books_by_collection', viewonly=True)
+    collection = db.relationship('Collection', secondary='books_by_collection', viewonly=True)
 
 
 

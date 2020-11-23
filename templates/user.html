@@ -22,7 +22,7 @@
         </form>
         <br>
         <div>
-            <p>Requested books</p>
+            <h3>Requested books</h3>
             {% for request in user.book_requests %}
                 {% if not request.lent %}
                     <div>
@@ -38,7 +38,7 @@
         <br>
         <br>
         <div>
-            <p>Borrowed Books</p>
+            <h3>Borrowed Books</h3>
             {% for request in user.book_requests %}
                 {% if request.lent %}
                     <div>
@@ -54,7 +54,7 @@
         <br>
         <br>
         <div>
-            <p>Borrow Requests from friends</p>
+            <h3>Borrow Requests from friends</h3>
             {% for request in user.lent_books %}
                 {% if not request.lent %}
                     <div>
@@ -65,7 +65,10 @@
                         <p>This book has been requested by {{request.borrower.username.title()}}</p>
                         <form action="/accept_request/{{request.id}}">
                             <input type='submit' value="Accept">
-                        </form>     
+                        </form> 
+                        <form action="/delete_request/{{request.id}}">
+                            <input type='submit' value="Decline">
+                        </form>      
                     </div>
                 {% endif %}
             {% endfor %}
@@ -73,7 +76,7 @@
         <br>
         <br>
         <div>
-            <p>Books Lent</p>
+            <h3>Books Lent</h3>
             {% for request in user.lent_books %}
                 {% if request.lent %}
                     <div>
@@ -81,7 +84,10 @@
                         <image src="{{ request.book[0].cover_img }}"></image>
                         {% endif %}
                         <a href="/book?gi={{request.book[0].google_id}}">{{request.book[0].title}}</a>
-                        <p>This book has been borrowed by {{request.borrower.username.title()}}</p>     
+                        <p>This book has been borrowed by {{request.borrower.username.title()}}</p>  
+                        <form action="/delete_request/{{request.id}}">
+                            <input type='submit' value="Mark as returned">
+                        </form>    
                     </div>
                 {% endif %}
             {% endfor %}
