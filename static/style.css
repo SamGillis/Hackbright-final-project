@@ -1,18 +1,131 @@
 
+/* Base styling*/
 body, html {
     height: 100%
 }
 
+nav {
+    z-index: 3;
+    background-color: rgb(28, 110, 140);
+    color: #b0e7fc;
+    display: block;
+    
+}
+
+
+/* Homepage styling*/
 .bg-image{
     background: url(/static/photos/bookshelf4.jpg) center;
     background-size: cover;
 
     filter: blur(2px);
+    position: fixed;
+    min-width:100%; 
+    min-height:100%; 
+    width:auto; 
+    height:auto;
 
     height: 100%
 }
 
-.bodytext {
+.homepage {
+    background-color: rgba(0, 0, 0, .5);
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 80%;
+    padding:;
+    text-align: center;
+}
+
+/* allfriends styling*/
+.bg-image-allfriends {
+    background: url(/static/photos/bookshelf1.jpg) center;
+    background-size: cover;
+    
+    position: fixed;
+    min-width:100%; 
+    min-height:100%; 
+    width:auto; 
+    height:auto;
+
+    filter: blur(2px);
+}
+
+h1 {
+    color: rgb(176, 231, 252);
+    padding-top: 5%;
+}
+
+
+.bodytextallfriends {
+    background-color: rgba(0, 0, 0, .5);
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+    z-index: 1;
+    width: 80%;
+    padding:;
+    text-align: center;
+
+}
+
+.friend {
+    display: inline-block;
+    padding: 10px;
+}
+
+.friendlink {
+    color: rgb(195, 172, 186);
+    font-size: larger;
+    font-weight: bolder;
+}
+
+p {
+    color: rgb(82, 44, 0);
+}
+
+.friendstatus {
+    font-size: small;
+}
+
+.btn-secondary {
+    background-color: rgba(152, 113, 137, 1);
+}
+
+/* book styling*/
+
+/* collection styling*/
+
+/* results styling*/
+
+/* user_results styling*/
+
+/* user styling*/
+
+.bg-pattern-user {
+    background: url(/static/photos/bush/bush.png) repeat center;
+    background-size: auto, cover, 100%;
+
+    filter: blur(2px);
+    position: fixed;
+
+    min-width:100%; 
+    min-height:100%; 
+    width:auto; 
+    height:auto;
+}
+
+.bodytextuser {
     background-color:rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
     color: white;
@@ -21,22 +134,15 @@ body, html {
     position: absolute;
     top: 60%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
+    transform: translate(-50%, -5%);
+    z-index: 1;
     width: 80%;
-    padding: 20px;
+    padding:;
     text-align: center;
 }
 
-body {
-    padding-top: 65px;
-}
 
-nav {
-    z-index: 3;
-    background-color: rgb(28, 110, 140);
-    color: #b0e7fc;
-    
-}
+
+
 
 

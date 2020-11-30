@@ -62,7 +62,7 @@
                         <form action="/delete_request/{{user.get_lender(collection.books[i])[1]}}">
                             <input type='submit' value="Delete Request">
                         </form> 
-                    {% else %}
+                    {% elif user in collection.user.friends %}
                         <form action="/request_book/{{collection.books[i].google_id}}/{{collection.id}}">
                             <input type='submit' value="Request to borrow">
                         </form>

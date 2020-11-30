@@ -2,24 +2,27 @@
 {% block title %}{{displayed_user.username}}'s Friends{% endblock %}
 
 {% block body %}
-    <h2>{{displayed_user.username}}'s Friends</h2>
+<div class='bg-image-allfriends'></div>
+<div class="bodytextallfriends">
+    <h1>{{displayed_user.username.title()}}'s Friends</h1>
     {% for friend in displayed_user.friends %}
+        <div class=friend>
         {% if friend != user %}
             <div>
-                <a href="/user?id={{friend.id}}">{{friend.username}}</a>     
+                <a class='friendlink' href="/user?id={{friend.id}}">{{friend.username.title()}}</a>     
             </div>
 
             {% if friend in user.friends and user in friend.friends %}
-                <p>Friends</p>
+                <p class='friendstatus'>Friends</p>
                 <form action="/delete_friend/{{friend.id}}">
-                    <input type='submit' value="Delete Friend">
+                    <input type='submit' class="btn btn-secondary" value="Delete Friend">
                 </form>
 
             
             {% elif friend in user.friends %}
-                <p> Friend request sent </p>
+                <p class='friendstatus'> Friend request sent </p>
                 <form action="/retract_friend_request/{{friend.id}}">
-                    <input type='submit' value="Retract friend request">
+                    <input type='submit' value="Cancel request">
                 </form>
 
             {% elif user in friend.friends %}
@@ -37,6 +40,7 @@
 
             {% endif %}
         {% endif %}
+        </div>
     {% endfor %}
 
 
@@ -84,4 +88,5 @@
                 <button id=jumpcollection>Jump to page</button>
         </div>
     {% endif %}
+</div>
 {% endblock %}
