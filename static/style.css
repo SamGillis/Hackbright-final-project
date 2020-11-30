@@ -1,2 +1,42 @@
 
+body, html {
+    height: 100%
+}
+
+.bg-image{
+    background: url(/static/photos/bookshelf4.jpg) center;
+    background-size: cover;
+
+    filter: blur(2px);
+
+    height: 100%
+}
+
+.bodytext {
+    background-color:rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+}
+
+body {
+    padding-top: 65px;
+}
+
+nav {
+    z-index: 3;
+    background-color: rgb(28, 110, 140);
+    color: #b0e7fc;
+    
+}
+
 
