@@ -404,13 +404,16 @@ def request_book(google_id, collection_id):
 def accept_request(request_id):
     """accept a request to borrow a book from a friend""" 
 
-    crud.accept_request(request_id)
+    crud.accept_request(int(request_id))
 
     return redirect(f'/user')
 
 @app.route('/delete_request/<request_id>')
 def delete_request(request_id):
     """Delete a request to borrow a book from a friend""" 
+    
+    if '?' in request_id:
+        request_id = int(request_id[:-1])
 
     crud.delete_request(request_id)
 
