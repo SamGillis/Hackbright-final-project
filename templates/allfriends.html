@@ -28,13 +28,16 @@
                 </form>
 
             {% elif user in friend.friends %}
+                <p class='friendstatus'> Pending Response </p>
+                <div class="container">
+                    <div class="row">
                 <form action="/add_friend/{{friend.id}}">
-                    <input type='submit' value="Accept Friend Request">
+                    <input type='submit' value="Accept" class='btn btn-secondary col'>
                 </form>
                 <form action="/decline_friend/{{friend.id}}">
-                    <input type='submit' value="Decline Friend Request" class="btn btn-secondary">
+                    <input type='submit' value="Decline" class="btn btn-secondary col">
                 </form>
-            
+                </div></div>
             {% else %}
                 <form action="/add_friend/{{friend.id}}">
                     <input type='submit' value="Send a Friend Request" class="btn btn-secondary">

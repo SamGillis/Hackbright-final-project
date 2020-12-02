@@ -12,17 +12,14 @@
     {% if collection.lendable and collection.private %}
         <h6>Collection is both lendable and private </h6>
         <br>
-        <br>
     {% elif collection.lendable %}
         <h6>Collection is lendable to friends </h6>
-        <br>
         <br>
     {% elif collection.private %}
         <p>Collection is private and can not be seen by other users</p>
         <br>
-        <br>
     {% endif %}
-    
+    <br>
     {% for i in range(((page-1)*24), page*24): %}
         {% if collection.books|length > i%}
             {% if i % 3 == 0 %}
@@ -43,9 +40,13 @@
                     </form>
                     {% if collection.collection_type == 'to_read' %}
                         {% if user.get_lender(collection.books[i]) != [] %}
-                            <p>Book is already requested from {{user.get_lender(collection.books[i])[0].username.title()}}</p>
+                            <br>
+                            <p>Book is already requested from <br>
+                                <a class='friendlink' href='/user?id={{user.get_lender(collection.books[i])[0].id}}'>
+                                    {{user.get_lender(collection.books[i])[0].username.title()}}</a>
+                            </p>
                             <form action="/delete_request/{{user.get_lender(collection.books[i])[1]}}">
-                                <input type='submit' value="Delete Request">
+                                <input type='submit' value="Delete Request" class='btn btn-secondary'>
                             </form> 
                         {% else %}
                             {% for friend in user.friends %}
@@ -53,10 +54,12 @@
                                     {% for each in friend.collections %}
                                         {% if each.lendable %}
                                             {% if collection.books[i] in each.books %}
-                                                <p class='lendablefrom'>Lendable from</p>
-                                                <a href='/user?id={{friend.id}}'>{{friend.username}}</a>
+                                                <br>
+                                                <h6>Lendable from</h6>
+                                                <a class='friendlink' href='/user?id={{friend.id}}'>{{friend.username.title()}}</a>
+                                                <br>
                                                 <form action="/request_book/{{collection.books[i].google_id}}/{{each.id}}">
-                                                    <input type='submit' value="Request to borrow">
+                                                    <input class="btn btn-secondary" type='submit' value="Request to borrow">
                                                 </form>
                                             {% endif %}
                                         {% endif %}
@@ -67,23 +70,32 @@
                     {% elif collection.lendable %}
                         {% for each in user.lent_books %}
                             {% if collection.books[i] == each.book[0] and each.lent %}
-                                <p>Book is currently lent from this collection to {{each.borrower.username.title()}}</p>
+                                <br>
+                                <p>Book is currently lent from this collection to <br>
+                                    <a class='friendlink' href='/user?id={{each.borrower.id}}'>{{each.borrower.username.title()}}</a></p> 
                                 <form action="/delete_request/{{each.id}}">
-                                    <input type='submit' value="Mark as returned">
-                                </form>  
+                                    <input type='submit' value="Returned" class='btn btn-secondary'>
+                                </form>
+                                <br>
+                                <br>  
                             {% endif %}
                         {% endfor %}
                     {% endif %}
                 {% elif collection.lendable and collection.user in user.friends %}
                     {% if user.get_lender(collection.books[i]) != [] %}
-                        <p>Book is already requested from {{user.get_lender(collection.books[i])[0].username.title()}}</p>
+                        <p>Book is already requested from <br>
+                            <a class='friendlink' href='/user?id={{user.get_lender(collection.books[i])[0].id}}'>
+                                {{user.get_lender(collection.books[i])[0].username.title()}}</a></p>
                         <form action="/delete_request/{{user.get_lender(collection.books[i])[1]}}">
-                            <input type='submit' value="Delete Request">
+                            <input type='submit' value="Delete Request" class='btn btn-secondary'>
                         </form> 
+                        <br>
+                        <br>
                     {% elif user in collection.user.friends %}
                         <form action="/request_book/{{collection.books[i].google_id}}/{{collection.id}}">
-                            <input type='submit' value="Request to borrow">
+                            <input type='submit' value="Request to borrow" class="btn btn-secondary">
                         </form>
+                        <br>
                     {% endif %}
                 {% endif %}
                 {% if i % 3 == 2 %}
@@ -97,15 +109,22 @@
 
     <br>
     {% if pages < 5 %}
-        <div>
+        <nav class='pagenav' aria-label='...'>
+            <ul class='pagination pagination-sm'>
             {% for num in range(1, pages+1)%}
                 {% if num == page %}
-                    <a class='pagination'>{{num}}</a>
+                    <li class='page-item active' aria-current='page'>
+                        <span class='page-link'>
+                            {{num}}
+                            <span class='sr-only'>(current)</span>
+                        </span>
+                    </li>
                 {% else %}
-                    <a class='pagination' href="/collection?collection={{collection.id}}&page={{num}}">{{num}}</a>
+                    <li class='page-item'><a class='page-link' href="/collection?collection={{collection.id}}&page={{num}}">{{num}}</a></li> 
                 {% endif %}
             {% endfor %}
-        </div>
+            </ul>
+        </nav>
     {% else %}
         <div>
             {% if page != 1 %}
