@@ -110,8 +110,8 @@
 
     <br>
     {% if pages < 5 %}
-        <div class='pagenav' aria-label='search_results'>
-            <ul class='pagination justify-content-center pagecolor'>
+        <div aria-label='search_results'>
+            <ul class='pagination justify-content-center'>
             {% for num in range(1, pages+1)%}
                 {% if num == page %}
                     <li class='page-item active' aria-current='page'>
@@ -127,36 +127,52 @@
             </ul>
         </div>
     {% else %}
-        <div>
+        <div class='pagenav' aria-label='search_results'>
+        <ul class='pagination justify-content-center pagecolor'>
             {% if page != 1 %}
-                <a class='pagination' href="/collection?collection={{collection.id}}&page=1">1</a>
+                <li class='page-item'><a class='page-link' href="/collection?collection={{collection.id}}&page=1">1</a></li>
             {% else %}
-                <a class='pagination'>1</a>
+                <li class='page-item active' aria-current='page'>
+                    <span class='page-link'>
+                        1
+                        <span class='sr-only'>(current)</span>
+                    </span>
+                </li>
             {% endif %}
-            {% if page > 3 %}
-            <a class='pagination'>...</a>
+            {% if page > 4%}
+            <li class='page-item'><span class='page-link'>...</span></li>
             {% endif %}
             {% for num in range(page-2, page+3)%}
                 {% if num > 1 and num < pages %}
                     {% if num == page %}
-                        <a class='pagination'>{{num}}</a>
+                    <li class='page-item active' aria-current='page'>
+                        <span class='page-link'>
+                            {{num}}
+                            <span class='sr-only'>(current)</span>
+                        </span>
+                    </li>
                     {% else %}
-                        <a class='pagination' href="/collection?collection={{collection.id}}&page={{num}}">{{num}}</a>
+                    <li class='page-item'><a class='page-link' href="/collection?collection={{collection.id}}&page={{num}}">{{num}}</a></li>
                     {% endif%}
                 {% endif %}
             {% endfor %}
             {% if page < pages-3 %}
-                <a class='pagination'>...</a>
+                <li class='page-item'><span class='page-link'>...</span></li>
             {% endif %}
             {% if page != pages %}
-                <a class='pagination' href="/collection?collection={{collection.id}}&page={{pages}}">{{pages}}</a>
+                <li class='page-item'><a class='page-link' href="/collection?collection={{collection.id}}&page={{pages}}">{{pages}}</a></li>
             {% else %}
-                <a class='pagination'>{{pages}}</a>
+                <li class='page-item active' aria-current='page'>
+                    <span class='page-link'>
+                        {{pages}}
+                        <span class='sr-only'>(current)</span>
+                    </span>
+                </li>
             {% endif %}
-            <br>
             <div>
-                <input id=jumppagecollection type="text" name='page'>
-                <button id=jumpcollection>Jump to page</button>
+                <input id=jumppagecollection type="text" name='page' placeholder="Jump to page">
+                <button id=jumpcollection class='btn btn-secondary'>Go</button>
+        </ul>
         </div>
     {% endif %}
 </div>

@@ -26,13 +26,18 @@ nav {
     text-align: center;
 }
 
-.pagenav {
-    background-color: rgba(28, 110, 140, 0);
+.pagination > li > span {
+    color: rgb(152, 113, 137)
 }
 
+.pagination > .active > span {
+    color: white;
+    background-color: rgb(152, 113, 137) !Important;
+    border: solid 1px rgb(152, 113, 137) !Important;
+}
 
-.pagecolor {
-    color: rgb(28, 110, 140) ;
+.pagination > li > a {
+    color: rgb(152, 113, 137)
 }
 
 
@@ -249,6 +254,11 @@ h6 {
 .bookimage {
     
     height: 250px;
+}
+
+#jumppagecollection {
+    margin-left: 50px;
+    width: 150px;
 }
 /* results styling*/
 
