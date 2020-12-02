@@ -29,7 +29,7 @@ nav {
 }
 
 .homepage {
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .6);
     color: white;
     font-weight: bold;
     border: 3px solid #f1f1f1;
@@ -39,8 +39,15 @@ nav {
     transform: translate(-50%, -50%);
     z-index: 1;
     width: 80%;
-    padding:;
     text-align: center;
+}
+
+#createaccount {
+    display: inline-block;
+}
+
+#login {
+    display: inline-block;
 }
 
 /* allfriends styling*/
@@ -74,7 +81,6 @@ h1 {
     transform: translate(-50%, -70%);
     z-index: 1;
     width: 80%;
-    padding:;
     text-align: center;
 
 }
@@ -137,7 +143,6 @@ p {
     transform: translate(-50%, -5%);
     z-index: 1;
     width: 80%;
-    padding:;
     text-align: center;
 }
 
