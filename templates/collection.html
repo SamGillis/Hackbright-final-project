@@ -21,7 +21,7 @@
     {% endif %}
     <br>
     {% for i in range(((page-1)*24), page*24): %}
-        {% if collection.books|length > i%}
+        {% if collection.books|length > i %}
             {% if i % 3 == 0 %}
                 <div class='row bookdiv'>
             {% endif %}
@@ -38,6 +38,7 @@
                     <form action="/delete_book/{{collection.books[i].google_id}}/{{collection.id}}">
                             <input class='collectionbutton btn btn-secondary' type='submit' value="Delete from Collection">
                     </form>
+                    <br>
                     {% if collection.collection_type == 'to_read' %}
                         {% if user.get_lender(collection.books[i]) != [] %}
                             <br>
@@ -98,7 +99,7 @@
                         <br>
                     {% endif %}
                 {% endif %}
-                {% if i % 3 == 2 %}
+                {% if i % 3 == 2 or i == collection.books|length - 1 %}
                     <br>
                     <br>
                     </div>
@@ -109,8 +110,8 @@
 
     <br>
     {% if pages < 5 %}
-        <nav class='pagenav' aria-label='...'>
-            <ul class='pagination pagination-sm'>
+        <div class='pagenav' aria-label='search_results'>
+            <ul class='pagination justify-content-center pagecolor'>
             {% for num in range(1, pages+1)%}
                 {% if num == page %}
                     <li class='page-item active' aria-current='page'>
@@ -124,7 +125,7 @@
                 {% endif %}
             {% endfor %}
             </ul>
-        </nav>
+        </div>
     {% else %}
         <div>
             {% if page != 1 %}
@@ -158,5 +159,6 @@
                 <button id=jumpcollection>Jump to page</button>
         </div>
     {% endif %}
+</div>
 </div>
 {% endblock %}

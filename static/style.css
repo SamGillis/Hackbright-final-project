@@ -9,7 +9,7 @@ nav {
     background-color: rgb(28, 110, 140);
     color: #b0e7fc;
     display: block;
-    
+    text-align: center;
 }
 
 .flash-msg {
@@ -28,8 +28,11 @@ nav {
 
 .pagenav {
     background-color: rgba(28, 110, 140, 0);
-    margin-left: auto;
-    margin-right: auto;
+}
+
+
+.pagecolor {
+    color: rgb(28, 110, 140) ;
 }
 
 
