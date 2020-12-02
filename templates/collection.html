@@ -2,26 +2,44 @@
 {% block title %}{{collection.user.username.title()}}'s Collection{% endblock %}
 
 {% block body %}
+<div class='bg-image-collection'></div>
+<div class="collectiontxt container">
+    
     <meta id='pages-java' data-count='{{pages}}'>
     <h1>{{collection.user.username.title()}}'s {{" ".join(collection.collection_type.split("_")).title()}} 
         Collection</h1>
+        <br>
     {% if collection.lendable and collection.private %}
-        <p>Collection is both lendable and private </p>
+        <h6>Collection is both lendable and private </h6>
+        <br>
+        <br>
     {% elif collection.lendable %}
-        <p>Collection is lendable to friends </p>
+        <h6>Collection is lendable to friends </h6>
+        <br>
+        <br>
     {% elif collection.private %}
         <p>Collection is private and can not be seen by other users</p>
+        <br>
+        <br>
     {% endif %}
-    {% for i in range(((page-1)*25), page*25): %}
+    
+    {% for i in range(((page-1)*24), page*24): %}
         {% if collection.books|length > i%}
-            <div>
+            {% if i % 3 == 0 %}
+                <div class='row bookdiv'>
+            {% endif %}
+            <div class='col'>
                 {% if collection.books[i].cover_img != None %}
-                <image src="{{ collection.books[i].cover_img }}"></image>
+                <image class='bookimage' src="{{ collection.books[i].cover_img }}"></image>
                 {% endif %}
-                <a href="/book?gi={{collection.books[i].google_id}}">{{collection.books[i].title}}</a>   
+                <br>
+                <br>
+                <a class='friendlink bookname' href="/book?gi={{collection.books[i].google_id}}">{{collection.books[i].title}}</a>   
+                <br>
+                <br>
                 {% if collection.user == user %}  
                     <form action="/delete_book/{{collection.books[i].google_id}}/{{collection.id}}">
-                            <input type='submit' value="Delete from Collection">
+                            <input class='collectionbutton btn btn-secondary' type='submit' value="Delete from Collection">
                     </form>
                     {% if collection.collection_type == 'to_read' %}
                         {% if user.get_lender(collection.books[i]) != [] %}
@@ -67,6 +85,11 @@
                             <input type='submit' value="Request to borrow">
                         </form>
                     {% endif %}
+                {% endif %}
+                {% if i % 3 == 2 %}
+                    <br>
+                    <br>
+                    </div>
                 {% endif %}
             </div>
         {% endif %}
@@ -116,4 +139,5 @@
                 <button id=jumpcollection>Jump to page</button>
         </div>
     {% endif %}
+</div>
 {% endblock %}

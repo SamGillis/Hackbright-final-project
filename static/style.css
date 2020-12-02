@@ -29,17 +29,17 @@ nav {
 
 /* Homepage styling*/
 .bg-image{
-    background: url(/static/photos/bookshelf4.jpg) center;
+    background: url(/static/photos/bookshelf4.jpg);
     background-size: cover;
+    z-index: -1;
 
     filter: blur(2px);
     position: fixed;
+    top: 0;
     min-width:100%; 
     min-height:100%; 
     width:auto; 
     height:auto;
-
-    height: 100%
 }
 
 .homepage {
@@ -47,14 +47,15 @@ nav {
     color: white;
     font-weight: bold;
     border: 3px solid #f1f1f1;
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+
+    margin-top: 80px;
+    margin-bottom: 80px;
+
     z-index: 1;
+    margin-right: auto;
+    margin-left: auto;
     width: 80%;
     text-align: center;
-    margin-bottom: 10%;
 }
 
 #createaccount {
@@ -67,10 +68,12 @@ nav {
 
 /* allfriends styling*/
 .bg-image-allfriends {
-    background: url(/static/photos/books2.jpg) center;
+    background: url(/static/photos/books2.jpg);
     background-size: cover;
+    z-index: -1;
     
     position: fixed;
+    top: 0;
     min-width:100%; 
     min-height:100%; 
     width:auto; 
@@ -78,6 +81,7 @@ nav {
 
     filter: blur(2px);
 }
+
 
 h1 {
     color: rgb(176, 231, 252);
@@ -93,12 +97,13 @@ h1 {
     color: white;
     font-weight: bold;
     border: 3px solid #f1f1f1;
-    margin-bottom: 10%;
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -70%);
-    z-index: 1;
+
+    margin-top: 80px;
+    margin-bottom: 80px;
+
+    z-index: 6;
+    margin-right: auto;
+    margin-left: auto;
     width: 80%;
     text-align: center;
 
@@ -121,15 +126,18 @@ h1 {
 
 .btn-secondary {
     background-color: rgba(152, 113, 137, 1);
+    font-weight: bold;
 }
 
 /* book styling*/
 
 .bg-image-bookdetails {
-    background: url(/static/photos/bookshelf5.jpg) center;
+    background: url(/static/photos/bookshelf5.jpg);
     background-size: cover;
+    z-index: -1;
     
     position: fixed;
+    top: 0;
     min-width:100%; 
     min-height:100%; 
     width:auto; 
@@ -143,16 +151,15 @@ h1 {
     color: white;
     font-weight: bold;
     border: 3px solid #f1f1f1;
-    position: absolute;
-    top: 100%;
-    margin-top: 10%;
-    margin-bottom: 10%;
-    left: 50%;
-    transform: translate(-50%, -60%);
-    z-index: 1;
+
+    margin-top: 80px;
+    margin-bottom: 80px;
+
+    z-index: 6;
+    margin-right: auto;
+    margin-left: auto;
     width: 80%;
     text-align: center;
-    vertical-align: middle;
 }
 
 .detailsimage {
@@ -187,6 +194,53 @@ h6 {
 
 /* collection styling*/
 
+
+
+.collectiontxt {
+    background-color: rgba(0, 0, 0, .6);
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    
+    margin-top: 80px;
+    margin-bottom: 80px;
+    
+    z-index: 6;
+    margin-right: auto;
+    margin-left: auto;
+    width: 80%;
+    text-align: center;
+}
+
+.bg-image-collection {
+    background: url(/static/photos/bookshelf6.jpg);
+    background-size: cover;
+    z-index: -8;
+    
+    position: fixed;
+    top: 0;
+    min-width:100%; 
+    min-height:100%; 
+    width:auto; 
+    height:auto;
+
+    filter: blur(2px);
+
+}
+
+.bookdiv {
+    bottom: 0;
+    position: relative;
+}
+
+.bookname {
+    margin-bottom: 5%;
+}
+
+.bookimage {
+    
+    height: 250px;
+}
 /* results styling*/
 
 /* user_results styling*/

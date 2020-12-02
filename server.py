@@ -293,7 +293,7 @@ def display_collection():
     user = User.query.get(session['user.id'])
 
     page = int(request.args.get('page', 1))
-    pages = int(ceil((len(collection.books)/25)))
+    pages = int(ceil((len(collection.books)/24)))
 
     return render_template('collection.html', collection=collection, user=user,
                                 page=page, pages=pages)
