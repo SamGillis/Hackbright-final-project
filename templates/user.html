@@ -1,82 +1,102 @@
 {% extends 'base.html' %}
-{% block title %}User{% endblock %}
+{% block title %}{{searched_user.username.title()}}{% endblock %}
 
 {% block body %}
-<div class='bg-pattern-user'></div>
-<div class="bodytextuser">
+<div class='bg-image bg-pattern-user'></div>
+<div class="bodytext">
     <h1>{{searched_user.username.title()}}</h1>
-
+    <br>
 
     {% if searched_user.id == user.id %}
-        <form action='/create_collection'>
-            <div>
-                <label for='collection_name'>Create a new collection</label>
-                <input type='text' name='collection_name' id='collection_name_other'> 
-            </div>
-            <div>
-                <input type="checkbox" name="lendable" value="True">
-                <label>Lend books from this collection</label>
-
-                <input type="checkbox" name="private" value="True">
-                <label>Make this collection private</label>
-            </div>
-            <input type='submit' value="Create">
-        </form>
-        <br>
-        <div>
-            <h3>Requested books</h3>
-            {% for request in user.book_requests %}
-                {% if not request.lent %}
-                    <div>
-                        {% if request.book[0].cover_img != None %}
-                        <image src="{{ request.book[0].cover_img }}"></image>
+        <div class='usersect container'>
+            <h2>Requested books</h2>
+            <h5>You've requested these books from friends</h5>
+            {% for i in range(user.book_requests|length) %}
+                {% if not user.book_requests[i].lent %}
+                    <div class='bookrequest'>
+                        {% if user.book_requests[i].book[0].cover_img != None %}
+                        <br>
+                        <br>
+                        <image class='bookimageuser' src="{{ user.book_requests[i].book[0].cover_img }}"></image>
                         {% endif %}
-                        <a href="/book?gi={{request.book[0].google_id}}">{{request.book[0].title}}</a>
-                        <p>This book has been requested from {{request.lender.username.title()}}</p>
-                        <p>Contact them at {{request.lender.email}}</p>
-                        <form action="/delete_request/{{request.id}}">
-                            <input type='submit' value="Delete Request">
-                        </form>       
+                        <br>
+                        <br>
+                        <div class='bknmuser'>
+                        <a class='friendlink bookname' href="/book?gi={{user.book_requests[i].book[0].google_id}}">{{user.book_requests[i].book[0].title}}</a>
+                        </div>
+                        <p>This book was requested from <br>
+                            <a class='friendlink' href='/user?id={{user.book_requests[i].lender.id}}'>
+                            {{user.book_requests[i].lender.username.title()}}</a><br>
+                            {{user.book_requests[i].lender.email}}</p>
+                        <form action="/delete_request/{{user.book_requests[i].id}}">
+                            <input type='submit' value="Delete Request" class='btn btn-secondary'>
+                        </form>  
+                        <br>     
                     </div>
                 {% endif %}
             {% endfor %}
         </div>
         <br>
         <br>
-        <div>
-            <h3>Borrowed Books</h3>
-            {% for request in user.book_requests %}
-                {% if request.lent %}
-                    <div>
-                        {% if request.book[0].cover_img != None %}
-                        <image src="{{ request.book[0].cover_img }}"></image>
+        <div class='usersect container'>
+            <h2>Borrowed Books</h2>
+            <h5>You've borrowed these books from friends</h5>
+            {% for i in range(user.book_requests|length) %}
+                {% if user.book_requests[i].lent %}
+                    <div class='bookrequest'>
+                        <br>
+                        <br>
+                        {% if user.book_requests[i].book[0].cover_img != None %}
+                        <image class='bookimageuser' src="{{ user.book_requests[i].book[0].cover_img }}"></image>
                         {% endif %}
-                        <a href="/book?gi={{request.book[0].google_id}}">{{request.book[0].title}}</a>
-                        <p>This book has been lent by {{request.lender.username.title()}}</p>
-                        <p>Contact them at {{request.lender.email}}</p>     
+                        <br>
+                        <br>
+                        <div class='bknmuser'>
+                        <a class = 'friendlink bookname' href="/book?gi={{user.book_requests[i].book[0].google_id}}">
+                            {{user.book_requests[i].book[0].title}}</a>
+                        </div>
+                        <p>This book was lent by <br>
+                            <a class='friendlink' href='/user?id={{user.book_requests[i].lender.id}}'>
+                            {{user.book_requests[i].lender.username.title()}}</a><br>
+                            {{user.book_requests[i].lender.email}}</p>     
                     </div>
                 {% endif %}
             {% endfor %}
         </div>
         <br>
         <br>
-        <div>
-            <h3>Borrow Requests from friends</h3>
+        <div class='usersect'>
+            <h2>Borrow Requests</h2>
+            <h5>Friends have requested to borrow these books from you</h5>
+            <br>
             {% for request in user.lent_books %}
                 {% if not request.lent %}
-                    <div>
+                    <div class='bookrequest'>
                         {% if request.book[0].cover_img != None %}
-                        <image src="{{ request.book[0].cover_img }}"></image>
+                        
+                        <image class='bookimageuser' src="{{ request.book[0].cover_img }}"></image>
                         {% endif %}
-                        <a href="/book?gi={{request.book[0].google_id}}">{{request.book[0].title}}</a>
-                        <p>This book has been requested by {{request.borrower.username.title()}}</p>
-                        <p>Contact them at {{request.borrower.email}}</p>
-                        <form action="/accept_request/{{request.id}}">
-                            <input type='submit' value="Accept">
-                        </form> 
-                        <form action="/delete_request/{{request.id}}">
-                            <input type='submit' value="Decline">
-                        </form>      
+                        <br>
+                        <br>
+                        <div class='bknmuser'>
+                        <a class='friendlink bookname' href="/book?gi={{request.book[0].google_id}}">{{request.book[0].title}}</a>
+                        </div>
+                        <p>This book was requested by <br>
+                            <a class='friendlink' href='/user?id={{request.borrower.id}}'>
+                            {{request.borrower.username.title()}}</a> <br>
+                            {{request.borrower.email}}</p>
+                            <div class='container'>
+                                <div class='row requeststatus'>
+                                    <form action="/accept_request/{{request.id}}">
+                                        <input type='submit' value="Accept" class='col btn btn-secondary'>
+                                    </form> 
+                                    <form action="/delete_request/{{request.id}}">
+                                        <input type='submit' value="Decline" class='col btn btn-secondary'>
+                                    </form>
+                                </div>
+                            </div>
+                        <br>
+                        <br>      
                     </div>
                 {% endif %}
             {% endfor %}
@@ -186,6 +206,25 @@
     <br>
 
     <h2>Collections:</h2>
+
+    {% if searched_user == user %}
+
+        <form action='/create_collection'>
+            <div>
+                <label for='collection_name'>Create a new collection</label>
+                <input type='text' name='collection_name' id='collection_name_other'> 
+            </div>
+            <div>
+                <input type="checkbox" name="lendable" value="True">
+                <label>Lend books from this collection</label>
+
+                <input type="checkbox" name="private" value="True">
+                <label>Make this collection private</label>
+            </div>
+            <input type='submit' value="Create">
+        </form>
+        <br>
+    {% endif %}
 
     <div>
         {% for each in searched_user.collections %}
