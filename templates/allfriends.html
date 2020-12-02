@@ -45,53 +45,9 @@
 
             {% endif %}
         {% endif %}
+        <br>
+        <br>
         </div>
     {% endfor %}
-
-
-    <br>
-    {% if pages < 5 %}
-        <div>
-            {% for num in range(1, pages+1)%}
-                {% if num == page %}
-                    <a class='pagination'>{{num}}</a>
-                {% else %}
-                    <a class='pagination' href="/collection?collection={{collection.id}}&page={{num}}">{{num}}</a>
-                {% endif %}
-            {% endfor %}
-        </div>
-    {% else %}
-        <div>
-            {% if page != 1 %}
-                <a class='pagination' href="/collection?collection={{collection.id}}&page=1">1</a>
-            {% else %}
-                <a class='pagination'>1</a>
-            {% endif %}
-            {% if page > 3 %}
-            <a class='pagination'>...</a>
-            {% endif %}
-            {% for num in range(page-2, page+3)%}
-                {% if num > 1 and num < pages %}
-                    {% if num == page %}
-                        <a class='pagination'>{{num}}</a>
-                    {% else %}
-                        <a class='pagination' href="/collection?collection={{collection.id}}&page={{num}}">{{num}}</a>
-                    {% endif%}
-                {% endif %}
-            {% endfor %}
-            {% if page < pages-3 %}
-                <a class='pagination'>...</a>
-            {% endif %}
-            {% if page != pages %}
-                <a class='pagination' href="/collection?collection={{collection.id}}&page={{pages}}">{{pages}}</a>
-            {% else %}
-                <a class='pagination'>{{pages}}</a>
-            {% endif %}
-            <br>
-            <div>
-                <input id=jumppagecollection type="text" name='page'>
-                <button id=jumpcollection>Jump to page</button>
-        </div>
-    {% endif %}
 </div>
 {% endblock %}
