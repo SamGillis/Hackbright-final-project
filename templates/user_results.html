@@ -2,14 +2,57 @@
 {% block title %}Search results{% endblock %}
 
 {% block body %}
-    Displaying results for "{{search_terms}}"
-    {% for user in results %}
-        <div>
-            <a href="/user?id={{user.id}}">{{user.username}}</a>     
-        </div>
+<div class='bg-image bg-image-userresults'></div>
+<div class="bodytext container">
+    <h1>Displaying results for "{{search_terms}}" Users</h1>
+    <br>
+    <br>
+    {% for friend in results %}
+    <div class=friend>
+        {% if friend != user %}
+            <div>
+                <a class='friendlink' href="/user?id={{friend.id}}">{{friend.username.title()}}</a>     
+            </div>
+
+            {% if friend in user.friends and user in friend.friends %}
+                <p class='friendstatus'>Friends</p>
+                <form action="/delete_friend/{{friend.id}}">
+                    <input type='submit' class="btn btn-secondary" value="Delete Friend">
+                </form>
+
+            
+            {% elif friend in user.friends %}
+                <p class='friendstatus'> Friend request sent </p>
+                <form action="/retract_friend_request/{{friend.id}}">
+                    <input type='submit' value="Cancel request" class="btn btn-secondary">
+                </form>
+
+            {% elif user in friend.friends %}
+                <p class='friendstatus'> Pending Response </p>
+                <div class="container">
+                    <div class="row">
+                <form action="/add_friend/{{friend.id}}">
+                    <input type='submit' value="Accept" class='btn btn-secondary col'>
+                </form>
+                <form action="/decline_friend/{{friend.id}}">
+                    <input type='submit' value="Decline" class="btn btn-secondary col">
+                </form>
+                </div></div>
+            {% else %}
+                <form action="/add_friend/{{friend.id}}">
+                    <br>
+                    <input type='submit' value="Send Friend Request" class="btn btn-secondary">
+                </form>
+
+            {% endif %}
+        {% endif %}
+        <br>
+        <br>
+    </div>
     {% endfor %}
     {% if results == [] %}
-        <p>No results found</p>
-        <a href="/search">Search again</a>   
+        <h6>No results found</h6>
+        <a class='friendlink' href="/search">Search again</a>   
     {% endif %}
+</div>
 {% endblock %}

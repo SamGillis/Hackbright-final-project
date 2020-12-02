@@ -209,6 +209,11 @@ h6 {
 }
 
 /* user_results styling*/
+.bg-image-userresults {
+    background: url(/static/photos/bookshelf2.jpg);
+    background-size: cover;
+}
+
 
 /* user styling*/
 
