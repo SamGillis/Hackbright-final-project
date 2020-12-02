@@ -103,39 +103,63 @@
         </div>
         <br>
         <br>
-        <div>
-            <h3>Books Lent</h3>
+        <div class='usersect container'>
+            <h2>Books Lent</h2>
+            <h5>Friends have borrowed these books from you</h5>
             {% for request in user.lent_books %}
                 {% if request.lent %}
-                    <div>
+                    <div class='bookrequest'>
+                        <br>
+                        <br>
                         {% if request.book[0].cover_img != None %}
-                        <image src="{{ request.book[0].cover_img }}"></image>
+                        <image class='bookimageuser' src="{{ request.book[0].cover_img }}"></image>
                         {% endif %}
-                        <a href="/book?gi={{request.book[0].google_id}}">{{request.book[0].title}}</a>
-                        <p>This book has been borrowed by {{request.borrower.username.title()}}</p> 
-                        <p>Contact them at {{request.borrower.email}}</p> 
+                        <br>
+                        <br>
+                        <div class='bkmuser'>
+                            <a class='friendlink bookname' href="/book?gi={{request.book[0].google_id}}">
+                                {{request.book[0].title}}</a>
+                        </div>
+                        <p>This book is lent to <br>
+                            <a class='friendlink' href='/user?id={{request.borrower.id}}'>
+                            {{request.borrower.username.title()}}</a> <br>
+                            {{request.borrower.email}}</p> 
                         <form action="/delete_request/{{request.id}}">
-                            <input type='submit' value="Mark as returned">
-                        </form>    
+                            <input type='submit' value="Returned" class='btn btn-secondary'>
+                        </form>   
+                        <br>
+                        <br> 
                     </div>
                 {% endif %}
             {% endfor %}
         </div>
         <br>
-        <p>Friend Requests</p>
-        {% if requests == [] %}
-            <p>No new Requests</p>
-        {% endif %}
-        {% for each in requests %}
-            <a href='/user?id={{each.id}}'>{{each.username}}</a>
-            <form action="/add_friend/{{each.id}}">
-                <input type='submit' value="Accept Friend Request">
-            </form>
-            <form action="/decline_friend/{{each.id}}">
-                <input type='submit' value="Decline Friend Request">
-            </form>
-        {% endfor %}
-
+        <div class='usersect'>
+            <h2>Friend Requests</h2>
+            <br>
+            {% if requests == [] %}
+                <h6>No new Requests</h6>
+            {% endif %}
+            {% for each in requests %}
+                <div class='frienddisplay'>
+                <a class='friendlink' href='/user?id={{each.id}}'>{{each.username.title()}}</a>
+                <br>
+                <br>
+                <div class='container'>
+                    <div class='row requeststatus'>
+                        <form action="/add_friend/{{each.id}}">
+                            <input type='submit' value="Accept" class="col btn btn-secondary">
+                        </form>
+                        <form action="/decline_friend/{{each.id}}">
+                            <input type='submit' value="Decline" class="col btn btn-secondary">
+                        </form>
+                    </div>
+                </div>
+                <br>
+                <br>
+                </div>
+            {% endfor %}
+        </div>
         <br>
         <br>
 
