@@ -12,6 +12,20 @@ nav {
     
 }
 
+.flash-msg {
+    background-color: rgba(0, 0, 0, .6);
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    z-index: 1;
+    width: 40%;
+    text-align: center;
+}
+
 
 /* Homepage styling*/
 .bg-image{
@@ -40,6 +54,7 @@ nav {
     z-index: 1;
     width: 80%;
     text-align: center;
+    margin-bottom: 10%;
 }
 
 #createaccount {
@@ -78,6 +93,7 @@ h1 {
     color: white;
     font-weight: bold;
     border: 3px solid #f1f1f1;
+    margin-bottom: 10%;
     position: absolute;
     top: 60%;
     left: 50%;
@@ -99,10 +115,6 @@ h1 {
     font-weight: bolder;
 }
 
-p {
-    
-}
-
 .friendstatus {
     font-size: small;
 }
@@ -112,6 +124,49 @@ p {
 }
 
 /* book styling*/
+
+.bg-image-bookdetails {
+    background: url(/static/photos/bookshelf5.jpg) center;
+    background-size: cover;
+    
+    position: fixed;
+    min-width:100%; 
+    min-height:100%; 
+    width:auto; 
+    height:auto;
+
+    filter: blur(2px);
+}
+
+.bookdetails {
+    background-color: rgba(0, 0, 0, .6);
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 100%;
+    margin-bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+    z-index: 1;
+    width: 80%;
+    text-align: center;
+}
+
+.detailsimage {
+    
+    width: 80%;
+}
+
+.details {
+    text-align: left;
+    font-size: 20px;
+    text-indent: 35px;
+}
+
+#authors {
+    font-size: 20px;
+}
 
 /* collection styling*/
 

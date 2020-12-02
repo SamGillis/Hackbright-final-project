@@ -69,10 +69,10 @@ def user_login():
 
     if not sha256_crypt.verify(password, user.password):
         flash('Email and password do not match. Please try again.')
-        return 'redirect('/')'
+        return redirect('/')
     else:
         session['user.id'] = session.get('user.id', user.id)
-        flash(f'Welcome back {user.username}')
+        flash(f'Welcome back {user.username.title()}')
         return redirect('/user')
 
 @app.route('/log_out')

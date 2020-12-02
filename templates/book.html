@@ -2,13 +2,24 @@
 {% block title %}Book details!{% endblock %}
 
 {% block body %}
+<div class='bg-image-bookdetails'></div>
+<div class="bookdetails">
+
     <h1>{{book['title']}}</h1>
+    <br>
+    <br>
+    <div class="row">
+    <div class='col-4'>
+        <img class=detailsimage src="{{ book['imageLinks']['thumbnail']}}">
+        <br>
+        <br>
+        <p id='authors'>By: {{book['authors']}}</p>
+    </div>
+    <p class='col-8 details'>{{book['description']}}</p>
 
-    <img src="{{ book['imageLinks']['thumbnail']}}">
-    <p>By: {{book['authors']}}</p>
-    <p>{{book['description']}}</p>
-
-    <form action="/add_book/{{google_id}}">
+    </div>
+    <div class='row'>
+    <form class='col' action="/add_book/{{google_id}}">
         <div id='add_to_collection'>
             <a>
                 Add to a collection:
@@ -37,7 +48,7 @@
         </div>
     </form>
 
-    <div>
+    <div class="col">
             {% for each in user.collections %}
                 {% if book_obj in each.books %}
                     <p class=bookincollections> Book in these collections:</p>
@@ -58,6 +69,7 @@
 
     <br>
     <br>
+    <div class='col'>
     {% if user.get_lender(book_obj) != [] %}
         <p>Book is already requested from {{user.get_lender(book_obj)[0].username.title()}}</p>
         <p>Contact them at {{user.get_lender(book_obj)[0].email}}</p>
@@ -82,4 +94,7 @@
             {% endif %}
         {% endfor %}
     {% endif %}
+    </div>
+</div>
+</div>
 {% endblock %}
