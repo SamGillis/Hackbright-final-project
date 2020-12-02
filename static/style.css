@@ -184,13 +184,28 @@ h6 {
 /* results styling*/
 
 .bg-image-results {
-    background: url(/static/photos/books.jpg);
+    background: url(/static/photos/bookshelf3.jpg);
     background-size: cover;
 }
 
 #jumppageresults {
     margin-left: 50px;
     width: 150px;
+}
+
+
+/* search styling*/
+.bg-image-search {
+    background: url(/static/photos/books.jpg);
+    background-size: cover;
+}
+
+#searchtxt {
+    width: 300px;
+}
+
+#searchbutton {
+    margin-left: 50px ;
 }
 
 /* user_results styling*/
