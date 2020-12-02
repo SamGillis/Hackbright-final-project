@@ -40,13 +40,9 @@ nav {
     color: rgb(152, 113, 137)
 }
 
-
-/* Homepage styling*/
 .bg-image{
-    background: url(/static/photos/bookshelf4.jpg);
-    background-size: cover;
-    z-index: -1;
 
+    z-index: -1;
     filter: blur(2px);
     position: fixed;
     top: 0;
@@ -56,7 +52,7 @@ nav {
     height:auto;
 }
 
-.homepage {
+.bodytext {
     background-color: rgba(0, 0, 0, .6);
     color: white;
     font-weight: bold;
@@ -65,11 +61,18 @@ nav {
     margin-top: 80px;
     margin-bottom: 80px;
 
-    z-index: 1;
+    z-index: 6;
     margin-right: auto;
     margin-left: auto;
     width: 80%;
     text-align: center;
+}
+
+
+/* Homepage styling*/
+.bg-image-home {
+    background: url(/static/photos/bookshelf4.jpg);
+    background-size: cover;
 }
 
 #createaccount {
@@ -84,16 +87,6 @@ nav {
 .bg-image-allfriends {
     background: url(/static/photos/books2.jpg);
     background-size: cover;
-    z-index: -1;
-    
-    position: fixed;
-    top: 0;
-    min-width:100%; 
-    min-height:100%; 
-    width:auto; 
-    height:auto;
-
-    filter: blur(2px);
 }
 
 
@@ -103,24 +96,6 @@ h1 {
     font-weight: bold;
     text-decoration: underline white;
     text-underline-position: under;
-}
-
-
-.bodytextallfriends {
-    background-color: rgba(0, 0, 0, .6);
-    color: white;
-    font-weight: bold;
-    border: 3px solid #f1f1f1;
-
-    margin-top: 80px;
-    margin-bottom: 80px;
-
-    z-index: 6;
-    margin-right: auto;
-    margin-left: auto;
-    width: 80%;
-    text-align: center;
-
 }
 
 .friend {
@@ -148,32 +123,6 @@ h1 {
 .bg-image-bookdetails {
     background: url(/static/photos/bookshelf5.jpg);
     background-size: cover;
-    z-index: -1;
-    
-    position: fixed;
-    top: 0;
-    min-width:100%; 
-    min-height:100%; 
-    width:auto; 
-    height:auto;
-
-    filter: blur(2px);
-}
-
-.bookdetails {
-    background-color: rgba(0, 0, 0, .6);
-    color: white;
-    font-weight: bold;
-    border: 3px solid #f1f1f1;
-
-    margin-top: 80px;
-    margin-bottom: 80px;
-
-    z-index: 6;
-    margin-right: auto;
-    margin-left: auto;
-    width: 80%;
-    text-align: center;
 }
 
 .detailsimage {
@@ -208,37 +157,9 @@ h6 {
 
 /* collection styling*/
 
-
-
-.collectiontxt {
-    background-color: rgba(0, 0, 0, .6);
-    color: white;
-    font-weight: bold;
-    border: 3px solid #f1f1f1;
-    
-    margin-top: 80px;
-    margin-bottom: 80px;
-    
-    z-index: 6;
-    margin-right: auto;
-    margin-left: auto;
-    width: 80%;
-    text-align: center;
-}
-
 .bg-image-collection {
     background: url(/static/photos/bookshelf6.jpg);
     background-size: cover;
-    z-index: -8;
-    
-    position: fixed;
-    top: 0;
-    min-width:100%; 
-    min-height:100%; 
-    width:auto; 
-    height:auto;
-
-    filter: blur(2px);
 
 }
 

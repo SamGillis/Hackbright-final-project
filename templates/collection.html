@@ -2,8 +2,8 @@
 {% block title %}{{collection.user.username.title()}}'s Collection{% endblock %}
 
 {% block body %}
-<div class='bg-image-collection'></div>
-<div class="collectiontxt container">
+<div class='bg-image-collection bg-image'></div>
+<div class="bodytext container">
     
     <meta id='pages-java' data-count='{{pages}}'>
     <h1>{{collection.user.username.title()}}'s {{" ".join(collection.collection_type.split("_")).title()}} 
