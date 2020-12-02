@@ -4,67 +4,111 @@
 {% block body %}
 
     <meta id='pages-java' data-count='{{pages}}'>
-    <div class='bg-image-collection'></div>
-    <div class="collectiontxt container">
-    Displaying results for "{{search_terms}}"
-    {% for book in results %}
-        <div>
-            {% if book.cover_img != None %}
-            <image src="{{ book.cover_img }}"></image>
+    <div class='bg-image bg-image-results'></div>
+    <div class="bodytext container">
+    <h1>Results for "{{search_terms.title()}}"</h1>
+    <br>
+    <br>
+    <div>
+    {% for i in range(results|length) %}
+        {% if i % 3 == 0 %}
+            <div class='row'>
+        {% endif %}
+        <div class='col'>
+            {% if results[i].cover_img != None %}
+            <image class='bookimage' src="{{ results[i].cover_img }}"></image>
             {% endif %}
-            <a href="/book?gi={{book.google_id}}">{{book.title}}</a>     
+            <br>
+            <br>
+            <a class='friendlink bookname' href="/book?gi={{results[i].google_id}}">{{results[i].title}}</a>     
+            <br>
+            <br>
+            <br>
+            <br>
         </div>
+        {% if i % 3 == 2 or i == results|length - 1 %}
+        <br>
+        <br>
+        </div>
+        {% endif %}
     {% endfor %}
-
     {% if results == [] %}
-        <p>No results found</p>
-        <a href="/search">Search again</a>   
+        <h6>No results found</h6>
+        <a class='friendlink' href="/search">Search again</a> 
+        <br>
+        <br>  
     {% endif %}
 
     <br>
     {% if pages < 5 %}
-        <div>
-            {% for num in range(1, pages+1)%}
-                {% if num == page %}
-                    <a class='pagination'>{{num}}</a>
-                {% else %}
-                    <a class='pagination' href="/search_results?search_terms{{search_terms}}&type={{search_type}}&page={{num}}">{{num}}</a>
-                {% endif %}
-            {% endfor %}
+        <div aria-label='search_results'>
+            <ul class='pagination justify-content-center'>
+                {% for num in range(1, pages+1)%}
+                    {% if num == page %}
+                        <li class='page-item active' aria-current='page'>
+                            <span class='page-link'>
+                                {{num}}
+                                <span class='sr-only'>(current)</span>
+                            </span>
+                        </li>
+                    {% else %}
+                    <li class='page-item'><a class='page-link' href="/search_results?search_terms{{search_terms}}&type={{search_type}}&page={{num}}">{{num}}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         </div>
     {% else %}
-        <div>
+        <div aria-label='search_results'>
+        <ul class='pagination justify-content-center pagecolor'>
             {% if page != 1 %}
-                <a class='pagination' href="/search_results?search_terms={{search_terms}}&type={{search_type}}&page=1">1</a>
+                <li class='page-item'><a class='page-link' href="/search_results?search_terms={{search_terms}}&type={{search_type}}&page=1">1</a>
+                </li>
             {% else %}
-                <a class='pagination'>1</a>
+                <li class='page-item active' aria-current='page'>
+                    <span class='page-link'>
+                        1
+                        <span class='sr-only'>(current)</span>
+                    </span>
+                </li>
             {% endif %}
-            {% if page > 3 %}
-            <a class='pagination'>...</a>
+            {% if page > 4 %}
+            <li class='page-item'><span class='page-link'>...</span></li>
             {% endif %}
             {% for num in range(page-2, page+3)%}
                 {% if num > 1 and num < pages %}
                     {% if num == page %}
-                        <a class='pagination'>{{num}}</a>
+                        <li class='page-item active' aria-current='page'>
+                            <span class='page-link'>
+                                {{num}}
+                                <span class='sr-only'>(current)</span>
+                            </span>
+                        </li>
                     {% else %}
-                        <a class='pagination' href="/search_results?search_terms={{search_terms}}&type={{search_type}}&page={{num}}">{{num}}</a>
+                        <li class='page-item'><a class='page-link' href="/search_results?search_terms={{search_terms}}&type={{search_type}}&page={{num}}">{{num}}</a>
+                        </li>
                     {% endif%}
                 {% endif %}
             {% endfor %}
             {% if page < pages-3 %}
-                <a class='pagination'>...</a>
+            <li class='page-item'><span class='page-link'>...</span></li>
             {% endif %}
             {% if page != pages %}
-                <a class='pagination' href="/search_results?search_terms={{search_terms}}&type={{search_type}}&page={{pages}}">{{pages}}</a>
+                <li class='page-item'><a class='page-link' href="/search_results?search_terms={{search_terms}}&type={{search_type}}&page={{pages}}">{{pages}}</a>
+                </li>
             {% else %}
-                <a class='pagination'>{{pages}}</a>
+                <li class='page-item active' aria-current='page'>
+                    <span class='page-link'>
+                        {{pages}}
+                        <span class='sr-only'>(current)</span>
+                    </span>
+                </li>
             {% endif %}
-            <br>
             <div>
-                <input id=jumppageresults type="text" name='page'>
-                <button id=jumpresults>Jump to page</button>
+                <input id=jumppageresults type="text" name='page' placeholder="Jump to page">
+                <button id=jumpresults class='btn btn-secondary'>Go</button>
                 
             </div>
+        </ul>
         </div>
 
     {% endif %}
