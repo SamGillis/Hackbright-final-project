@@ -39,8 +39,8 @@
         <br>
         <br>
         <div class='usersect container'>
-            <h2>Borrowed Books</h2>
-            <h5>You've borrowed these books from friends</h5>
+            <h2>Currently Borrowed Books</h2>
+            <h5>You are currently borrowing these books from friends</h5>
             {% for i in range(user.book_requests|length) %}
                 {% if user.book_requests[i].lent %}
                     <div class='bookrequest'>
@@ -104,8 +104,8 @@
         <br>
         <br>
         <div class='usersect container'>
-            <h2>Books Lent</h2>
-            <h5>Friends have borrowed these books from you</h5>
+            <h2>Currently Lent Books</h2>
+            <h5>Friends are currently borrowing these books from you</h5>
             {% for request in user.lent_books %}
                 {% if request.lent %}
                     <div class='bookrequest'>
@@ -162,134 +162,192 @@
         </div>
         <br>
         <br>
-
-        <p>Friends</p>
-        {% if user.friends == [] %}
-            <p>No current friends</p>
-        {% endif %}
-        {% for i in range(5) %}
-            {% if i < friends|length %}
-                <a href='/user?id={{friends[i].id}}'>{{friends[i].username}}</a>
-                {% if user in friends[i].friends %}
-                    <form action="/delete_friend/{{friends[i].id}}">
-                        <input type='submit' value="Delete Friend">
-                    </form>
-                {% else %}
-                    <form action="/retract_friend_request/{{friends[i].id}}">
-                        <input type='submit' value="Retract friend request">
-                    </form>
-                {% endif %}
+        <div class='usersect'>
+            <h2>Friends</h2>
+            <br>
+            {% if user.friends == [] %}
+                <h6>No current friends</h6>
             {% endif %}
-        {% endfor %}
-        <br>
-        <a href='/friends/{{searched_user.id}}'>See all friends</a>
-
+            {% for i in range(5) %}
+                {% if i < friends|length %}
+                    <div class='frienddisplay'>
+                        <a class='friendlink' href='/user?id={{friends[i].id}}'>{{friends[i].username.title()}}</a>
+                        {% if user in friends[i].friends %}
+                            <form action="/delete_friend/{{friends[i].id}}">
+                                <input type='submit' value="Delete Friend" class='btn btn-secondary'>
+                            </form>
+                            <br>
+                        {% else %}
+                            <form action="/retract_friend_request/{{friends[i].id}}">
+                                <input type='submit' value="Delete Request" class='btn btn-secondary'>
+                            </form>
+                            <br>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <br>
+            <a class='friendlink' href='/friends/{{searched_user.id}}'>See all friends</a>
+            <br>
+            <br>
+        </div>
     {% elif searched_user in user.friends and user in searched_user.friends %}
-        <p> You're friends! </p>
+        <h6> You're friends! </h6>
         <form action="/delete_friend/{{searched_user.id}}">
-            <input type='submit' value="Delete Friend">
+            <input type='submit' value="Delete Friend" class='btn btn-secondary'>
         </form>
 
         <br>
-        <br>
-
-        <p>Friends</p>
-        {% if searched_user.friends == [] %}
-            <p>No current friends</p>
-        {% endif %}
-        {% for i in range(5) %}
-            {% if i < searched_user.friends|list|length %}
-                {% if searched_user.friends[i].id != user.id%}
-                    <a href='/user?id={{searched_user.friends[i].id}}'>
-                        {{searched_user.friends[i].username}}</a>
-                {% endif %}
+        <div class=usersect>
+            <h2>Friends</h2>
+            {% if searched_user.friends == [] %}
+                <h6>No current friends</h6>
             {% endif %}
-        {% endfor %}
-        <br>
-        <a href='/friends/{{searched_user.id}}'>See all friends</a>
-
-        
+            {% for i in range(5) %}
+                {% if i < searched_user.friends|list|length %}
+                    {% if searched_user.friends[i].id != user.id%}
+                        <div class='frienddisplay'>
+                            <a class= 'friendlink' href='/user?id={{searched_user.friends[i].id}}'>
+                                {{searched_user.friends[i].username.title()}}</a>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            <br>
+            <a class='friendlink' href='/friends/{{searched_user.id}}'>See all friends</a>
+            <br>
+            <br>
+        </div>
     {% elif searched_user in user.friends %}
-        <p> A friend request has been sent to this user </p>
+        <h6> A friend request has been sent to this user </h6>
 
     {% elif user in searched_user.friends %}
-        <form action="/add_friend/{{searched_user.id}}">
-            <input type='submit' value="Accept Friend Request">
-        </form>
-        <form action="/decline_friend/{{searched_user.id}}">
-            <input type='submit' value="Decline Friend Request">
-        </form>
+        <h6> Friend request received </h6>
+        <div class='container'>
+            <div class='row requeststatus'>
+                <form action="/add_friend/{{searched_user.id}}">
+                    <input type='submit' value="Accept" class="col btn btn-secondary">
+                </form>
+                <form action="/decline_friend/{{searched_user.id}}">
+                    <input type='submit' value="Decline" class="col btn btn-secondary">
+                </form>
+            </div>
+        </div>
     
     {% else %}
         <form action="/add_friend/{{searched_user.id}}">
-            <input type='submit' value="Send a Friend Request">
+            <input type='submit' value="Send Friend Request" class="btn btn-secondary">
         </form>
 
     {% endif %}
     <br>
-    <br>
-
-    <h2>Collections:</h2>
+    <div class='usersect'>
+    <h2>Collections</h2>
 
     {% if searched_user == user %}
-
+        <br>
         <form action='/create_collection'>
+                <label for='collection_name'><h6>Create a new collection</h6></label><br>
+
+                <input type='text' name='collection_name' id='collection_name_other' placeholder="Collection Name"> 
             <div>
-                <label for='collection_name'>Create a new collection</label>
-                <input type='text' name='collection_name' id='collection_name_other'> 
-            </div>
-            <div>
+                <br>
                 <input type="checkbox" name="lendable" value="True">
                 <label>Lend books from this collection</label>
-
+                <br>
                 <input type="checkbox" name="private" value="True">
                 <label>Make this collection private</label>
             </div>
-            <input type='submit' value="Create">
+            <input type='submit' value="Create" class="btn btn-secondary">
         </form>
         <br>
     {% endif %}
 
-    <div>
-        {% for each in searched_user.collections %}
+    
+    {% for each in searched_user.collections %}
+        <div class='usercollection'>
             {% if not each.private %}
                 <h3>{{' '.join(each.collection_type.split('_')).title()}}</h3>
-                {% for i in range(10) %}
+                <br>
+                <br>
+                <div class='container'>
+                {% for i in range(9) %}
+                    {% if i % 3 == 0 %}
+                    <div class='row'>
+                    {% endif %}
                     {% if i < each.books|length %}
-                        <div>
+                        <div class='col'>
                             {% if each.books[i].cover_img != None %}
-                            <image src="{{ each.books[i].cover_img }}"></image>
+                            <image class='bookimageuser' src="{{ each.books[i].cover_img }}"></image>
                             {% endif %}
-                            <a href="/book?gi={{each.books[i].google_id}}">{{each.books[i].title}}</a>     
+                            <br>
+                            <br>
+                            <a class='friendlink bookname' href="/book?gi={{each.books[i].google_id}}">
+                                {{each.books[i].title}}</a>  
+                            <br>
+                            <br>
+                            <br>  
                         </div>
                     {% endif %}
+                    {% if i % 3 == 2 or i == 8 %}
+                    </div>
+                    {% endif %}
                 {% endfor %}
+                </div>
 
-                <a href="/collection?collection={{each.id}}">See all books in this collection</a>
+                <a class='friendlink link' href="/collection?collection={{each.id}}">See all books in this collection</a>
+                <br>
+                <br>
+                <br>
+
             {% endif %}
-        {% endfor %}
-    </div>
+        </div>
+    {% endfor %}
+    
     {% if searched_user == user %}
         <div>
             {% for each in searched_user.collections %}
-                {% if each.private %}
-                    <h2 class='privatecollections'>Private Collections:</h2>
-                    <h3>{{' '.join(each.collection_type.split('_')).title()}}</h3>
-                    {% for i in range(10) %}
-                        {% if i < each.books|length %}
-                            <div>
-                                {% if each.books[i].cover_img != None %}
-                                <image src="{{ each.books[i].cover_img }}"></image>
-                                {% endif %}
-                                <a href="/book?gi={{each.books[i].google_id}}">{{each.books[i].title}}</a>     
+                <div class='container'>
+                    {% if each.private %}
+                        <h2 class='privatecollections'>Private Collections</h2>
+                        <h3>{{' '.join(each.collection_type.split('_')).title()}}</h3>
+                        <br>
+                        <br>
+                        
+                        {% for i in range(9) %}
+                            {% if i % 3 == 0 %}
+                                <div class='row'>
+                            {% endif %}
+                            {% if i < each.books|length %} 
+                                <div class="col">
+                                    {% if each.books[i].cover_img != None %}
+                                    <image class='bookimageuser' src="{{ each.books[i].cover_img }}"></image>
+                                    {% endif %}
+                                    <br>
+                                    <br>
+                                    <a class='friendlink bookname' href="/book?gi={{each.books[i].google_id}}">{{each.books[i].title}}</a>     
+                                    <br>
+                                    <br>
+                                    <br>
+                                </div>
+                            {% endif %}
+                            {% if i % 3 == 2 or i == 8 %}
                             </div>
-                        {% endif %}
-                    {% endfor %}
+                            {% endif %}
+                        {% endfor %}
 
-                    <a href="/collection?collection={{each.id}}">See all books in this collection</a>
-                {% endif %}
+                        <a class='friendlink link' href="/collection?collection={{each.id}}">See all books in this collection</a>
+                        <br>
+                        <br>
+                        <br>
+                    {% endif %}
+                </div>
             {% endfor %}
         </div>
     {% endif %}
+    </div>
+    <br>
+    <br>
+    <br>
 </div>
 {% endblock %}
