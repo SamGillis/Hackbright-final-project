@@ -80,7 +80,7 @@
     <div class='col'>
     {% if user.get_lender(book_obj) != [] %}
         <h6>Book is already requested from </h6>
-            <a class='friendlink' href='/user?id={{user.get_lender(book_obj)[0]}}'>{{user.get_lender(book_obj)[0].username.title()}}</a>
+            <a class='friendlink' href='/user?id={{user.get_lender(book_obj)[0].id}}'>{{user.get_lender(book_obj)[0].username.title()}}</a>
         <p>Contact them at {{user.get_lender(book_obj)[0].email}}</p>
         <form action="/delete_request/{{user.get_lender(book_obj)[1]}}">
             <input type='submit' class='btn btn-secondary' value="Delete Request">
